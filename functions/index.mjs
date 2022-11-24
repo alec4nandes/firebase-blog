@@ -15,8 +15,12 @@ import {
 } from "./models.mjs";
 // for emailing the mailing list each new post:
 import admin from "firebase-admin";
+import serviceAccount from "./node-blog-369520-firebase-adminsdk-68fp3-0d9391300a.json" assert { type: "json" };
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
+
+admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
+dotenv.config();
 
 // SERVER
 
@@ -116,6 +120,16 @@ app.get("/unsubscribe", function (req, res) {
     }
 });
 
+app.get("/auth", function (req, res) {
+    auth.currentUser
+        ? admin
+              .auth()
+              .createCustomToken(auth.currentUser.uid)
+              .then((token) => res.send({ token }))
+              .catch((error) => res.send({}))
+        : res.send({});
+});
+
 app.get("*", function (req, res) {
     setCDNHeaders(res);
     res.redirect("/404.html");
@@ -158,8 +172,8 @@ async function renderPost(res, post, is_draft) {
 
 async function renderEditPosts(res) {
     res.render("edit-posts", {
-        posts: await getPublishedPosts(),
-        drafts: await getDrafts(),
+        posts: formatDatesDescending(await getPublishedPosts()),
+        drafts: formatDatesDescending(await getDrafts()),
     });
 }
 
@@ -261,9 +275,6 @@ function getURL(post) {
 // END SERVER
 
 // MAILING LIST NEW POST ALERT
-
-admin.initializeApp();
-dotenv.config();
 
 // google account credentials used to send email
 const transporter = nodemailer.createTransport({
