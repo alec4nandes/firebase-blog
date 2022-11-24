@@ -1,0 +1,163 @@
+@import url("https://api.fontshare.com/v2/css?f[]=supreme@400&f[]=bespoke-stencil@700&display=swap");
+body {
+  margin: 0;
+  font-family: "Supreme", sans-serif;
+  font-size: 18px;
+}
+body.preload * {
+  transition: none !important;
+}
+body main {
+  max-width: 800px;
+  box-sizing: border-box;
+  margin: auto;
+  padding: 0 20px;
+}
+body main.centered-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+body main #edit-post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+body main #edit-post-form button[type=submit] {
+  width: 260px;
+  background-color: lightblue;
+  margin: auto;
+}
+body main #edit-post-form em {
+  text-align: center;
+}
+body main #edit-post-form #image-preview {
+  height: auto;
+  max-height: 200px;
+  max-width: 100%;
+  width: auto;
+  display: inherit;
+  margin: auto;
+}
+body main #edit-post-form textarea {
+  min-height: 250px;
+  background-color: #eee;
+  font-size: 1rem;
+}
+body main #edit-post-form button[type=submit],
+body main .save-or-delete-buttons button {
+  transition: opacity 0.5s;
+}
+body main #edit-post-form button[type=submit]:hover,
+body main .save-or-delete-buttons button:hover {
+  opacity: 0.6;
+}
+body main .save-or-delete-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+body main .save-or-delete-buttons button {
+  width: 120px;
+}
+body main .save-or-delete-buttons button:first-child {
+  background-color: lightblue;
+}
+body main .save-or-delete-buttons button:last-child {
+  background-color: lightpink;
+}
+body a,
+body button.button-link {
+  color: rgb(0, 131, 173);
+  transition: color 0.5s, opacity 0.5s;
+}
+body a:hover,
+body button.button-link:hover {
+  opacity: 0.6;
+}
+body button.button-link {
+  background-color: transparent;
+  border: 0;
+  font-size: 18px;
+  text-decoration: underline;
+}
+body button,
+body input,
+body .home-link {
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  background-color: #eee;
+  border: 1px solid #555;
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: #555;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  padding: 2px 5px;
+  text-decoration: none;
+  transition: background-color 0.5s;
+}
+body button:hover,
+body .home-link:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}
+body .centered {
+  text-align: center;
+}
+body code {
+  font-size: 16px;
+}
+body code pre,
+body code xmp {
+  width: 100%;
+  background-color: #eee;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  overflow-x: auto;
+  padding: 10px;
+}
+body input::-moz-placeholder {
+  color: #aaa;
+}
+body input:-ms-input-placeholder {
+  color: #aaa;
+}
+body input::placeholder {
+  color: #aaa;
+}
+body .search-form input,
+body .subscribe-container input {
+  max-width: 150px;
+}
+body .sign-in-form {
+  flex-direction: column;
+  display: flex;
+  gap: 10px;
+}
+body .unsubscribe {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  text-align: center;
+}
+body .unsubscribe p {
+  margin: 0;
+}
+body footer {
+  height: 100px;
+  max-width: 800px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+  padding: 20px;
+}/*# sourceMappingURL=style.css.map */

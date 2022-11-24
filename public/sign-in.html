@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/header-menu.css" />
+        <title>Sign In &mdash; Alec Fernandes</title>
+    </head>
+    <body class="preload">
+        <header class="small-header-container">
+            <div class="small-header">
+                <h1><a href="/">Alec Fernandes</a></h1>
+                <form class="search-form" action="/search">
+                    <input type="text" name="query" /><button>search</button>
+                </form>
+            </div>
+        </header>
+        <main class="centered-content">
+            <h1>Sign In</h1>
+            <form class="sign-in-form" action="/admin" method="post">
+                <input type="email" name="email" placeholder="email" />
+                <input type="password" name="password" placeholder="password" />
+                <button type="submit">sign in</button>
+            </form>
+        </main>
+        <footer><a href="/">home</a><a href="/admin">admin</a></footer>
+        <script src="/scripts.js"></script>
+        <script src="/bundle.js"></script>
+    </body>
+</html>

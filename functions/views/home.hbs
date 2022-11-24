@@ -1,0 +1,138 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/header-menu.css" />
+        <link rel="stylesheet" href="/css/article.css" />
+        {{{meta_tags}}}
+    </head>
+    <body class="preload">
+        <header class="home">
+            <div class="top half">
+                <h1>Alec Fernandes</h1>
+                <h2>modern mindful code</h2>
+            </div>
+            <div class="bottom half">
+                <nav><h3>tags:
+                        {{#each top_tags}}
+                            <a href="/search/?tag={{this}}">{{this}}</a>
+                        {{/each}}
+                    </h3></nav>
+                <div class="search-container">
+                    <form class="search-form" action="/search/">
+                        <input type="text" name="query" /><button>
+                            search
+                        </button>
+                    </form>
+                    <div class="scroll-for-more"><span>▼</span></div>
+                </div>
+            </div>
+        </header>
+        <div class="subscribe-container">
+            <div class="subscribe">
+                <button class="open-nav" onclick="toggleNavMenu(true)">
+                    <img src="/assets/icons8-menu-64.png" alt="" />
+                </button>
+                <nav class="closed">
+                    <button class="close-nav" onclick="toggleNavMenu(false)">
+                        <img src="/assets/icons8-close-30.png" alt="" />
+                    </button>
+                    <h2 class="nav-heading">
+                        Projects
+                        <a
+                            href="https://github.com/alec4nandes"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <img src="/assets/icons8-github-30.png" alt="" />
+                        </a>
+                    </h2>
+                    <ul>
+                        {{#each projects}}
+                            <li>
+                                <a
+                                    href="{{this.url}}"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    {{@key}}
+                                </a>
+                            </li>
+                        {{/each}}
+                    </ul>
+                    <h2 class="nav-heading">Tags</h2>
+                    <ul>
+                        {{#each all_tags}}
+                            <li>
+                                <a href="/search/?tag={{this}}">{{this}}</a>
+                            </li>
+                        {{/each}}
+                    </ul>
+                </nav>
+                <form class="subscribe-form">
+                    <input type="email" name="email" placeholder="email" />
+                    <button>subscribe</button>
+                </form>
+                <div class="social-icons">
+                    <a
+                        href="https://twitter.com/alec4nandes"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        <img
+                            src="/assets/icons8-twitter-32.png"
+                            alt="Twitter icon of little bird"
+                        />
+                    </a>
+                    <a
+                        href="https://instagram.com/alec4nandes"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        <img
+                            src="/assets/icons8-instagram-32.png"
+                            alt="Instagram icon of polaroid camera"
+                        />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <main>
+            {{#each posts}}
+                <article>
+                    <h2 class="title">
+                        <a href="/post/?id={{post_id}}">{{title}}</a>
+                    </h2>
+                    <h3 class="subtitle">{{subtitle}}</h3>
+                    <p>{{date}}</p>
+                    <figure>
+                        <img src="{{feature_image}}" />
+                        <figcaption>{{feature_image_caption}}</figcaption>
+                    </figure>
+                    <div>{{{content}}}</div>
+                    <div class="tags">
+                        tags:
+                        {{#each tags}}
+                            <a href="/search/?tag={{this}}">{{this}}</a>
+                        {{/each}}
+                    </div>
+                    <button
+                        class="share-button"
+                        onclick="copyLink({{post_id}})"
+                    >
+                        share
+                        <img src="/assets/icons8-share-24.png" alt="" />
+                    </button>
+                </article>
+            {{/each}}
+        </main>
+        <footer>
+            <a href="/">home</a>
+            <a href="/admin">admin</a>
+        </footer>
+        <script src="/scripts.js"></script>
+        <script src="/bundle.js"></script>
+    </body>
+</html>

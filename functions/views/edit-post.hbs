@@ -1,0 +1,94 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/header-menu.css" />
+        <title>Edit Post</title>
+    </head>
+    <body class="preload">
+        <header class="small-header-container">
+            <div class="small-header">
+                <h1><a href="/">Alec Fernandes</a></h1>
+                <form class="search-form" action="/search">
+                    <input type="text" name="query" /><button>search</button>
+                </form>
+            </div>
+        </header>
+        <main>
+            <h1 class="centered">Edit Post</h1>
+            <form id="edit-post-form" action="/preview" method="post">
+                <input
+                    type="text"
+                    name="post_id"
+                    placeholder="post id"
+                    value="{{post_id}}"
+                    required
+                />
+                <input
+                    type="text"
+                    name="title"
+                    placeholder="title"
+                    value="{{title}}"
+                    required
+                />
+                <input
+                    type="text"
+                    name="subtitle"
+                    placeholder="subtitle"
+                    value="{{subtitle}}"
+                    required
+                />
+                <div>
+                    <img id="image-preview" src="{{feature_image}}" />
+                </div>
+                <input
+                    id="change-image"
+                    type="file"
+                    name="feature_image_select"
+                />
+                <input
+                    id="feature-image"
+                    type="text"
+                    name="feature_image"
+                    style="display: none"
+                    value="{{feature_image}}"
+                />
+                <input
+                    type="text"
+                    name="feature_image_caption"
+                    placeholder="caption"
+                    value="{{feature_image_caption}}"
+                    required
+                />
+                <textarea
+                    name="content"
+                    placeholder="content"
+                    required
+                >{{content}}</textarea>
+                <input
+                    type="text"
+                    name="tags"
+                    placeholder="tags"
+                    value="{{tags}}"
+                    required
+                />
+                <em>Reminder: previewing always saves a draft copy.</em>
+                <button type="submit">preview</button>
+            </form>
+            <div class="save-or-delete-buttons">
+                <button id="upload-post">publish</button>
+                <button id="save-draft">save draft</button>
+                <button id="delete-post">delete</button>
+            </div>
+        </main>
+        <footer>
+            <a href="/">home</a>
+            <a href="/admin/?is_new=true">new post</a>
+            <a href="/admin">admin</a>
+            <a href="/sign-out">sign out</a>
+        </footer>
+        <script src="/bundle.js"></script>
+    </body>
+</html>

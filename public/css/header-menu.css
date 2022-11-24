@@ -1,0 +1,291 @@
+.home {
+  height: 100vh;
+  background-image: url("../assets/ocean-gliderport-background.jpg");
+  background-position: top -100px left 50%;
+  background-size: auto calc(100% + 100px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+.home .half {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.home .half h1,
+.home .half h2,
+.home .half h3 {
+  margin: 0;
+  text-align: center;
+}
+.home .half.top {
+  height: 55%;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 20px;
+}
+.home .half.top h1 {
+  color: #fff;
+  font-family: "Bespoke Stencil", sans-serif;
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 60px;
+}
+.home .half.top h2 {
+  color: #fff;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 40px;
+}
+.home .half.bottom {
+  gap: 20px;
+  padding: 20px 0;
+}
+.home .half.bottom nav {
+  width: 100%;
+  background-color: rgba(0, 66, 87, 0.4);
+}
+.home .half.bottom nav h3 {
+  width: 100%;
+  box-sizing: border-box;
+  color: #002c46;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 15px;
+}
+.home .half.bottom nav h3 a {
+  color: #fff;
+}
+.home .half.bottom nav h3 a:hover {
+  color: #002c46 !important;
+  opacity: 1;
+}
+.home .half.bottom .search-container {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  gap: 10px;
+}
+.home .half.bottom .search-container .scroll-for-more {
+  height: 100%;
+}
+.home .half.bottom .search-container .scroll-for-more,
+.home .half.bottom .search-container .scroll-for-more span {
+  position: relative;
+}
+.home .half.bottom .search-container .scroll-for-more span {
+  -webkit-animation: bounce 1.5s alternate ease-in-out infinite;
+          animation: bounce 1.5s alternate ease-in-out infinite;
+  color: rgba(0, 66, 87, 0.65);
+  font-size: 2rem;
+  line-height: 0;
+}
+@-webkit-keyframes bounce {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 50%;
+  }
+}
+@keyframes bounce {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 50%;
+  }
+}
+
+.small-header,
+.subscribe {
+  max-width: 800px;
+  box-sizing: border-box;
+  margin: auto;
+}
+
+.small-header-container {
+  background-image: url("../assets/ocean-gliderport-background.jpg");
+  background-position: bottom center;
+  background-size: cover;
+}
+.small-header-container .small-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px;
+}
+.small-header-container .small-header h1,
+.small-header-container .small-header h2 {
+  margin: 0;
+}
+.small-header-container .small-header h1 a {
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #002c46;
+  font-family: "Bespoke Stencil", sans-serif;
+  padding: 0 5px;
+}
+.small-header-container .small-header h2 {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: rgba(0, 66, 87, 0.5);
+  color: #fff;
+  padding: 0 5px;
+}
+.small-header-container .small-header .all-tags {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: #fff;
+  font-weight: bold;
+  padding: 2px 5px;
+}
+.small-header-container .small-header .search-form {
+  margin: 20px 0 0;
+}
+.small-header-container .small-header .search-form.searching {
+  margin-top: 0;
+}
+
+.subscribe-container {
+  background-color: #002c46;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+.subscribe-container .subscribe {
+  gap: 10px;
+  padding: 0 20px;
+}
+.subscribe-container .subscribe,
+.subscribe-container .subscribe form {
+  display: flex;
+  align-items: center;
+}
+.subscribe-container .subscribe .close-nav,
+.subscribe-container .subscribe .open-nav {
+  height: 26px;
+  background-color: transparent;
+  border: 0;
+  display: flex;
+  opacity: 1;
+  padding: 0;
+  transition: opacity 0.5s;
+}
+.subscribe-container .subscribe .close-nav:hover,
+.subscribe-container .subscribe .open-nav:hover {
+  opacity: 0.6;
+}
+.subscribe-container .subscribe .close-nav img,
+.subscribe-container .subscribe .open-nav img {
+  height: 100%;
+  filter: invert(1);
+}
+.subscribe-container .subscribe nav {
+  height: 100vh;
+  width: 300px;
+  background-color: #002c46;
+  color: white;
+  overflow-y: auto;
+  transition: left 1s;
+  position: fixed;
+  top: 0;
+}
+.subscribe-container .subscribe nav.closed {
+  left: -300px;
+}
+.subscribe-container .subscribe nav.open {
+  left: 0;
+}
+.subscribe-container .subscribe nav h2 {
+  color: lightblue;
+  font-family: "Bespoke Stencil", sans-serif;
+}
+.subscribe-container .subscribe nav .close-nav {
+  padding: 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.subscribe-container .subscribe nav .nav-heading,
+.subscribe-container .subscribe nav ul li a {
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.subscribe-container .subscribe nav .nav-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 0;
+  padding: 30px 20px 10px;
+  text-align: center;
+}
+.subscribe-container .subscribe nav .nav-heading a {
+  display: flex;
+}
+.subscribe-container .subscribe nav .nav-heading a img {
+  height: 26px;
+  filter: invert(1);
+  transition: opacity 0.5s;
+}
+.subscribe-container .subscribe nav .nav-heading a img:hover {
+  opacity: 0.6;
+}
+.subscribe-container .subscribe nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.subscribe-container .subscribe nav ul li a {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(0, 131, 173);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 1s, opacity 1s;
+}
+.subscribe-container .subscribe nav ul li a:hover {
+  background-color: rgba(0, 131, 173, 0.5);
+  opacity: 1;
+}
+.subscribe-container .subscribe .subscribe-form {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+}
+.subscribe-container .subscribe .subscribe-form button,
+.subscribe-container .subscribe .subscribe-form input {
+  background-color: #004066;
+  border: 1px solid #fff;
+  color: #fff;
+}
+.subscribe-container .subscribe .subscribe-form button:hover {
+  background-color: #002337;
+}
+.subscribe-container .subscribe .social-icons {
+  display: flex;
+  flex: 1;
+  gap: 10px;
+  justify-content: flex-end;
+}
+.subscribe-container .subscribe .social-icons a {
+  display: flex;
+}
+.subscribe-container .subscribe .social-icons a img {
+  height: 24px;
+  filter: invert(100%);
+  transition: opacity 0.5s;
+}
+.subscribe-container .subscribe .social-icons a img:hover {
+  opacity: 0.6;
+}/*# sourceMappingURL=header-menu.css.map */
