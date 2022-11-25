@@ -2,22 +2,20 @@ import functions from "firebase-functions";
 import express from "express";
 import engines from "consolidate";
 import bodyParser from "body-parser";
-import { signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { auth } from "./database.mjs";
 import {
     getPublishedPosts,
     getPostsWithTag,
     getPostsContaining,
     getPostData,
-    getDrafts,
-    addDraft,
     removeSubscriber,
+    parseFormDataForUpload,
 } from "./models.mjs";
 // for emailing the mailing list each new post:
 import admin from "firebase-admin";
 import serviceAccount from "./node-blog-369520-firebase-adminsdk-68fp3-0d9391300a.json" assert { type: "json" };
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
+import cookieParser from "cookie-parser";
 
 admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
 dotenv.config();
@@ -26,6 +24,7 @@ dotenv.config();
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.engine("hbs", engines.handlebars);
 app.set("views", "./views");
 app.set("view engine", "hbs");
@@ -62,51 +61,48 @@ app.get("/post", function (req, res) {
 });
 
 app.get("/admin", function (req, res) {
-    // setCDNHeaders(res);
-    if (auth.currentUser) {
-        const { is_new, id: post_id } = req.query,
-            type = ["posts", "drafts"].find((t) => t === req.query.type);
-        is_new
-            ? res.render("edit-post", {})
-            : post_id && type
-            ? getPostData(post_id, type).then((post) =>
-                  res.render("edit-post", post || {})
-              )
-            : renderEditPosts(res);
-    } else {
-        res.redirect("/sign-in.html");
-    }
-});
-
-app.post("/admin", function (req, res) {
-    // setCDNHeaders(res);
-    const { email, password } = req.body;
-    signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // const user = userCredential.user;
-            res.redirect("/admin");
+    res.setHeader("Cache-Control", "private");
+    verifyUser(req)
+        .then((decodedToken) => {
+            // const uid = decodedToken.uid;
+            const { is_new, id: post_id } = req.query,
+                type = ["posts", "drafts"].find((t) => t === req.query.type);
+            is_new
+                ? res.render("edit-post", {})
+                : post_id && type
+                ? // can't read drafts unless logged in:
+                  admin
+                      .firestore()
+                      .collection(type)
+                      .doc(post_id)
+                      .get()
+                      .then((doc) => doc && { ...doc.data(), post_id: doc.id })
+                      .then((post) => res.render("edit-post", post || {}))
+                : renderEditPosts(res);
         })
-        .catch((error) => {
-            const { code, message } = error;
-            console.warn(code + ": " + message);
+        .catch((err) => {
+            req.cookies?.user
+                ? res.send(err + " /// " + req.cookies.user)
+                : res.redirect("/sign-in.html");
         });
 });
 
 app.post("/preview", function (req, res) {
-    // setCDNHeaders(res);
-    const post = { ...req.body, date: { seconds: ~~(Date.now() / 1000) } };
-    // delete post.feature_image_select;
-    addDraft(post);
-    renderPost(res, post, true);
-});
-
-app.get("/sign-out", function (req, res) {
-    // setCDNHeaders(res);
-    signOut(auth).then(() => res.redirect("/"));
+    res.setHeader("Cache-Control", "private");
+    verifyUser(req).then((decodedToken) => {
+        // const uid = decodedToken.uid;
+        const post = { ...req.body, date: { seconds: ~~(Date.now() / 1000) } };
+        // delete post.feature_image_select;
+        admin
+            .firestore()
+            .collection("drafts")
+            .doc(post.post_id)
+            .set(parseFormDataForUpload(post))
+            .then(async () => await renderPost(res, post, true));
+    });
 });
 
 app.get("/unsubscribe", function (req, res) {
-    // setCDNHeaders(res);
     const { email } = req.query;
     unsub(email);
     async function unsub(email) {
@@ -118,16 +114,6 @@ app.get("/unsubscribe", function (req, res) {
         });
         return;
     }
-});
-
-app.get("/auth", function (req, res) {
-    auth.currentUser
-        ? admin
-              .auth()
-              .createCustomToken(auth.currentUser.uid)
-              .then((token) => res.send({ token }))
-              .catch((error) => res.send({}))
-        : res.send({});
 });
 
 app.get("*", function (req, res) {
@@ -172,12 +158,25 @@ async function renderPost(res, post, is_draft) {
 
 async function renderEditPosts(res) {
     res.render("edit-posts", {
-        posts: formatDatesDescending(await getPublishedPosts()),
-        drafts: formatDatesDescending(await getDrafts()),
+        posts: formatDatesDescending(await getDocsHelper("posts")),
+        drafts: formatDatesDescending(await getDocsHelper("drafts")),
     });
+}
+async function getDocsHelper(type) {
+    const snapshot = await admin.firestore().collection(type).get();
+    return snapshot.docs.map((doc) => ({
+        ...doc.data(),
+        post_id: doc.id,
+    }));
 }
 
 // SERVER MISC
+
+// verify user token cookie
+async function verifyUser(req) {
+    const token = req.cookies.__session || "";
+    return await admin.auth().verifyIdToken(token);
+}
 
 function getAllTags(posts) {
     return [...new Set(posts.map((post) => post.tags).flat())].sort();

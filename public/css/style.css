@@ -135,7 +135,7 @@ body .search-form input,
 body .subscribe-container input {
   max-width: 150px;
 }
-body .sign-in-form {
+body #sign-in-form {
   flex-direction: column;
   display: flex;
   gap: 10px;
