@@ -15,9 +15,9 @@
                 <h2>{{search_type}}: {{query}}</h2>
                 <div class="all-tags">
                     related tags:
-                    {{#each top_tags}}
-                        <a href="/search/?tag={{this}}">{{this}}</a>
-                    {{/each}}
+                    {{#each top_tags}}{{#if @index}}, {{/if}}<a
+                            href="/search/?tag={{this}}"
+                        >{{this}}</a>{{/each}}
                 </div>
                 <form class="search-form searching" action="/search/">
                     <input type="text" name="query" /><button>search</button>
@@ -108,13 +108,13 @@
                     <div>{{{content}}}</div>
                     <div class="tags">
                         tags:
-                        {{#each tags}}
-                            <a href="/search/?tag={{this}}">{{this}}</a>
-                        {{/each}}
+                        {{#each tags}}{{#if @index}}, {{/if}}<a
+                                href="/search/?tag={{this}}"
+                            >{{this}}</a>{{/each}}
                     </div>
                     <button
                         class="share-button"
-                        onclick="copyLink({{post_id}})"
+                        onclick="copyLink('{{post_id}}')"
                     >
                         share
                         <img src="/assets/icons8-share-24.png" alt="" />

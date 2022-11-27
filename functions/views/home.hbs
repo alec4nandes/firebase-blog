@@ -15,11 +15,13 @@
                 <h2>modern mindful code</h2>
             </div>
             <div class="bottom half">
-                <nav><h3>tags:
-                        {{#each top_tags}}
-                            <a href="/search/?tag={{this}}">{{this}}</a>
-                        {{/each}}
-                    </h3></nav>
+                <nav>
+                    <h3>tags:
+                        {{#each top_tags}}{{#if @index}} // {{/if}}<a
+                                href="/search/?tag={{this}}"
+                            >{{this}}</a>{{/each}}
+                    </h3>
+                </nav>
                 <div class="search-container">
                     <form class="search-form" action="/search/">
                         <input type="text" name="query" /><button>
@@ -114,13 +116,13 @@
                     <div>{{{content}}}</div>
                     <div class="tags">
                         tags:
-                        {{#each tags}}
-                            <a href="/search/?tag={{this}}">{{this}}</a>
-                        {{/each}}
+                        {{#each tags}}{{#if @index}}, {{/if}}<a
+                                href="/search/?tag={{this}}"
+                            >{{this}}</a>{{/each}}
                     </div>
                     <button
                         class="share-button"
-                        onclick="copyLink({{post_id}})"
+                        onclick="copyLink('{{post_id}}')"
                     >
                         share
                         <img src="/assets/icons8-share-24.png" alt="" />

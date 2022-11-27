@@ -105,13 +105,13 @@
                 <div>{{{post.content}}}</div>
                 <div class="tags">
                     tags:
-                    {{#each post.tags}}
-                        <a href="/search/?tag={{this}}">{{this}}</a>
-                    {{/each}}
+                    {{#each post.tags}}{{#if @index}}, {{/if}}<a
+                            href="/search/?tag={{this}}"
+                        >{{this}}</a>{{/each}}
                 </div>
                 <button
                     class="share-button"
-                    onclick="copyLink({{post.post_id}})"
+                    onclick="copyLink('{{post.post_id}}')"
                 >
                     share
                     <img src="/assets/icons8-share-24.png" alt="" />

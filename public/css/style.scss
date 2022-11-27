@@ -4,6 +4,8 @@ body {
     margin: 0;
     font-family: "Supreme", sans-serif;
     font-size: 18px;
+    position: relative;
+    z-index: 0;
 
     // prevents transitions firing on page load.
     // className removed after body onload in
@@ -17,6 +19,10 @@ body {
         box-sizing: border-box;
         margin: auto;
         padding: 0 20px;
+        // keeps share buttons from appearing on top of
+        // slide out nav menu:
+        position: relative;
+        z-index: -1;
 
         &.centered-content {
             // min-height: 250px;

@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/mushrooms/static/css/main.036c72eb.css",
+    "main.js": "/mushrooms/static/js/main.1006578d.js",
+    "static/js/787.3d9532dd.chunk.js": "/mushrooms/static/js/787.3d9532dd.chunk.js",
+    "index.html": "/mushrooms/index.html",
+    "main.036c72eb.css.map": "/mushrooms/static/css/main.036c72eb.css.map",
+    "main.1006578d.js.map": "/mushrooms/static/js/main.1006578d.js.map",
+    "787.3d9532dd.chunk.js.map": "/mushrooms/static/js/787.3d9532dd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.036c72eb.css",
+    "static/js/main.1006578d.js"
+  ]
+}

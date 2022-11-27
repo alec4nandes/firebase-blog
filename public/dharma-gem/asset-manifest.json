@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/dharma-gem/static/css/main.28090b2e.css",
+    "main.js": "/dharma-gem/static/js/main.bb098733.js",
+    "static/js/787.9b1006ae.chunk.js": "/dharma-gem/static/js/787.9b1006ae.chunk.js",
+    "index.html": "/dharma-gem/index.html",
+    "main.28090b2e.css.map": "/dharma-gem/static/css/main.28090b2e.css.map",
+    "main.bb098733.js.map": "/dharma-gem/static/js/main.bb098733.js.map",
+    "787.9b1006ae.chunk.js.map": "/dharma-gem/static/js/787.9b1006ae.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.28090b2e.css",
+    "static/js/main.bb098733.js"
+  ]
+}
