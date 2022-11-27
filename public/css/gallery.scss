@@ -1,0 +1,106 @@
+.gallery {
+    max-width: 1000px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    padding: 0 16px;
+
+    & > div {
+        box-sizing: border-box;
+        display: inline-block;
+        padding: 8px;
+
+        &.page {
+            width: 18.75%;
+        }
+
+        &.screenshot {
+            width: 31.25%;
+        }
+
+        &.pair {
+            width: calc(100% * (1 / 8));
+            display: inline-flex;
+            flex-direction: column;
+            gap: 16px;
+            justify-content: space-between;
+
+            .container {
+                height: 50%;
+            }
+        }
+
+        &.featured-square {
+            width: calc(100% * (2 / 8));
+        }
+
+        &.banner {
+            width: calc(100% * (3 / 8));
+        }
+
+        .container {
+            &,
+            a,
+            img {
+                height: 100%;
+                width: 100%;
+            }
+
+            a {
+                display: flex;
+                transition: 0.5s;
+
+                &:hover {
+                    opacity: 0.7;
+                }
+
+                img {
+                    background-color: #fff;
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 800px) {
+        .page {
+            width: calc(18.75% * 2) !important;
+        }
+
+        .screenshot {
+            width: calc(31.25% * 2) !important;
+        }
+
+        .pair {
+            width: calc(100% * (1 / 8) * 2) !important;
+        }
+
+        .featured-square {
+            width: calc(100% * (2 / 8) * 2) !important;
+        }
+
+        .banner {
+            width: calc(100% * (3 / 8) * 2) !important;
+        }
+    }
+
+    @media only screen and (max-width: 420px) {
+        .page,
+        .screenshot,
+        .pair,
+        .featured-square,
+        .banner {
+            width: 100% !important;
+        }
+
+        .pair {
+            flex-direction: row !important;
+
+            .container {
+                height: 100% !important;
+                width: 50% !important;
+            }
+        }
+    }
+}

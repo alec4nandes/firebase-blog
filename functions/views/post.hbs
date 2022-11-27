@@ -9,83 +9,8 @@
         {{{meta_tags}}}
     </head>
     <body class="preload">
-        <header class="small-header-container">
-            <div class="small-header">
-                <h1><a href="/">Alec Fernandes</a></h1>
-                <form class="search-form" action="/search/">
-                    <input type="text" name="query" /><button>search</button>
-                </form>
-            </div>
-        </header>
-        <div class="subscribe-container">
-            <div class="subscribe">
-                <button class="open-nav" onclick="toggleNavMenu(true)">
-                    <img src="/assets/icons8-menu-64.png" alt="" />
-                </button>
-                <nav class="closed">
-                    <button class="close-nav" onclick="toggleNavMenu(false)">
-                        <img src="/assets/icons8-close-30.png" alt="" />
-                    </button>
-                    <h2 class="nav-heading">
-                        Projects
-                        <a
-                            href="https://github.com/alec4nandes"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            <img src="/assets/icons8-github-30.png" alt="" />
-                        </a>
-                    </h2>
-                    <ul>
-                        {{#each projects}}
-                            <li>
-                                <a
-                                    href="{{this.url}}"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    {{@key}}
-                                </a>
-                            </li>
-                        {{/each}}
-                    </ul>
-                    <h2 class="nav-heading">Tags</h2>
-                    <ul>
-                        {{#each all_tags}}
-                            <li>
-                                <a href="/search/?tag={{this}}">{{this}}</a>
-                            </li>
-                        {{/each}}
-                    </ul>
-                </nav>
-                <form class="subscribe-form">
-                    <input type="email" name="email" placeholder="email" />
-                    <button>subscribe</button>
-                </form>
-                <div class="social-icons">
-                    <a
-                        href="https://twitter.com/alec4nandes"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        <img
-                            src="/assets/icons8-twitter-32.png"
-                            alt="Twitter icon of little bird"
-                        />
-                    </a>
-                    <a
-                        href="https://instagram.com/alec4nandes"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        <img
-                            src="/assets/icons8-instagram-32.png"
-                            alt="Instagram icon of polaroid camera"
-                        />
-                    </a>
-                </div>
-            </div>
-        </div>
+        {{> smallheader}}
+        {{> navmenu}}
         <main>
             <article>
                 <h2 class="title">{{post.title}}</h2>
@@ -100,7 +25,7 @@
                 <p>{{post.date}}</p>
                 <figure>
                     <img src="{{post.feature_image}}" />
-                    <figcaption>{{post.feature_image_caption}}</figcaption>
+                    <figcaption>{{{post.feature_image_caption}}}</figcaption>
                 </figure>
                 <div>{{{post.content}}}</div>
                 <div class="tags">

@@ -1,0 +1,24 @@
+{{#each posts}}
+    <article>
+        <h2 class="title">
+            <a href="/post/?id={{post_id}}">{{title}}</a>
+        </h2>
+        <h3 class="subtitle">{{subtitle}}</h3>
+        <p>{{date}}</p>
+        <figure>
+            <img src="{{feature_image}}" />
+            <figcaption>{{{feature_image_caption}}}</figcaption>
+        </figure>
+        <div>{{{content}}}</div>
+        <div class="tags">
+            tags:
+            {{#each tags}}{{#if @index}}, {{/if}}<a
+                    href="/search/?tag={{this}}"
+                >{{this}}</a>{{/each}}
+        </div>
+        <button class="share-button" onclick="copyLink('{{post_id}}')">
+            share
+            <img src="/assets/icons8-share-24.png" alt="" />
+        </button>
+    </article>
+{{/each}}

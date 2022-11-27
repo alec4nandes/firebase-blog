@@ -24,6 +24,11 @@ body {
         position: relative;
         z-index: -1;
 
+        &.gallery-main {
+            max-width: 1200px;
+            margin-bottom: 50px;
+        }
+
         &.centered-content {
             // min-height: 250px;
             display: flex;

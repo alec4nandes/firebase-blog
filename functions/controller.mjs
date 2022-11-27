@@ -1,6 +1,6 @@
 import functions from "firebase-functions";
 import express from "express";
-import engines from "consolidate";
+import hbs from "express-handlebars";
 import bodyParser from "body-parser";
 import {
     getPublishedPosts,
@@ -16,6 +16,10 @@ import serviceAccount from "./node-blog-369520-firebase-adminsdk-68fp3-0d9391300
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
 import cookieParser from "cookie-parser";
+// for __dirname in module:
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
 dotenv.config();
@@ -25,9 +29,18 @@ dotenv.config();
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.engine("hbs", engines.handlebars);
-app.set("views", "./views");
+// app.engine("hbs", engines.handlebars);
+app.engine(
+    "hbs",
+    hbs.engine({
+        extname: "hbs",
+        defaultLayout: null,
+        // layoutsDir: __dirname + "/views/",
+        partialsDir: __dirname + "/views/partials/",
+    })
+);
 app.set("view engine", "hbs");
+app.set("views", "./views");
 
 function setCDNHeaders(res) {
     // CDN caching with Firebase Hosting:
@@ -116,6 +129,10 @@ app.get("/unsubscribe", function (req, res) {
     }
 });
 
+app.get("/gallery", function (req, res) {
+    renderGallery(res);
+});
+
 app.get("*", function (req, res) {
     setCDNHeaders(res);
     res.redirect("/404.html");
@@ -162,12 +179,20 @@ async function renderEditPosts(res) {
         drafts: formatDatesDescending(await getDocsHelper("drafts")),
     });
 }
+
 async function getDocsHelper(type) {
     const snapshot = await admin.firestore().collection(type).get();
     return snapshot.docs.map((doc) => ({
         ...doc.data(),
         post_id: doc.id,
     }));
+}
+
+async function renderGallery(res) {
+    res.render("gallery", {
+        projects: getProjectsData(),
+        all_tags: getAllTags(await getPublishedPosts()),
+    });
 }
 
 // SERVER MISC

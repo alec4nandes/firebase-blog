@@ -17,6 +17,10 @@ body main {
   position: relative;
   z-index: -1;
 }
+body main.gallery-main {
+  max-width: 1200px;
+  margin-bottom: 50px;
+}
 body main.centered-content {
   display: flex;
   align-items: center;
