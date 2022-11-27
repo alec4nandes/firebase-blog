@@ -119,7 +119,7 @@ app.post("/preview", function (req, res) {
                         {
                             ...parsed,
                             date: post.date,
-                            post_id: req.body.post_id,
+                            post_id: post.post_id,
                         },
                         true
                     )
