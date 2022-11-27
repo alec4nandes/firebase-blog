@@ -104,14 +104,18 @@ app.post("/preview", function (req, res) {
     res.setHeader("Cache-Control", "private");
     verifyUser(req).then((decodedToken) => {
         // const uid = decodedToken.uid;
-        const post = { ...req.body, date: { seconds: ~~(Date.now() / 1000) } };
+        const post = { ...req.body, date: { seconds: ~~(Date.now() / 1000) } },
+            parsed = parseFormDataForUpload(post);
         // delete post.feature_image_select;
         admin
             .firestore()
             .collection("drafts")
             .doc(post.post_id)
-            .set(parseFormDataForUpload(post))
-            .then(async () => await renderPost(res, post, true));
+            .set(parsed)
+            .then(
+                async () =>
+                    await renderPost(res, { ...parsed, date: post.date }, true)
+            );
     });
 });
 
@@ -317,7 +321,7 @@ async function sendMailingListUpdate(snap, context) {
 
 function getHtml(data, postId, to) {
     const { subtitle, feature_image, feature_image_caption, content } = data,
-        baseUrl = `https://fern.haus`;
+        baseUrl = "https://fern.haus";
     return `
         ${subtitle ? `<p><strong>${subtitle}</strong></p>` : ""}
         <a
@@ -327,6 +331,7 @@ function getHtml(data, postId, to) {
         >
             read at ${baseUrl}
         </a>
+        <br/>
         ${
             feature_image
                 ? `<img src="${feature_image}" alt=""

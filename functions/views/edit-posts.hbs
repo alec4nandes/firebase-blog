@@ -26,7 +26,10 @@
                         <a
                             href="/admin/?id={{post_id}}&type=drafts"
                         >{{title}}</a>
-                        <small>&mdash; {{date}}</small>
+                        <small>
+                            &mdash;
+                            <span class="date-posted">{{date}}</span>
+                        </small>
                     </li>
                 {{/each}}
             </ul>
@@ -37,7 +40,10 @@
                         <a
                             href="/admin/?id={{post_id}}&type=posts"
                         >{{title}}</a>
-                        <small>&mdash; {{date}}</small>
+                        <small>
+                            &mdash;
+                            <span class="date-posted">{{date}}</span>
+                        </small>
                     </li>
                 {{/each}}
             </ul>
