@@ -114,7 +114,15 @@ app.post("/preview", function (req, res) {
             .set(parsed)
             .then(
                 async () =>
-                    await renderPost(res, { ...parsed, date: post.date }, true)
+                    await renderPost(
+                        res,
+                        {
+                            ...parsed,
+                            date: post.date,
+                            post_id: req.body.post_id,
+                        },
+                        true
+                    )
             );
     });
 });
@@ -324,14 +332,15 @@ function getHtml(data, postId, to) {
         baseUrl = "https://fern.haus";
     return `
         ${subtitle ? `<p><strong>${subtitle}</strong></p>` : ""}
-        <a
-            target="_blank"
-            rel="noreferrer"
-            href="${baseUrl}/post/?id=${postId}"
-        >
-            read at ${baseUrl}
-        </a>
-        <br/>
+        <p>
+            <a
+                target="_blank"
+                rel="noreferrer"
+                href="${baseUrl}/post/?id=${postId}"
+            >
+                read at ${baseUrl}
+            </a>
+        </p>
         ${
             feature_image
                 ? `<img src="${feature_image}" alt=""
