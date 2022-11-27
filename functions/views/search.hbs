@@ -26,7 +26,9 @@
         </header>
         {{> navmenu}}
         <main>
-            {{> multipost}}
+{{!-- no white space before this partial in case there are
+preformatted <xmp> code blocks: --}}
+{{> multipost}}
         </main>
         <footer>
             <a href="/">home</a>

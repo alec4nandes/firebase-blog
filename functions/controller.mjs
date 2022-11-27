@@ -241,29 +241,8 @@ function updateDate(post) {
 }
 
 function formatDate(timestamp) {
-    const d = new Date(timestamp.seconds * 1000),
-        months = [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December",
-        ],
-        month = months[d.getMonth()],
-        day = d.getDate(),
-        year = d.getFullYear(),
-        hours = d.getHours(),
-        hour = hours % 12 || 12,
-        minutes = ("" + d.getMinutes()).padStart(2, "0"),
-        amPm = hours < 12 ? "am" : "pm";
-    return `${month} ${day}, ${year} at ${hour}:${minutes} ${amPm}`;
+    // return milliseconds, then JS parses to date on client side
+    return timestamp.seconds * 1000;
 }
 
 function makeMetaTags(postsData) {
