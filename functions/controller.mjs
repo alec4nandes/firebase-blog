@@ -317,7 +317,7 @@ async function sendMailingListUpdate(snap, context) {
 
 function getHtml(data, postId, to) {
     const { subtitle, feature_image, feature_image_caption, content } = data,
-        baseUrl = `https://node-blog-369520.web.app`;
+        baseUrl = `https://fern.haus`;
     return `
         ${subtitle ? `<p><strong>${subtitle}</strong></p>` : ""}
         <a
