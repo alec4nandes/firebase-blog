@@ -1,0 +1,83 @@
+@import "../../css/colors.scss";
+
+header {
+    .bagua-links {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+
+        a {
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            color: #ccc;
+            padding: 5px 10px;
+
+            &:hover {
+                opacity: 0.5;
+            }
+
+            &.current {
+                background-color: #ccc;
+                color: #111;
+            }
+        }
+    }
+}
+
+main {
+    &.heaven {
+        background-color: $heaven;
+    }
+    &.earth {
+        background-color: $earth;
+    }
+    &.fire {
+        background-color: $fire;
+    }
+    &.water {
+        background-color: $water;
+    }
+    &.lake {
+        background-color: $lake;
+    }
+    &.mountain {
+        background-color: $mountain;
+    }
+    &.thunder {
+        background-color: $thunder;
+    }
+    &.wind {
+        background-color: $wind;
+    }
+
+    .bagua-table {
+        width: 100%;
+        max-width: 400px;
+        margin: auto;
+
+        th,
+        td {
+            background-color: rgba(255, 255, 255, 0.75);
+            color: #222;
+            padding: 2px 5px;
+        }
+
+        tr {
+            td {
+                text-align: left;
+
+                &:first-child {
+                    width: 120px;
+                    vertical-align: top;
+                }
+
+                ul {
+                    margin: auto;
+                    padding-left: 25px;
+                }
+            }
+        }
+    }
+}

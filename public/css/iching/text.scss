@@ -1,0 +1,30 @@
+header {
+    .bagua-index-table {
+        tr {
+            &:first-child,
+            td:first-child {
+                background-color: #333;
+                font-size: 0.8rem;
+                font-weight: bold;
+            }
+        }
+
+        td {
+            height: 38px;
+            max-width: 38px;
+            min-width: 38px;
+            border: 1px solid #aaa;
+            box-sizing: border-box;
+        }
+    }
+
+    .text-nav {
+        color: #777;
+    }
+}
+
+.text {
+    .hexagram-info {
+        border-bottom: 2px solid #aaa;
+    }
+}

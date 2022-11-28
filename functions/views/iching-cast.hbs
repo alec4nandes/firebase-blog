@@ -1,0 +1,40 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {{> metatags}}
+        <link rel="stylesheet" href="/css/iching/style.css" />
+        <link rel="stylesheet" href="/css/iching/reading.css" />
+        <style>
+            #flip-lines td {border: 1px solid black;}
+        </style>
+    </head>
+    <body>
+        <header>
+            <a href="/iching">home</a>
+            <h1>I-Ching</h1>
+            <h2>Cast Lines</h2>
+            <div id="visible-reading" style="display: none;">
+                <button id="share">share reading</button>
+                <a href="/iching/cast">get another reading</a>
+            </div>
+        </header>
+        <main>
+            <div id="reading">
+                <button id="flip-button" onclick="flipHandler()">flip coins (6
+                    lines left)</button>
+                <button id="flip-all-button" onclick="flipHandler(true)">flip
+                    coins all at once</button>
+                <button id="flip-none-button" onclick="noFlipHandler()">go
+                    straight to reading</button>
+            </div>
+        </main>
+        <script src="/iching/scripts/definitions.js"></script>
+        <script src="/iching/scripts/hexagram-info.js"></script>
+        <script src="/iching/scripts/display-hexagrams.js"></script>
+        <script src="/iching/scripts/display-text.js"></script>
+        <script src="/iching/scripts/display.js"></script>
+        <script>display();</script>
+    </body>
+</html>

@@ -1,0 +1,67 @@
+header .bagua-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+header .bagua-links a {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  color: #ccc;
+  padding: 5px 10px;
+}
+header .bagua-links a:hover {
+  opacity: 0.5;
+}
+header .bagua-links a.current {
+  background-color: #ccc;
+  color: #111;
+}
+
+main.heaven {
+  background-color: rgb(192, 126, 192);
+}
+main.earth {
+  background-color: #444;
+}
+main.fire {
+  background-color: #ffff77;
+}
+main.water {
+  background-color: rgb(240, 86, 86);
+}
+main.lake {
+  background-color: rgb(106, 183, 186);
+}
+main.mountain {
+  background-color: rgb(51, 146, 51);
+}
+main.thunder {
+  background-color: rgb(255, 209, 81);
+}
+main.wind {
+  background-color: #ccc;
+}
+main .bagua-table {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+main .bagua-table th,
+main .bagua-table td {
+  background-color: rgba(255, 255, 255, 0.75);
+  color: #222;
+  padding: 2px 5px;
+}
+main .bagua-table tr td {
+  text-align: left;
+}
+main .bagua-table tr td:first-child {
+  width: 120px;
+  vertical-align: top;
+}
+main .bagua-table tr td ul {
+  margin: auto;
+  padding-left: 25px;
+}/*# sourceMappingURL=bagua.css.map */

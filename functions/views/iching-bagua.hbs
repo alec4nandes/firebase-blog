@@ -1,0 +1,65 @@
+{{! <?php
+$bagua = array_key_exists("bagua", $_GET) ? $_GET["bagua"] : null;
+include_once "bagua-info.php";
+?> }}
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {{> metatags}}
+        <link rel="stylesheet" href="/css/iching/bagua.css" />
+        <link rel="stylesheet" href="/css/iching/style.css" />
+    </head>
+    <body>
+        <header>
+            <a href="/iching">home</a>
+            <h1>I-Ching</h1>
+            <h2>Bagua</h2>
+            <div class="bagua-links">
+                {{#each all_bagua_info}}
+                    <a href="?bagua={{@key}}" class="
+                    {{#ifSelectedBagua ../bagua @key}}
+                        current
+                    {{/ifSelectedBagua}}
+                    ">
+                        {{@key}}
+                    </a>
+                {{/each}}
+            </div>
+        </header>
+        <main class="{{bagua}}">
+            {{#if bagua_info}}
+                <table class="bagua-table">
+                    <thead>
+                        <tr>
+                            <th colSpan="2">{{bagua}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each bagua_info}}
+                            <tr>
+                                <td>{{@key}}</td>
+                                <td>
+                                    {{#ifArray this}}
+                                        <ul>
+                                            {{#each this}}
+                                                <li>{{this}}</li>
+                                            {{/each}}
+                                        </ul>
+                                    {{else}}
+                                        {{this}}
+                                    {{/ifArray}}
+                                </td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            {{/if}}
+        </main>
+        <script src="/iching/scripts/definitions.js"></script>
+        <script src="/iching/scripts/get-hexagrams.js"></script>
+        <script>insertHexagramsRow(definitions);</script>
+    </body>
+</html>
