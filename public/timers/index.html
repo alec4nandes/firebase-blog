@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Custom timers to help you stay productive in the office or the gym. Now featuring a Pomodoro timer!"
+        />
+        <link rel="stylesheet" href="css/landing.css" />
+        <title>Timers by Alec Fernandes</title>
+    </head>
+    <body>
+        <div id="toggle-sides" class="closed">
+            <div class="side">
+                <iframe
+                    class="content"
+                    src="pomodoro/index.html"
+                    frameborder="0"
+                ></iframe>
+                <button class="close-side" onclick="handleCloseSide(event)">
+                    ▸
+                </button>
+            </div>
+            <div class="center">
+                <button
+                    class="toggle-left"
+                    onclick="handleOpenSide(event, 'left')"
+                >
+                    <span>pomodoro timer</span>
+                </button>
+                <button
+                    class="toggle-right"
+                    onclick="handleOpenSide(event, 'right')"
+                >
+                    <span>workout timer</span>
+                </button>
+            </div>
+            <div class="side">
+                <button class="close-side" onclick="handleCloseSide(event)">
+                    ◂
+                </button>
+                <iframe
+                    class="content"
+                    src="workout/index.html"
+                    frameborder="0"
+                ></iframe>
+            </div>
+        </div>
+        <script src="landing.js"></script>
+    </body>
+</html>

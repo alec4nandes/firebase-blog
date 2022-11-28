@@ -1,0 +1,286 @@
+body {
+  font-family: "Arial", sans-serif;
+}
+body #cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+body #cards .card {
+  height: 25vw;
+  width: 14.4736842105vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto 101%;
+  border: 1px solid rgba(50, 50, 50, 0.3);
+  border-radius: 1.0526315789vw;
+  box-sizing: border-box;
+  justify-content: flex-end;
+  margin: 0.5vh;
+}
+body #cards .card.air, body #cards .card.fire {
+  background-color: #fff;
+}
+body #cards .card.water, body #cards .card.earth {
+  background-color: #000;
+}
+body #cards .card.fire .card-info,
+body #cards .card .suit-symbol.fire {
+  background-color: #fca6a5;
+}
+body #cards .card.water .card-info,
+body #cards .card .suit-symbol.water {
+  background-color: #bde4ff;
+}
+body #cards .card.air .card-info,
+body #cards .card .suit-symbol.air {
+  background-color: #c1e1c1;
+}
+body #cards .card.earth .card-info,
+body #cards .card .suit-symbol.earth {
+  background-color: #fefcac;
+}
+body #cards .card .suit-symbols {
+  width: 100%;
+  position: relative;
+  flex: 1;
+}
+body #cards .card .suit-symbols.double, body #cards .card .suit-symbols.spirit-symbol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body #cards .card .suit-symbols.double .suit-symbol.air, body #cards .card .suit-symbols.double .suit-symbol.fire, body #cards .card .suit-symbols.spirit-symbol .suit-symbol.air, body #cards .card .suit-symbols.spirit-symbol .suit-symbol.fire {
+  border-color: #fff;
+}
+body #cards .card .suit-symbols.double .suit-symbol.water, body #cards .card .suit-symbols.double .suit-symbol.earth, body #cards .card .suit-symbols.spirit-symbol .suit-symbol.water, body #cards .card .suit-symbols.spirit-symbol .suit-symbol.earth {
+  border-color: #000;
+}
+body #cards .card .suit-symbols.double .suit-symbol {
+  height: 7.8947368421vw;
+  width: 7.8947368421vw;
+  border-color: #000;
+  border: 0.6315789474vw solid black;
+}
+body #cards .card .suit-symbols.double .suit-symbol.border-fire {
+  box-shadow: 0 0 0 0.5526315789vw #fca6a5;
+}
+body #cards .card .suit-symbols.double .suit-symbol.border-water {
+  box-shadow: 0 0 0 0.5526315789vw #bde4ff;
+}
+body #cards .card .suit-symbols.double .suit-symbol.border-air {
+  box-shadow: 0 0 0 0.5526315789vw #c1e1c1;
+}
+body #cards .card .suit-symbols.double .suit-symbol.border-earth {
+  box-shadow: 0 0 0 0.5526315789vw #fefcac;
+}
+body #cards .card .suit-symbols.spirit-symbol .suit-symbol {
+  height: 4.2105263158vw;
+  width: 4.2105263158vw;
+  border-width: 0.3789473684vw;
+  border-style: solid;
+  position: relative;
+  top: 3.3684210526vw;
+}
+body #cards .card .suit-symbols.rank-2 .suit-symbol:nth-child(1), body #cards .card .suit-symbols.rank-2 .suit-symbol:nth-child(2) {
+  margin-left: 38.7272727273%;
+}
+body #cards .card .suit-symbols.rank-2 .suit-symbol:nth-child(1) {
+  margin-top: 7.2727272727%;
+}
+body #cards .card .suit-symbols.rank-2 .suit-symbol:nth-child(2) {
+  margin-top: 94.5454545455%;
+}
+body #cards .card .suit-symbols.rank-3 .suit-symbol:nth-child(1), body #cards .card .suit-symbols.rank-3 .suit-symbol:nth-child(2), body #cards .card .suit-symbols.rank-3 .suit-symbol:nth-child(3) {
+  margin-left: 38.7272727273%;
+}
+body #cards .card .suit-symbols.rank-3 .suit-symbol:nth-child(1) {
+  margin-top: 7.2727272727%;
+}
+body #cards .card .suit-symbols.rank-3 .suit-symbol:nth-child(2) {
+  margin-top: 50.9090909091%;
+}
+body #cards .card .suit-symbols.rank-3 .suit-symbol:nth-child(3) {
+  margin-top: 94.5454545455%;
+}
+body #cards .card .suit-symbols.rank-4 .suit-symbol:nth-child(1), body #cards .card .suit-symbols.rank-4 .suit-symbol:nth-child(2) {
+  margin-left: 9.6363636364%;
+}
+body #cards .card .suit-symbols.rank-4 .suit-symbol:nth-child(3), body #cards .card .suit-symbols.rank-4 .suit-symbol:nth-child(4) {
+  margin-left: 67.8181818182%;
+}
+body #cards .card .suit-symbols.rank-4 .suit-symbol:nth-child(1), body #cards .card .suit-symbols.rank-4 .suit-symbol:nth-child(3) {
+  margin-top: 7.2727272727%;
+}
+body #cards .card .suit-symbols.rank-4 .suit-symbol:nth-child(2), body #cards .card .suit-symbols.rank-4 .suit-symbol:nth-child(4) {
+  margin-top: 94.5454545455%;
+}
+body #cards .card .suit-symbols.rank-5 .suit-symbol:nth-child(1), body #cards .card .suit-symbols.rank-5 .suit-symbol:nth-child(2) {
+  margin-left: 9.6363636364%;
+}
+body #cards .card .suit-symbols.rank-5 .suit-symbol:nth-child(4), body #cards .card .suit-symbols.rank-5 .suit-symbol:nth-child(5) {
+  margin-left: 67.8181818182%;
+}
+body #cards .card .suit-symbols.rank-5 .suit-symbol:nth-child(3) {
+  margin-left: 38.7272727273%;
+}
+body #cards .card .suit-symbols.rank-5 .suit-symbol:nth-child(1), body #cards .card .suit-symbols.rank-5 .suit-symbol:nth-child(4) {
+  margin-top: 7.2727272727%;
+}
+body #cards .card .suit-symbols.rank-5 .suit-symbol:nth-child(2), body #cards .card .suit-symbols.rank-5 .suit-symbol:nth-child(5) {
+  margin-top: 94.5454545455%;
+}
+body #cards .card .suit-symbols.rank-5 .suit-symbol:nth-child(3) {
+  margin-top: 50.9090909091%;
+}
+body #cards .card .suit-symbols.rank-6 .suit-symbol:nth-child(1), body #cards .card .suit-symbols.rank-6 .suit-symbol:nth-child(2), body #cards .card .suit-symbols.rank-6 .suit-symbol:nth-child(3) {
+  margin-left: 9.6363636364%;
+}
+body #cards .card .suit-symbols.rank-6 .suit-symbol:nth-child(4), body #cards .card .suit-symbols.rank-6 .suit-symbol:nth-child(5), body #cards .card .suit-symbols.rank-6 .suit-symbol:nth-child(6) {
+  margin-left: 67.8181818182%;
+}
+body #cards .card .suit-symbols.rank-6 .suit-symbol:nth-child(1), body #cards .card .suit-symbols.rank-6 .suit-symbol:nth-child(4) {
+  margin-top: 7.2727272727%;
+}
+body #cards .card .suit-symbols.rank-6 .suit-symbol:nth-child(2), body #cards .card .suit-symbols.rank-6 .suit-symbol:nth-child(5) {
+  margin-top: 50.9090909091%;
+}
+body #cards .card .suit-symbols.rank-6 .suit-symbol:nth-child(3), body #cards .card .suit-symbols.rank-6 .suit-symbol:nth-child(6) {
+  margin-top: 94.5454545455%;
+}
+body #cards .card .suit-symbols.rank-7 .suit-symbol:nth-child(1), body #cards .card .suit-symbols.rank-7 .suit-symbol:nth-child(2), body #cards .card .suit-symbols.rank-7 .suit-symbol:nth-child(3) {
+  margin-left: 9.6363636364%;
+}
+body #cards .card .suit-symbols.rank-7 .suit-symbol:nth-child(5), body #cards .card .suit-symbols.rank-7 .suit-symbol:nth-child(6), body #cards .card .suit-symbols.rank-7 .suit-symbol:nth-child(7) {
+  margin-left: 67.8181818182%;
+}
+body #cards .card .suit-symbols.rank-7 .suit-symbol:nth-child(4) {
+  margin-left: 38.7272727273%;
+}
+body #cards .card .suit-symbols.rank-7 .suit-symbol:nth-child(1), body #cards .card .suit-symbols.rank-7 .suit-symbol:nth-child(5) {
+  margin-top: 7.2727272727%;
+}
+body #cards .card .suit-symbols.rank-7 .suit-symbol:nth-child(2), body #cards .card .suit-symbols.rank-7 .suit-symbol:nth-child(6) {
+  margin-top: 50.9090909091%;
+}
+body #cards .card .suit-symbols.rank-7 .suit-symbol:nth-child(3), body #cards .card .suit-symbols.rank-7 .suit-symbol:nth-child(7) {
+  margin-top: 94.5454545455%;
+}
+body #cards .card .suit-symbols.rank-7 .suit-symbol:nth-child(4) {
+  margin-top: 29.0909090909%;
+}
+body #cards .card .suit-symbols.rank-8 .suit-symbol:nth-child(1), body #cards .card .suit-symbols.rank-8 .suit-symbol:nth-child(2), body #cards .card .suit-symbols.rank-8 .suit-symbol:nth-child(3) {
+  margin-left: 9.6363636364%;
+}
+body #cards .card .suit-symbols.rank-8 .suit-symbol:nth-child(6), body #cards .card .suit-symbols.rank-8 .suit-symbol:nth-child(7), body #cards .card .suit-symbols.rank-8 .suit-symbol:nth-child(8) {
+  margin-left: 67.8181818182%;
+}
+body #cards .card .suit-symbols.rank-8 .suit-symbol:nth-child(4), body #cards .card .suit-symbols.rank-8 .suit-symbol:nth-child(5) {
+  margin-left: 38.7272727273%;
+}
+body #cards .card .suit-symbols.rank-8 .suit-symbol:nth-child(1), body #cards .card .suit-symbols.rank-8 .suit-symbol:nth-child(6) {
+  margin-top: 7.2727272727%;
+}
+body #cards .card .suit-symbols.rank-8 .suit-symbol:nth-child(2), body #cards .card .suit-symbols.rank-8 .suit-symbol:nth-child(7) {
+  margin-top: 50.9090909091%;
+}
+body #cards .card .suit-symbols.rank-8 .suit-symbol:nth-child(3), body #cards .card .suit-symbols.rank-8 .suit-symbol:nth-child(8) {
+  margin-top: 94.5454545455%;
+}
+body #cards .card .suit-symbols.rank-8 .suit-symbol:nth-child(4) {
+  margin-top: 29.0909090909%;
+}
+body #cards .card .suit-symbols.rank-8 .suit-symbol:nth-child(5) {
+  margin-top: 72.7272727273%;
+}
+body #cards .card .suit-symbols.rank-9 .suit-symbol:nth-child(1), body #cards .card .suit-symbols.rank-9 .suit-symbol:nth-child(2), body #cards .card .suit-symbols.rank-9 .suit-symbol:nth-child(3), body #cards .card .suit-symbols.rank-9 .suit-symbol:nth-child(4) {
+  margin-left: 9.6363636364%;
+}
+body #cards .card .suit-symbols.rank-9 .suit-symbol:nth-child(6), body #cards .card .suit-symbols.rank-9 .suit-symbol:nth-child(7), body #cards .card .suit-symbols.rank-9 .suit-symbol:nth-child(8), body #cards .card .suit-symbols.rank-9 .suit-symbol:nth-child(9) {
+  margin-left: 67.8181818182%;
+}
+body #cards .card .suit-symbols.rank-9 .suit-symbol:nth-child(5) {
+  margin-left: 38.7272727273%;
+}
+body #cards .card .suit-symbols.rank-9 .suit-symbol:nth-child(1), body #cards .card .suit-symbols.rank-9 .suit-symbol:nth-child(6) {
+  margin-top: 7.2727272727%;
+}
+body #cards .card .suit-symbols.rank-9 .suit-symbol:nth-child(2), body #cards .card .suit-symbols.rank-9 .suit-symbol:nth-child(7) {
+  margin-top: 36.3636363636%;
+}
+body #cards .card .suit-symbols.rank-9 .suit-symbol:nth-child(3), body #cards .card .suit-symbols.rank-9 .suit-symbol:nth-child(8) {
+  margin-top: 65.4545454545%;
+}
+body #cards .card .suit-symbols.rank-9 .suit-symbol:nth-child(4), body #cards .card .suit-symbols.rank-9 .suit-symbol:nth-child(9) {
+  margin-top: 94.5454545455%;
+}
+body #cards .card .suit-symbols.rank-9 .suit-symbol:nth-child(5) {
+  margin-top: 50.9090909091%;
+}
+body #cards .card .suit-symbols.rank-10 .suit-symbol:nth-child(1), body #cards .card .suit-symbols.rank-10 .suit-symbol:nth-child(2), body #cards .card .suit-symbols.rank-10 .suit-symbol:nth-child(3), body #cards .card .suit-symbols.rank-10 .suit-symbol:nth-child(4) {
+  margin-left: 9.6363636364%;
+}
+body #cards .card .suit-symbols.rank-10 .suit-symbol:nth-child(7), body #cards .card .suit-symbols.rank-10 .suit-symbol:nth-child(8), body #cards .card .suit-symbols.rank-10 .suit-symbol:nth-child(9), body #cards .card .suit-symbols.rank-10 .suit-symbol:nth-child(10) {
+  margin-left: 67.8181818182%;
+}
+body #cards .card .suit-symbols.rank-10 .suit-symbol:nth-child(5), body #cards .card .suit-symbols.rank-10 .suit-symbol:nth-child(6) {
+  margin-left: 38.7272727273%;
+}
+body #cards .card .suit-symbols.rank-10 .suit-symbol:nth-child(1), body #cards .card .suit-symbols.rank-10 .suit-symbol:nth-child(7) {
+  margin-top: 7.2727272727%;
+}
+body #cards .card .suit-symbols.rank-10 .suit-symbol:nth-child(2), body #cards .card .suit-symbols.rank-10 .suit-symbol:nth-child(8) {
+  margin-top: 36.3636363636%;
+}
+body #cards .card .suit-symbols.rank-10 .suit-symbol:nth-child(3), body #cards .card .suit-symbols.rank-10 .suit-symbol:nth-child(9) {
+  margin-top: 65.4545454545%;
+}
+body #cards .card .suit-symbols.rank-10 .suit-symbol:nth-child(4), body #cards .card .suit-symbols.rank-10 .suit-symbol:nth-child(10) {
+  margin-top: 94.5454545455%;
+}
+body #cards .card .suit-symbols.rank-10 .suit-symbol:nth-child(5) {
+  margin-top: 21.8181818182%;
+}
+body #cards .card .suit-symbols.rank-10 .suit-symbol:nth-child(6) {
+  margin-top: 80%;
+}
+body #cards .card .suit-symbols .suit-symbol {
+  height: 3.1578947368vw;
+  width: 3.1578947368vw;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+body #cards .card .suit-symbols .suit-symbol.air img, body #cards .card .suit-symbols .suit-symbol.fire img {
+  filter: invert(100%);
+  position: relative;
+  top: -12%;
+}
+body #cards .card .suit-symbols .suit-symbol img {
+  height: 95%;
+  width: 95%;
+}
+body #cards .card .card-info {
+  height: 25.6842105263%;
+  width: 90%;
+  border-radius: 0.7894736842vw;
+  font-size: 0.8771929825vw;
+  justify-content: center;
+  margin: 5%;
+  overflow: auto;
+}
+body #cards .card .card-info p {
+  line-height: 1.0526315789vw;
+  margin: 0;
+  text-align: center;
+}
+body #cards .card,
+body #cards .card-info {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}/*# sourceMappingURL=style.css.map */

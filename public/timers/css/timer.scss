@@ -1,0 +1,123 @@
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    #content-container {
+        background-image: linear-gradient(to top, black, #444);
+        color: white;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        text-align: center;
+
+        header {
+            h1,
+            h2,
+            p {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            h1,
+            h2 {
+                margin-bottom: 20px;
+            }
+
+            h1 {
+                text-shadow: 5px 5px 5px #111;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                font-style: italic;
+                font-weight: 100;
+            }
+
+            p {
+                color: #ccc;
+                margin: auto;
+                max-width: 500px;
+                margin-bottom: 40px;
+            }
+        }
+
+        #timer-container {
+            flex: 1;
+
+            #timer {
+                width: 275px;
+                background-color: #222;
+                border: 2px solid #444;
+                border-radius: 15px;
+                box-shadow: 10px 10px 10px #111;
+                margin: 0 auto 50px;
+                padding: 10px;
+
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    label {
+                        color: #ccc;
+                        display: flex;
+                        gap: 10px;
+
+                        * {
+                            box-sizing: border-box;
+                        }
+
+                        span {
+                            width: 70%;
+                            display: inline-block;
+                            text-align: right;
+                        }
+
+                        input {
+                            width: 30%;
+                        }
+                    }
+                }
+
+                #timer-row {
+                    display: flex;
+                    gap: 10px;
+                    justify-content: center;
+                    padding-top: 10px;
+
+                    div {
+                        background-color: #444;
+                        border-radius: 15px;
+                        flex: 1;
+                        text-align: center;
+
+                        div {
+                            font-size: 2rem;
+
+                            &.break-time {
+                                color: green;
+                            }
+
+                            &.workout-time {
+                                color: inherit;
+                            }
+
+                            &.end-time {
+                                color: red;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #sound-buttons {
+                display: none;
+            }
+        }
+    }
+}

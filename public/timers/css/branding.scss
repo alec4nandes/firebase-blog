@@ -1,0 +1,50 @@
+header {
+    .fern-haus-link {
+        width: 100%;
+        background-color: cadetblue;
+        display: inline-block;
+        margin-bottom: 50px;
+        text-decoration: none;
+        transition: 1s;
+
+        &:hover {
+            background-color: #333;
+
+            .fern-haus-info {
+                img {
+                    filter: grayscale(100%);
+                    filter: invert(100%);
+                }
+
+                h4 {
+                    color: #ccc;
+                }
+            }
+        }
+
+        .fern-haus-info {
+            padding: 10px;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+
+            &,
+            img {
+                transition: 1s;
+            }
+
+            img {
+                height: 40px;
+                width: auto;
+            }
+
+            h4 {
+                display: flex;
+                align-items: center;
+                font-size: 1.1rem;
+                font-weight: bold;
+                margin: 0 auto;
+            }
+        }
+    }
+}

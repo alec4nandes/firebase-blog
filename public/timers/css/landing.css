@@ -1,0 +1,101 @@
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+}
+body #toggle-sides {
+  height: 100%;
+  display: inline-flex;
+  transition: 1s ease-in-out;
+  position: relative;
+  left: 0;
+}
+body #toggle-sides.closed {
+  left: -100vw;
+}
+body #toggle-sides.open.left {
+  left: 0;
+}
+body #toggle-sides.open.right {
+  left: -200vw;
+}
+body #toggle-sides > div {
+  height: 100%;
+  width: 100vw;
+}
+body #toggle-sides > div,
+body #toggle-sides > div * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body #toggle-sides > div.center button {
+  height: 100%;
+  background-color: #333;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  color: #fff;
+  flex: 1;
+  font-family: "Arial", sans-serif;
+  font-size: clamp(20px, 10vw, 50px);
+  position: relative;
+}
+body #toggle-sides > div.center button::after {
+  background-color: rgba(0, 0, 0, 0.2);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  transition: 0.5s;
+}
+body #toggle-sides > div.center button:hover::after {
+  background-color: rgba(0, 0, 0, 0);
+}
+body #toggle-sides > div.center button.toggle-left {
+  background-image: url("../images/age-barros-rBPOfVqROzY-unsplash.jpg");
+}
+body #toggle-sides > div.center button.toggle-right {
+  background-image: url("../images/runner.png");
+}
+body #toggle-sides > div.center button span {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  position: relative;
+  z-index: 2;
+}
+body #toggle-sides > div.side {
+  background-color: lavender;
+}
+body #toggle-sides > div.side button.close-side {
+  height: 100%;
+  width: 50px;
+  background-color: #444;
+  color: #fff;
+  font-size: 100px;
+  transition: 1s;
+}
+body #toggle-sides > div.side button.close-side:hover {
+  background-color: #91dedb;
+}
+body #toggle-sides > div.side .content {
+  height: 100%;
+  flex: 1;
+}
+body #toggle-sides > div button {
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  padding: 0;
+}
+body #toggle-sides > div button:hover {
+  cursor: pointer;
+}/*# sourceMappingURL=landing.css.map */

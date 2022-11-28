@@ -1,0 +1,124 @@
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+
+    #toggle-sides {
+        height: 100%;
+        display: inline-flex;
+        transition: 1s ease-in-out;
+        position: relative;
+        left: 0;
+
+        &.closed {
+            left: -100vw;
+        }
+
+        &.open {
+            &.left {
+                left: 0;
+            }
+
+            &.right {
+                left: -200vw;
+            }
+        }
+
+        & > div {
+            height: 100%;
+            width: 100vw;
+
+            &,
+            * {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            &.center {
+                button {
+                    height: 100%;
+                    background-color: #333;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: auto 100%;
+                    color: #fff;
+                    flex: 1;
+                    font-family: "Arial", sans-serif;
+                    font-size: clamp(20px, 10vw, 50px);
+                    position: relative;
+
+                    &::after {
+                        background-color: rgba(0, 0, 0, 0.2);
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        bottom: 0;
+                        right: 0;
+                        z-index: 1;
+                        transition: 0.5s;
+                    }
+
+                    &:hover {
+                        &::after {
+                            background-color: rgba(0, 0, 0, 0);
+                        }
+                    }
+
+                    &.toggle-left {
+                        background-image: url("../images/age-barros-rBPOfVqROzY-unsplash.jpg");
+                    }
+
+                    &.toggle-right {
+                        background-image: url("../images/runner.png");
+                    }
+
+                    span {
+                        background-color: rgba(0, 0, 0, 0.5);
+                        padding: 5px 10px;
+                        position: relative;
+                        z-index: 2;
+                    }
+                }
+            }
+
+            &.side {
+                background-color: lavender;
+
+                button.close-side {
+                    height: 100%;
+                    width: 50px;
+                    background-color: #444;
+                    color: #fff;
+                    font-size: 100px;
+                    transition: 1s;
+
+                    &:hover {
+                        background-color: #91dedb;
+                    }
+                }
+
+                .content {
+                    height: 100%;
+                    flex: 1;
+                }
+            }
+
+            button {
+                appearance: none;
+                -webkit-appearance: none;
+                border: 0;
+                padding: 0;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,101 @@
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+body #content-container {
+  background-image: linear-gradient(to top, black, #444);
+  color: white;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  text-align: center;
+}
+body #content-container header h1,
+body #content-container header h2,
+body #content-container header p {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+body #content-container header h1,
+body #content-container header h2 {
+  margin-bottom: 20px;
+}
+body #content-container header h1 {
+  text-shadow: 5px 5px 5px #111;
+}
+body #content-container header h2 {
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 100;
+}
+body #content-container header p {
+  color: #ccc;
+  margin: auto;
+  max-width: 500px;
+  margin-bottom: 40px;
+}
+body #content-container #timer-container {
+  flex: 1;
+}
+body #content-container #timer-container #timer {
+  width: 275px;
+  background-color: #222;
+  border: 2px solid #444;
+  border-radius: 15px;
+  box-shadow: 10px 10px 10px #111;
+  margin: 0 auto 50px;
+  padding: 10px;
+}
+body #content-container #timer-container #timer form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+body #content-container #timer-container #timer form label {
+  color: #ccc;
+  display: flex;
+  gap: 10px;
+}
+body #content-container #timer-container #timer form label * {
+  box-sizing: border-box;
+}
+body #content-container #timer-container #timer form label span {
+  width: 70%;
+  display: inline-block;
+  text-align: right;
+}
+body #content-container #timer-container #timer form label input {
+  width: 30%;
+}
+body #content-container #timer-container #timer #timer-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding-top: 10px;
+}
+body #content-container #timer-container #timer #timer-row div {
+  background-color: #444;
+  border-radius: 15px;
+  flex: 1;
+  text-align: center;
+}
+body #content-container #timer-container #timer #timer-row div div {
+  font-size: 2rem;
+}
+body #content-container #timer-container #timer #timer-row div div.break-time {
+  color: green;
+}
+body #content-container #timer-container #timer #timer-row div div.workout-time {
+  color: inherit;
+}
+body #content-container #timer-container #timer #timer-row div div.end-time {
+  color: red;
+}
+body #content-container #timer-container #sound-buttons {
+  display: none;
+}/*# sourceMappingURL=timer.css.map */
