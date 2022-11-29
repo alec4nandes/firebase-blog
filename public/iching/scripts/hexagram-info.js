@@ -2,7 +2,7 @@ const getLineInt = () => ~~(Math.random() * 4);
 
 const getLineNumber = (array, index) => array.length - index;
 
-const baguaInfo = {
+const baguaBinary = {
     111: "heaven",
     "000": "earth",
     101: "fire",
@@ -14,7 +14,7 @@ const baguaInfo = {
 };
 
 const getBaguaName = (lines) =>
-    baguaInfo[lines.map((line) => line % 2).join("")];
+    baguaBinary[lines.map((line) => line % 2).join("")];
 
 const getHexagramName = (lines) => {
     const top = lines.slice(0, 3),

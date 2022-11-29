@@ -19,7 +19,7 @@ import cookieParser from "cookie-parser";
 // for __dirname in module:
 import { dirname } from "path";
 import { fileURLToPath } from "url";
-import baguaInfo from "../public/iching/scripts/bagua-info.js";
+import baguaInfo from "./bagua-info.mjs";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
@@ -32,9 +32,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.engine(
-    ".hbs",
+    "hbs",
     hbs.engine({
-        extname: ".hbs",
+        extname: "hbs",
         defaultLayout: null,
         // layoutsDir: __dirname + "/views/",
         partialsDir: __dirname + "/views/partials/",
@@ -53,7 +53,7 @@ app.engine(
         },
     })
 );
-app.set("view engine", ".hbs");
+app.set("view engine", "hbs");
 app.set("views", "./views");
 
 function setCDNHeaders(res) {
@@ -159,48 +159,42 @@ app.get("/gallery", function (req, res) {
     renderGallery(res);
 });
 
-// ICHING ROUTES
-ichingRoutes(app);
-
-// TODO: (move to new file & import function(app))
-function ichingRoutes(app) {
-    app.get("/iching/cast", function (req, res) {
-        const { lines } = req.query;
-        res.render("iching-cast", {
-            lines,
-            meta: {
-                title: `I-Ching: ${lines ? "Custom Reading" : "Get a Reading"}`,
-                description: lines
-                    ? "View this specific reading of the ancient Chinese oracle, the I-Ching!"
-                    : "Get a reading from the ancient Chinese oracle, the I-Ching!",
-                url: `https://fern.haus/iching/cast${
-                    lines ? "/?lines=$lines_param" : ""
-                }`,
-                image: "https://fern.haus/images/fern-haus-site-logo.png",
-            },
-        });
+// I-Ching routes
+app.get("/iching/cast", function (req, res) {
+    const { lines } = req.query;
+    res.render("iching-cast", {
+        lines,
+        meta: {
+            title: `I-Ching: ${lines ? "Custom Reading" : "Get a Reading"}`,
+            description: lines
+                ? "View this specific reading of the ancient Chinese oracle, the I-Ching!"
+                : "Get a reading from the ancient Chinese oracle, the I-Ching!",
+            url: `https://fern.haus/iching/cast${
+                lines ? "/?lines=$lines_param" : ""
+            }`,
+            image: "https://fern.haus/images/fern-haus-site-logo.png",
+        },
     });
+});
 
-    app.get("/iching/bagua", function (req, res) {
-        const { bagua } = req.query;
-        res.render("iching-bagua", {
-            bagua,
-            all_bagua_info: baguaInfo,
-            bagua_info: baguaInfo[bagua],
-            meta: {
-                title: `I-Ching: Bagua${bagua ? ` — ${bagua}` : ""}`,
-                description: bagua
-                    ? "Learn all about the bagua $bagua and its trigram!"
-                    : "Learn all about the 8 bagua and their trigrams!",
-                url: `https://fern.haus/iching/bagua${
-                    bagua ? "/?bagua=$bagua" : ""
-                }`,
-                image: "https://fern.haus/images/fern-haus-site-logo.png",
-            },
-        });
+app.get("/iching/bagua", function (req, res) {
+    const { bagua } = req.query;
+    res.render("iching-bagua", {
+        bagua,
+        all_bagua_info: baguaInfo,
+        bagua_info: baguaInfo[bagua],
+        meta: {
+            title: `I-Ching: Bagua${bagua ? ` — ${bagua}` : ""}`,
+            description: bagua
+                ? "Learn all about the bagua $bagua and its trigram!"
+                : "Learn all about the 8 bagua and their trigrams!",
+            url: `https://fern.haus/iching/bagua${
+                bagua ? "/?bagua=$bagua" : ""
+            }`,
+            image: "https://fern.haus/images/fern-haus-site-logo.png",
+        },
     });
-}
-// END ICHING ROUTES
+});
 
 // 404 page must be final route declaration:
 app.get("*", function (req, res) {

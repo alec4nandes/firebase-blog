@@ -25,7 +25,7 @@ function insertHexagramsRow(definitions) {
             <ul>
             ${getHexagramTitlesAndNumbers(hexKeys)
                 .map(
-                    (hex) => `<li><a href="/iching/text/#${hex.number}">
+                    (hex) => `<li><a href="/iching/text.html#${hex.number}">
                         ${hex.number}. ${hex.title}
                     </a></li>`
                 )

@@ -16,7 +16,7 @@ function hexagramHtml(name, lines) {
         <div class="hexagram">
             <div class="title">
                 <p>
-                    <a href="/iching/text/#${number}">${number}. ${title}</a>
+                    <a href="/iching/text.html#${number}">${number}. ${title}</a>
                 </p>
                 <p>
                     ${name

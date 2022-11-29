@@ -76,7 +76,7 @@ function hexInfoTableHtml(hexInfo, hexName, lines) {
         <thead>
             <tr>
                 <th colSpan="2">
-                    <a href="/iching/text/#${number}">${number}. ${title}</a>
+                    <a href="/iching/text.html#${number}">${number}. ${title}</a>
                     (${hexName
                         .split("/")
                         .map(
