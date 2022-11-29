@@ -50,6 +50,8 @@ main {
     .texts table {
         $radius: $border-radius - 2px;
 
+        text-align: center;
+
         thead {
             tr:first-child {
                 th:first-child {
@@ -231,7 +233,7 @@ main {
             }
 
             td:nth-child(2) {
-                text-align: left;
+                // text-align: left;
             }
         }
     }

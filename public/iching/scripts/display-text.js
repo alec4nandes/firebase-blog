@@ -1,3 +1,5 @@
+import definitions from "./definitions.js";
+
 const situation1 = {
         message: "Consider the hexagram text (judgment) of the hexagram.",
         getReading: ({ def1 }) => [
@@ -76,7 +78,7 @@ function hexInfoTableHtml(hexInfo, hexName, lines) {
         <thead>
             <tr>
                 <th colSpan="2">
-                    <a href="/iching/text.html#${number}">${number}. ${title}</a>
+                    <a href="/iching/text/#${number}">${number}. ${title}</a>
                     (${hexName
                         .split("/")
                         .map(
@@ -122,3 +124,5 @@ function getChangingYinOrYang(lines, changingLineNum) {
 function displayText(hexagramInfo) {
     document.querySelector("#reading").innerHTML += textHtml(hexagramInfo);
 }
+
+export default displayText;

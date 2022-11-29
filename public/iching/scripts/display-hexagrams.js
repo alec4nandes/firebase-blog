@@ -1,3 +1,6 @@
+import definitions from "./definitions.js";
+import { getLineNumber } from "./hexagram-info.js";
+
 const lineSymbols = (baguaClass) => ({
     // yin
     0: `<div class="${baguaClass} line-symbol yin"></div>`,
@@ -16,7 +19,7 @@ function hexagramHtml(name, lines) {
         <div class="hexagram">
             <div class="title">
                 <p>
-                    <a href="/iching/text.html#${number}">${number}. ${title}</a>
+                    <a href="/iching/text/#${number}">${number}. ${title}</a>
                 </p>
                 <p>
                     ${name
@@ -61,3 +64,6 @@ function displayHexagrams(hexagramInfo) {
             .join("")}
         </div>`;
 }
+
+export default displayHexagrams;
+export { makeLineInnerHTML };

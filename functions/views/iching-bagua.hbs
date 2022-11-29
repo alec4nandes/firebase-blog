@@ -40,7 +40,7 @@
                                     {{#ifArray this}}
                                         <ul>
                                             {{#each this}}
-                                                <li>{{this}}</li>
+                                                <li>{{{this}}}</li>
                                             {{/each}}
                                         </ul>
                                     {{else}}
@@ -53,8 +53,5 @@
                 </table>
             {{/if}}
         </main>
-        <script src="/iching/scripts/definitions.js"></script>
-        <script src="/iching/scripts/get-hexagrams.js"></script>
-        <script>insertHexagramsRow(definitions);</script>
     </body>
 </html>

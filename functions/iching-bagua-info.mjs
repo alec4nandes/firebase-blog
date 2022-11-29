@@ -1,6 +1,9 @@
+import definitions from "./iching-definitions.mjs";
+
 const baguaInfo = {
     heaven: {
         trigram: "\u2630",
+        hexagrams: getHexagramLinks("heaven"),
         images: ["heaven"],
         qualities: [
             "creative",
@@ -35,6 +38,7 @@ const baguaInfo = {
     },
     earth: {
         trigram: "\u2637",
+        hexagrams: getHexagramLinks("earth"),
         images: ["earth"],
         qualities: [
             "weak",
@@ -76,6 +80,7 @@ const baguaInfo = {
     },
     fire: {
         trigram: "\u2632",
+        hexagrams: getHexagramLinks("fire"),
         images: ["fire", "sun", "lightning"],
         qualities: [
             "clear",
@@ -116,6 +121,7 @@ const baguaInfo = {
     },
     water: {
         trigram: "\u2635",
+        hexagrams: getHexagramLinks("water"),
         images: ["water", "clouds", "rain", "spring", "pit", "chasm"],
         qualities: [
             "dangerous",
@@ -162,6 +168,7 @@ const baguaInfo = {
     },
     lake: {
         trigram: "\u2631",
+        hexagrams: getHexagramLinks("lake"),
         images: ["lake", "marsh"],
         qualities: [
             "satisfied",
@@ -198,6 +205,7 @@ const baguaInfo = {
     },
     mountain: {
         trigram: "\u2636",
+        hexagrams: getHexagramLinks("mountain"),
         images: ["mountain"],
         qualities: [
             "tranquil",
@@ -239,6 +247,7 @@ const baguaInfo = {
     },
     thunder: {
         trigram: "\u2633",
+        hexagrams: getHexagramLinks("thunder"),
         images: ["thunder"],
         qualities: [
             "arousing",
@@ -276,6 +285,7 @@ const baguaInfo = {
     },
     wind: {
         trigram: "\u2634",
+        hexagrams: getHexagramLinks("wind"),
         images: ["wind", "wood"],
         qualities: [
             "gentle",
@@ -314,5 +324,14 @@ const baguaInfo = {
         ],
     },
 };
+
+function getHexagramLinks(bagua) {
+    return Object.entries(definitions)
+        .filter(([key]) => key.split("/").includes(bagua))
+        .map(
+            ([_, value]) =>
+                `<a href="/iching/text/#${value.number}">${value.number}. ${value.title}</a>`
+        );
+}
 
 export default baguaInfo;

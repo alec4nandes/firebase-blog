@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -16,7 +15,7 @@
         <meta
             name="url"
             property="og:url"
-            content="https://fern.haus/text.html"
+            content="https://fern.haus/text"
         />
         <meta
             name="description"
@@ -49,12 +48,36 @@
             <a href="/iching">home</a>
             <h1>I-Ching</h1>
             <h2>The Text</h2>
-            <nav class="text-nav"></nav>
+            <nav class="text-nav">
+                <table class="bagua-index-table">
+                    {{#each table_data}}
+                        <tr>
+                            {{#each this}}
+                                <td>{{{this}}}</td>
+                            {{/each}}
+                        </tr>
+                    {{/each}}
+                </table>
+            </nav>
         </header>
         <main>
-            <div class="text"></div>
+            <div class="text">
+                {{#each definitions}}
+                    <div class="hexagram-info" id="{{this.number}}">
+                        <h3>{{this.number}}. {{{@key}}}</h3>
+                        <h4>{{this.title}}</h4>
+                        <p>{{this.definition}}</p>
+                        <ol>
+                            <li>{{this.[1]}}</li>
+                            <li>{{this.[2]}}</li>
+                            <li>{{this.[3]}}</li>
+                            <li>{{this.[4]}}</li>
+                            <li>{{this.[5]}}</li>
+                            <li>{{this.[6]}}</li>
+                        </ol>
+                    </div>
+                {{/each}}
+            </div>
         </main>
-        <script src="/iching/scripts/definitions.js"></script>
-        <script src="/iching/scripts/text.js"></script>
     </body>
 </html>

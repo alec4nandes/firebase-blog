@@ -1,8 +1,20 @@
-function copyCurrentReading(info) {
-    const numId = info.lines.join(""),
-        text = `https://fern.haus/iching/cast/?lines=${numId}`;
-    navigator.clipboard.writeText(text);
-    alert("Link copied!");
+import displayHexagrams, { makeLineInnerHTML } from "./display-hexagrams.js";
+import displayText from "./display-text.js";
+import getHexagramInfo from "./hexagram-info.js";
+
+const getLineInt = () => ~~(Math.random() * 4);
+
+display();
+
+addCastHandlers();
+
+function addCastHandlers() {
+    const flipButton = document.getElementById("flip-button"),
+        flipAllButton = document.getElementById("flip-all-button"),
+        noFlipButton = document.getElementById("flip-none-button");
+    flipButton && (flipButton.onclick = () => flipHandler());
+    flipAllButton && (flipAllButton.onclick = () => flipHandler(true));
+    noFlipButton && (noFlipButton.onclick = () => noFlipHandler());
 }
 
 function display() {
@@ -11,6 +23,13 @@ function display() {
         info = getHexagramInfo(linesParam);
     info && display_helper(info);
     // otherwise leave original display for coin flips
+}
+
+function copyCurrentReading(info) {
+    const numId = info.lines.join(""),
+        text = `https://fern.haus/iching/cast/?lines=${numId}`;
+    navigator.clipboard.writeText(text);
+    alert("Link copied!");
 }
 
 function display_helper(info) {
@@ -93,7 +112,7 @@ function flipHandler(flipAllAtOnce) {
             lines[index].innerHTML = makeLineInnerHTML(lineNumber, lineInt);
             lines[index].setAttribute("data-value", lineInt);
             flipButton.disabled = false;
-            html = flipButton.innerHTML;
+            const html = flipButton.innerHTML;
             flipButton.innerHTML = index
                 ? html.slice(0, html.indexOf("(")) +
                   `(${index} line${index === 1 ? "" : "s"} left)`

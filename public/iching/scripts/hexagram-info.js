@@ -1,5 +1,3 @@
-const getLineInt = () => ~~(Math.random() * 4);
-
 const getLineNumber = (array, index) => array.length - index;
 
 const baguaBinary = {
@@ -77,3 +75,6 @@ function changeLines(lines, changingLineNumbers) {
         }
     });
 }
+
+export default getHexagramInfo;
+export { getLineNumber };
