@@ -60,10 +60,10 @@ body #toggle-sides > div.center button:hover::after {
   background-color: rgba(0, 0, 0, 0);
 }
 body #toggle-sides > div.center button.toggle-left {
-  background-image: url("../images/age-barros-rBPOfVqROzY-unsplash.jpg");
+  background-image: url("../images/watch.jpg");
 }
 body #toggle-sides > div.center button.toggle-right {
-  background-image: url("../images/runner.png");
+  background-image: url("../images/runner.jpg");
 }
 body #toggle-sides > div.center button span {
   background-color: rgba(0, 0, 0, 0.5);
