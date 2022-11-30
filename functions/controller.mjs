@@ -350,12 +350,6 @@ app.get("/moon-tides", function (req, res) {
                     .filter((tide) => tide.type === type)
                     .slice(0, 2)
                     .map((tide) => makeUTCString(tide.t, offset));
-
-        console.log(
-            "######################",
-            getTimezoneOffsetFromCoordinates({ latitude, longitude })
-        );
-
         return {
             high_tides: parseTides("H"),
             low_tides: parseTides("L"),
