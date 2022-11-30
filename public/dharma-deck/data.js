@@ -230,10 +230,18 @@ const allCards = makeCards(),
 
 function showAllCards() {
     showCards(allCards);
+    scrollToCards();
 }
 
 function showRandomCards(size) {
     showCards(getSpread(size));
+    scrollToCards();
+}
+
+function scrollToCards() {
+    const cardsElem = document.getElementById("cards");
+    cardsElem.style.paddingBottom = "60px";
+    cardsElem.scrollIntoView({ behavior: "smooth" });
 }
 
 function showCards(cards) {

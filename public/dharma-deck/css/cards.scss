@@ -1,0 +1,485 @@
+#cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    padding-top: 60px;
+
+    .card {
+        $card-height: calc(100vw / 3);
+        $card-width: calc($card-height * (275 / 475));
+        $fire-color: #fca6a5;
+        $water-color: #bde4ff;
+        $air-color: #c1e1c1;
+        $earth-color: #fefcac;
+
+        height: $card-height;
+        width: $card-width;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: auto 101%;
+        border: 1px solid rgba(50, 50, 50, 0.3);
+        border-radius: calc($card-width * (20 / 275));
+        box-sizing: border-box;
+        justify-content: flex-end;
+        margin: 0.5vh;
+
+        &.air,
+        &.fire {
+            background-color: #fff;
+        }
+
+        &.water,
+        &.earth {
+            background-color: #000;
+        }
+
+        &.fire .card-info,
+        .suit-symbol.fire {
+            background-color: $fire-color;
+        }
+
+        &.water .card-info,
+        .suit-symbol.water {
+            background-color: $water-color;
+        }
+
+        &.air .card-info,
+        .suit-symbol.air {
+            background-color: $air-color;
+        }
+
+        &.earth .card-info,
+        .suit-symbol.earth {
+            background-color: $earth-color;
+        }
+
+        .suit-symbols {
+            width: 100%;
+            position: relative;
+            flex: 1;
+
+            &.double,
+            &.spirit-symbol {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .suit-symbol {
+                    &.air,
+                    &.fire {
+                        border-color: #fff;
+                    }
+
+                    &.water,
+                    &.earth {
+                        border-color: #000;
+                    }
+                }
+            }
+
+            &.double {
+                .suit-symbol {
+                    $dim: calc($card-width * (150 / 275));
+                    height: $dim;
+                    width: $dim;
+
+                    border-color: #000;
+                    border: calc($dim * 0.08) solid black;
+
+                    &.border-fire {
+                        box-shadow: 0 0 0 calc($dim * 0.07) $fire-color;
+                    }
+
+                    &.border-water {
+                        box-shadow: 0 0 0 calc($dim * 0.07) $water-color;
+                    }
+
+                    &.border-air {
+                        box-shadow: 0 0 0 calc($dim * 0.07) $air-color;
+                    }
+
+                    &.border-earth {
+                        box-shadow: 0 0 0 calc($dim * 0.07) $earth-color;
+                    }
+                }
+            }
+
+            &.spirit-symbol {
+                .suit-symbol {
+                    $dim: calc($card-width * (80 / 275));
+                    height: $dim;
+                    width: $dim;
+                    border-width: calc($dim * 0.09);
+                    border-style: solid;
+                    position: relative;
+                    top: calc($dim * 0.8);
+                }
+            }
+
+            &.rank-2 {
+                .suit-symbol {
+                    // middle
+                    &:nth-child(1),
+                    &:nth-child(2) {
+                        margin-left: calc(100% * (106.5 / 275));
+                    }
+
+                    // all
+                    &:nth-child(1) {
+                        margin-top: calc(100% * (20 / 275));
+                    }
+                    &:nth-child(2) {
+                        margin-top: calc(100% * (260 / 275));
+                    }
+                }
+            }
+
+            &.rank-3 {
+                .suit-symbol {
+                    // middle
+                    &:nth-child(1),
+                    &:nth-child(2),
+                    &:nth-child(3) {
+                        margin-left: calc(100% * (106.5 / 275));
+                    }
+
+                    // all
+                    &:nth-child(1) {
+                        margin-top: calc(100% * (20 / 275));
+                    }
+                    &:nth-child(2) {
+                        margin-top: calc(100% * (140 / 275));
+                    }
+                    &:nth-child(3) {
+                        margin-top: calc(100% * (260 / 275));
+                    }
+                }
+            }
+
+            &.rank-4 {
+                .suit-symbol {
+                    // left side
+                    &:nth-child(1),
+                    &:nth-child(2) {
+                        margin-left: calc(100% * (26.5 / 275));
+                    }
+
+                    // right side
+                    &:nth-child(3),
+                    &:nth-child(4) {
+                        margin-left: calc(100% * (186.5 / 275));
+                    }
+
+                    // all
+                    &:nth-child(1),
+                    &:nth-child(3) {
+                        margin-top: calc(100% * (20 / 275));
+                    }
+                    &:nth-child(2),
+                    &:nth-child(4) {
+                        margin-top: calc(100% * (260 / 275));
+                    }
+                }
+            }
+
+            &.rank-5 {
+                .suit-symbol {
+                    // left side
+                    &:nth-child(1),
+                    &:nth-child(2) {
+                        margin-left: calc(100% * (26.5 / 275));
+                    }
+
+                    // right side
+                    &:nth-child(4),
+                    &:nth-child(5) {
+                        margin-left: calc(100% * (186.5 / 275));
+                    }
+
+                    // middle
+                    &:nth-child(3) {
+                        margin-left: calc(100% * (106.5 / 275));
+                    }
+
+                    // all
+                    &:nth-child(1),
+                    &:nth-child(4) {
+                        margin-top: calc(100% * (20 / 275));
+                    }
+                    &:nth-child(2),
+                    &:nth-child(5) {
+                        margin-top: calc(100% * (260 / 275));
+                    }
+                    &:nth-child(3) {
+                        margin-top: calc(100% * (140 / 275));
+                    }
+                }
+            }
+
+            &.rank-6 {
+                .suit-symbol {
+                    // left side
+                    &:nth-child(1),
+                    &:nth-child(2),
+                    &:nth-child(3) {
+                        margin-left: calc(100% * (26.5 / 275));
+                    }
+
+                    // right side
+                    &:nth-child(4),
+                    &:nth-child(5),
+                    &:nth-child(6) {
+                        margin-left: calc(100% * (186.5 / 275));
+                    }
+
+                    // all
+                    &:nth-child(1),
+                    &:nth-child(4) {
+                        margin-top: calc(100% * (20 / 275));
+                    }
+                    &:nth-child(2),
+                    &:nth-child(5) {
+                        margin-top: calc(100% * (140 / 275));
+                    }
+                    &:nth-child(3),
+                    &:nth-child(6) {
+                        margin-top: calc(100% * (260 / 275));
+                    }
+                }
+            }
+
+            &.rank-7 {
+                .suit-symbol {
+                    // left side
+                    &:nth-child(1),
+                    &:nth-child(2),
+                    &:nth-child(3) {
+                        margin-left: calc(100% * (26.5 / 275));
+                    }
+
+                    // right side
+                    &:nth-child(5),
+                    &:nth-child(6),
+                    &:nth-child(7) {
+                        margin-left: calc(100% * (186.5 / 275));
+                    }
+
+                    // middle
+                    &:nth-child(4) {
+                        margin-left: calc(100% * (106.5 / 275));
+                    }
+
+                    // all
+                    &:nth-child(1),
+                    &:nth-child(5) {
+                        margin-top: calc(100% * (20 / 275));
+                    }
+                    &:nth-child(2),
+                    &:nth-child(6) {
+                        margin-top: calc(100% * (140 / 275));
+                    }
+                    &:nth-child(3),
+                    &:nth-child(7) {
+                        margin-top: calc(100% * (260 / 275));
+                    }
+                    &:nth-child(4) {
+                        margin-top: calc(100% * (80 / 275));
+                    }
+                }
+            }
+
+            &.rank-8 {
+                .suit-symbol {
+                    // left side
+                    &:nth-child(1),
+                    &:nth-child(2),
+                    &:nth-child(3) {
+                        margin-left: calc(100% * (26.5 / 275));
+                    }
+
+                    // right side
+                    &:nth-child(6),
+                    &:nth-child(7),
+                    &:nth-child(8) {
+                        margin-left: calc(100% * (186.5 / 275));
+                    }
+
+                    // middle
+                    &:nth-child(4),
+                    &:nth-child(5) {
+                        margin-left: calc(100% * (106.5 / 275));
+                    }
+
+                    // all
+                    &:nth-child(1),
+                    &:nth-child(6) {
+                        margin-top: calc(100% * (20 / 275));
+                    }
+                    &:nth-child(2),
+                    &:nth-child(7) {
+                        margin-top: calc(100% * (140 / 275));
+                    }
+                    &:nth-child(3),
+                    &:nth-child(8) {
+                        margin-top: calc(100% * (260 / 275));
+                    }
+                    &:nth-child(4) {
+                        margin-top: calc(100% * (80 / 275));
+                    }
+                    &:nth-child(5) {
+                        margin-top: calc(100% * (200 / 275));
+                    }
+                }
+            }
+
+            &.rank-9 {
+                .suit-symbol {
+                    // left side
+                    &:nth-child(1),
+                    &:nth-child(2),
+                    &:nth-child(3),
+                    &:nth-child(4) {
+                        margin-left: calc(100% * (26.5 / 275));
+                    }
+
+                    // right side
+                    &:nth-child(6),
+                    &:nth-child(7),
+                    &:nth-child(8),
+                    &:nth-child(9) {
+                        margin-left: calc(100% * (186.5 / 275));
+                    }
+
+                    // middle
+                    &:nth-child(5) {
+                        margin-left: calc(100% * (106.5 / 275));
+                    }
+
+                    // all
+                    &:nth-child(1),
+                    &:nth-child(6) {
+                        margin-top: calc(100% * (20 / 275));
+                    }
+                    &:nth-child(2),
+                    &:nth-child(7) {
+                        margin-top: calc(100% * (100 / 275));
+                    }
+                    &:nth-child(3),
+                    &:nth-child(8) {
+                        margin-top: calc(100% * (180 / 275));
+                    }
+                    &:nth-child(4),
+                    &:nth-child(9) {
+                        margin-top: calc(100% * (260 / 275));
+                    }
+                    &:nth-child(5) {
+                        margin-top: calc(100% * (140 / 275));
+                    }
+                }
+            }
+
+            &.rank-10 {
+                .suit-symbol {
+                    // left side
+                    &:nth-child(1),
+                    &:nth-child(2),
+                    &:nth-child(3),
+                    &:nth-child(4) {
+                        margin-left: calc(100% * (26.5 / 275));
+                    }
+
+                    // right side
+                    &:nth-child(7),
+                    &:nth-child(8),
+                    &:nth-child(9),
+                    &:nth-child(10) {
+                        margin-left: calc(100% * (186.5 / 275));
+                    }
+
+                    // middle
+                    &:nth-child(5),
+                    &:nth-child(6) {
+                        margin-left: calc(100% * (106.5 / 275));
+                    }
+
+                    // all
+                    &:nth-child(1),
+                    &:nth-child(7) {
+                        margin-top: calc(100% * (20 / 275));
+                    }
+                    &:nth-child(2),
+                    &:nth-child(8) {
+                        margin-top: calc(100% * (100 / 275));
+                    }
+                    &:nth-child(3),
+                    &:nth-child(9) {
+                        margin-top: calc(100% * (180 / 275));
+                    }
+                    &:nth-child(4),
+                    &:nth-child(10) {
+                        margin-top: calc(100% * (260 / 275));
+                    }
+                    &:nth-child(5) {
+                        margin-top: calc(100% * (60 / 275));
+                    }
+                    &:nth-child(6) {
+                        margin-top: calc(100% * (220 / 275));
+                    }
+                }
+            }
+
+            .suit-symbol {
+                $suit-symbol-dimension: calc($card-width * (60 / 275));
+
+                height: $suit-symbol-dimension;
+                width: $suit-symbol-dimension;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+
+                &.air,
+                &.fire {
+                    img {
+                        filter: invert(100%);
+                        position: relative;
+                        top: -12%;
+                    }
+                }
+
+                img {
+                    height: 95%;
+                    width: 95%;
+                }
+            }
+        }
+
+        .card-info {
+            $font-size: calc($card-width / 16.5);
+
+            height: calc(100% * (122 / 475));
+            width: 90%;
+            border-radius: calc($card-width * (15 / 275));
+            font-size: $font-size;
+            justify-content: center;
+            margin: 5%;
+            overflow: auto;
+
+            p {
+                line-height: calc($font-size * 1.2);
+                margin: 0;
+                text-align: center;
+            }
+        }
+    }
+
+    .card,
+    .card-info {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+}

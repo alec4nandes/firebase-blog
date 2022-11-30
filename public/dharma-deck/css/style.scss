@@ -1,0 +1,117 @@
+@import "https://api.fontshare.com/v2/css?f[]=archivo@400&f[]=pilcrow-rounded@900&display=swap";
+// font-family: 'Archivo', sans-serif;
+// font-family: 'Pilcrow Rounded', sans-serif;
+
+body {
+    background-color: #1c1c1c;
+    background-image: url(../images/page-background-min.png);
+    background-position: top 45px left;
+    background-repeat: repeat-y;
+    background-size: 33%;
+    font-family: "Archivo", sans-serif;
+    margin: 0;
+
+    button,
+    nav a {
+        text-transform: uppercase;
+    }
+
+    button {
+        appearance: none;
+        background-color: transparent;
+        border: 0;
+    }
+
+    .large-button {
+        width: 350px;
+        background-color: #c88f59;
+        border-radius: 15px;
+        box-shadow: 0 4px 4px rgb(170, 170, 170, 0.25);
+        box-sizing: border-box;
+        color: #222;
+        font-family: "Pilcrow Rounded", sans-serif;
+        font-size: 25px;
+        padding: 12px;
+
+        &:hover {
+            background-color: #fff;
+            cursor: pointer;
+        }
+    }
+
+    header {
+        height: 45px;
+        background-color: #222;
+        display: flex;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+
+        nav {
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+
+            a,
+            button {
+                color: #b9abab;
+                font-size: 16px;
+                padding: 0;
+                text-decoration: underline;
+
+                &:hover {
+                    color: #fff;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    nav,
+    main {
+        max-width: 800px;
+        margin: auto;
+    }
+
+    main {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 30px;
+
+        * {
+            text-align: center;
+        }
+
+        #about {
+            padding: 0 40px;
+
+            h1 {
+                color: #c88f59;
+                font-family: "Pilcrow Rounded", sans-serif;
+                font-size: 50px;
+                text-shadow: 0 4px 4px rgb(170, 170, 170, 0.25);
+            }
+
+            p {
+                color: #b9abab;
+                font-size: 18px;
+                line-height: 24px;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 420px) {
+        header {
+            nav {
+                a,
+                button {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
