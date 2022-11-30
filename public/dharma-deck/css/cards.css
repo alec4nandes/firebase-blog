@@ -3,16 +3,17 @@
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
   padding-top: 60px;
 }
 #cards .card {
-  height: 33.3333333333vw;
-  width: 19.298245614vw;
+  height: 280px;
+  width: 162.1052631579px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: auto 101%;
   border: 1px solid rgba(50, 50, 50, 0.3);
-  border-radius: 1.4035087719vw;
+  border-radius: 11.7894736842px;
   box-sizing: border-box;
   justify-content: flex-end;
   margin: 0.5vh;
@@ -56,30 +57,30 @@
   border-color: #000;
 }
 #cards .card .suit-symbols.double .suit-symbol {
-  height: 10.5263157895vw;
-  width: 10.5263157895vw;
+  height: 88.4210526316px;
+  width: 88.4210526316px;
   border-color: #000;
-  border: 0.8421052632vw solid black;
+  border: 7.0736842105px solid black;
 }
 #cards .card .suit-symbols.double .suit-symbol.border-fire {
-  box-shadow: 0 0 0 0.7368421053vw #fca6a5;
+  box-shadow: 0 0 0 6.1894736842px #fca6a5;
 }
 #cards .card .suit-symbols.double .suit-symbol.border-water {
-  box-shadow: 0 0 0 0.7368421053vw #bde4ff;
+  box-shadow: 0 0 0 6.1894736842px #bde4ff;
 }
 #cards .card .suit-symbols.double .suit-symbol.border-air {
-  box-shadow: 0 0 0 0.7368421053vw #c1e1c1;
+  box-shadow: 0 0 0 6.1894736842px #c1e1c1;
 }
 #cards .card .suit-symbols.double .suit-symbol.border-earth {
-  box-shadow: 0 0 0 0.7368421053vw #fefcac;
+  box-shadow: 0 0 0 6.1894736842px #fefcac;
 }
 #cards .card .suit-symbols.spirit-symbol .suit-symbol {
-  height: 5.6140350877vw;
-  width: 5.6140350877vw;
-  border-width: 0.5052631579vw;
+  height: 47.1578947368px;
+  width: 47.1578947368px;
+  border-width: 4.2442105263px;
   border-style: solid;
   position: relative;
-  top: 4.4912280702vw;
+  top: 37.7263157895px;
 }
 #cards .card .suit-symbols.rank-2 .suit-symbol:nth-child(1), #cards .card .suit-symbols.rank-2 .suit-symbol:nth-child(2) {
   margin-left: 38.7272727273%;
@@ -244,8 +245,8 @@
   margin-top: 80%;
 }
 #cards .card .suit-symbols .suit-symbol {
-  height: 4.2105263158vw;
-  width: 4.2105263158vw;
+  height: 35.3684210526px;
+  width: 35.3684210526px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -264,14 +265,14 @@
 #cards .card .card-info {
   height: 25.6842105263%;
   width: 90%;
-  border-radius: 1.0526315789vw;
-  font-size: 1.1695906433vw;
+  border-radius: 8.8421052632px;
+  font-size: 9.8245614035px;
   justify-content: center;
   margin: 5%;
   overflow: auto;
 }
 #cards .card .card-info p {
-  line-height: 1.4035087719vw;
+  line-height: 11.7894736842px;
   margin: 0;
   text-align: center;
 }
