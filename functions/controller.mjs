@@ -348,8 +348,8 @@ app.get("/moon-tides", function (req, res) {
             parseTides = (type) =>
                 tides.predictions
                     .filter((tide) => tide.type === type)
-                    .map((tide) => makeUTCString(tide.t, offset))
-                    .slice(0, 2);
+                    .slice(0, 2)
+                    .map((tide) => makeUTCString(tide.t, offset));
         return {
             high_tides: parseTides("H"),
             low_tides: parseTides("L"),
@@ -364,9 +364,9 @@ app.get("/moon-tides", function (req, res) {
         return new Date(local).getHours() - new Date().getHours();
     }
 
-    function makeUTCString(time, offset) {
+    function makeUTCString(localTime, offset) {
         return new Date(
-            `${time} GMT${offset && offset < 0 ? "-" : "+"}${
+            `${localTime} GMT${offset && offset < 0 ? "-" : "+"}${
                 offset ? Math.abs(offset) : 0
             }`
         ).toUTCString();
