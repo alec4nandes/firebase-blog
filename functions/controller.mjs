@@ -17,6 +17,7 @@ import dotenv from "dotenv";
 import nodemailer from "nodemailer";
 import cookieParser from "cookie-parser";
 import fetch from "node-fetch";
+import { find } from "geo-tz";
 // for __dirname in module:
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -254,6 +255,8 @@ app.get("/iching/text", function (req, res) {
 });
 
 // Moon Tides api route
+// sample:
+// http://localhost:5000/moon-tides/?latitude=32.8400896&longitude=-117.2078592&date=2022-11-30
 
 app.get("/moon-tides", function (req, res) {
     // TODO: add moon data from lune package (not local - "universal")
@@ -262,23 +265,22 @@ app.get("/moon-tides", function (req, res) {
     sendData();
 
     async function sendData() {
-        const { latitude, longitude } = req.query,
+        const { latitude, longitude, date } = req.query,
             sending =
                 !isNaN(latitude) && !isNaN(longitude)
-                    ? await handleLocalData({ latitude, longitude })
+                    ? await handleLocalData(
+                          { latitude: +latitude, longitude: +longitude },
+                          date
+                      )
                     : { error_message: "invalid coordinates" };
         res.send(sending);
     }
 
-    async function handleLocalData(coords) {
+    async function handleLocalData(coords, date) {
         const { latitude, longitude } = coords,
             stations = await getNOAAStations(),
             nearestStation = findNearestStation({
                 stations,
-                latitude,
-                longitude,
-            }),
-            { sunrise, sunset, solar_noon, day_length } = await getSolarData({
                 latitude,
                 longitude,
             });
@@ -286,11 +288,16 @@ app.get("/moon-tides", function (req, res) {
             coords,
             nearest_NOAA_station: {
                 name: nearestStation.name,
+                id: nearestStation.id,
                 latitude: nearestStation.lat,
                 longitude: nearestStation.lng,
             },
-            tides: await getTidesData(nearestStation),
-            solar: { sunrise, sunset, solar_noon, day_length },
+            tides: await getTidesData(
+                { latitude, longitude },
+                nearestStation,
+                date
+            ),
+            solar: await getSolarData({ latitude, longitude }, date),
         });
     }
 
@@ -314,7 +321,12 @@ app.get("/moon-tides", function (req, res) {
                         Math.abs(latitude - lat) ** 2 +
                             Math.abs(longitude - lng) ** 2
                     );
-                if (!shortestDistance || trigDist < shortestDistance) {
+                if (
+                    // could be set to zero if standing on exact coordinate
+                    // of NOAA station
+                    (!shortestDistance && shortestDistance !== 0) ||
+                    trigDist < shortestDistance
+                ) {
                     shortestDistance = trigDist;
                     nearestStation = station;
                 }
@@ -322,39 +334,56 @@ app.get("/moon-tides", function (req, res) {
         return nearestStation;
     }
 
-    async function getTidesData(nearestStation) {
+    async function getTidesData({ latitude, longitude }, nearestStation, date) {
+        // scanning from yesterday to tomorrow to avoid any timezone issues
         const response = await fetch(
-                `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=today&product=predictions&datum=mllw&interval=hilo&format=json&units=metric&time_zone=lst_ldt&station=${nearestStation.id}`
+                `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=${date.replaceAll(
+                    "-",
+                    ""
+                )}&range=48&product=predictions&datum=mllw&interval=hilo&format=json&units=metric&time_zone=lst_ldt&station=${
+                    nearestStation.id
+                }`
             ),
-            tides = await response.json();
-        return tides.predictions;
+            tides = await response.json(),
+            timeZone = find(latitude, longitude),
+            offset =
+                new Date(
+                    new Date().toLocaleString("en-US", {
+                        timeZone,
+                    })
+                ).getHours() - new Date().getHours(),
+            parseTides = (type) =>
+                tides.predictions
+                    .filter((tide) => tide.type === type)
+                    // .map((tide) => new Date(tide.t).toUTCString());
+                    .map((tide) =>
+                        new Date(
+                            `${tide.t} GMT${offset < 0 ? "-" : "+"}${Math.abs(
+                                offset
+                            )}`
+                        ).toUTCString()
+                    )
+                    .slice(0, 2);
+        console.log("OFFSET:", offset, "timeZone:", timeZone);
+        return {
+            high_tides: parseTides("H"),
+            low_tides: parseTides("L"),
+        };
     }
 
-    async function getSolarData({ latitude, longitude, date }) {
+    async function getSolarData({ latitude, longitude }, date) {
         const response = await fetch(
-            `https://api.sunrise-sunset.org/json?lat=${latitude}&lng=${longitude}${
-                date ? `&date=${date}` : ""
-            }`
-        );
-        let { results } = await response.json();
-        if (
-            !date &&
-            results.sunrise.includes("PM") &&
-            results.sunset.includes("AM")
-        ) {
-            // since the solar times are UTC, the readings can be a day off
-            // in further out timezones, but this fixes that
-            const d = new Date(),
-                d2 = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
-            results = await getSolarData({
-                latitude,
-                longitude,
-                date: `${d2.getFullYear()}-${
-                    d2.getMonth() + 1
-                }-${d2.getDate()}`,
-            });
-        }
-        return results;
+                `https://api.sunrise-sunset.org/json?lat=${latitude}&lng=${longitude}&date=${date}&formatted=0`
+            ),
+            { results } = await response.json(),
+            { sunrise, sunset, solar_noon, day_length } = results,
+            parseResult = (dateTime) => new Date(dateTime).toUTCString();
+        return {
+            sunrise: parseResult(sunrise),
+            sunset: parseResult(sunset),
+            solar_noon: parseResult(solar_noon),
+            day_length,
+        };
     }
 });
 
