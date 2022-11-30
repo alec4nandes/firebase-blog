@@ -288,7 +288,7 @@ app.get("/moon-tides", function (req, res) {
             coords,
             nearest_NOAA_station: {
                 name: nearestStation.name,
-                id: nearestStation.id,
+                id: +nearestStation.id,
                 latitude: nearestStation.lat,
                 longitude: nearestStation.lng,
             },
