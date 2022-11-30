@@ -336,38 +336,40 @@ app.get("/moon-tides", function (req, res) {
 
     async function getTidesData({ latitude, longitude }, nearestStation, date) {
         // scanning from yesterday to tomorrow to avoid any timezone issues
-        const response = await fetch(
-                `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=${date.replaceAll(
-                    "-",
-                    ""
-                )}&range=48&product=predictions&datum=mllw&interval=hilo&format=json&units=metric&time_zone=lst_ldt&station=${
-                    nearestStation.id
-                }`
-            ),
+        const url = `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=${date.replaceAll(
+                "-",
+                ""
+            )}&range=48&product=predictions&datum=mllw&interval=hilo&format=json&units=metric&time_zone=lst_ldt&station=${
+                nearestStation.id
+            }`,
+            response = await fetch(url),
             tides = await response.json(),
-            timeZone = find(latitude, longitude),
-            offset =
-                new Date(
-                    new Date().toLocaleString("en-US", {
-                        timeZone,
-                    })
-                ).getHours() - new Date().getHours(),
+            offset = getTimezoneOffsetFromCoordinates({ latitude, longitude }),
             parseTides = (type) =>
                 tides.predictions
                     .filter((tide) => tide.type === type)
-                    // .map((tide) => new Date(tide.t).toUTCString());
-                    .map((tide) =>
-                        new Date(
-                            `${tide.t} GMT${offset < 0 ? "-" : "+"}${Math.abs(
-                                offset
-                            )}`
-                        ).toUTCString()
-                    )
+                    .map((tide) => makeUTCString(tide.t, offset))
                     .slice(0, 2);
         return {
             high_tides: parseTides("H"),
             low_tides: parseTides("L"),
         };
+    }
+
+    function getTimezoneOffsetFromCoordinates({ latitude, longitude }) {
+        const timeZone = find(latitude, longitude),
+            local = new Date().toLocaleString("en-US", {
+                timeZone,
+            });
+        return new Date(local).getHours() - new Date().getHours();
+    }
+
+    function makeUTCString(time, offset) {
+        return new Date(
+            `${time} GMT${offset && offset < 0 ? "-" : "+"}${
+                offset ? Math.abs(offset) : 0
+            }`
+        ).toUTCString();
     }
 
     async function getSolarData({ latitude, longitude }, date) {
