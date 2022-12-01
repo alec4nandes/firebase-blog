@@ -7,8 +7,15 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
 }
-body a {
+body a,
+body span.anchor-jump {
   color: cadetblue;
+}
+body span.anchor-jump {
+  text-decoration: underline;
+}
+body span.anchor-jump:hover {
+  cursor: pointer;
 }
 body details {
   border-bottom: 1px solid white;

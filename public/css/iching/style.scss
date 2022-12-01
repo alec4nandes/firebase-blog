@@ -7,8 +7,17 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
 
-    a {
+    a,
+    span.anchor-jump {
         color: cadetblue;
+    }
+
+    span.anchor-jump {
+        text-decoration: underline;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     details {

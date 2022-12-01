@@ -62,8 +62,13 @@
                 <p>
                     The Tao, to explain it crudely, is a transcendent and
                     fundamental force above even the perfect balance of
-                    <a href="#yin-and-yang">yin and yang</a>, dark and light.
-                    (Any attempt to describe it is inherently un-Taoist,
+                    <span
+                        class="anchor-jump"
+                        onclick="anchorJump('yin-and-yang')"
+                    >
+                        yin and yang</span
+                    >, dark and light. (Any attempt to describe it is inherently
+                    un-Taoist,
                     <em>
                         i.e. The Tao that can be told is not the eternal Tao;
                         The name that can be named is not the eternal name.
@@ -81,10 +86,10 @@
             </details>
 
             <details>
-                <summary>
+                <summary id="yin-and-yang">
                     <h3>What are yin and yang?</h3>
                 </summary>
-                <p id="yin-and-yang">
+                <p>
                     A well known symbol of Taoism is the combination of yin and
                     yang. The light, expansive energy of yang and heaven dances
                     around the dark, grounded energy of yin and earth, with each
@@ -120,8 +125,10 @@
                     The I-Ching is an ancient text from China that is highly
                     regarded among esoteric Taoists. It contains line-by-line
                     divinatory explanations of
-                    <a href="#trigrams">trigram line symbols</a> grouped into 64
-                    hexagrams.
+                    <span class="anchor-jump" onclick="anchorJump('trigrams')">
+                        trigram line symbols
+                    </span>
+                    grouped into 64 hexagrams.
                 </p>
                 <p>
                     Millenia ago, oracles interpreted these hexagrams in the
@@ -135,5 +142,14 @@
                 <p>COMING SOON</p>
             </details>
         </main>
+
+        <script>
+            function anchorJump(id) {
+                const elem = document.getElementById(id),
+                    details = elem.parentElement;
+                details.open = true;
+                elem.scrollIntoView({ behavior: "smooth" });
+            }
+        </script>
     </body>
 </html>
