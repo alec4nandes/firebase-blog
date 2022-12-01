@@ -13,22 +13,30 @@
     </head>
     <body>
         <header>
-            <a href="/iching">home</a>
             <h1>I-Ching</h1>
             <h2>Cast Lines</h2>
-            <div id="visible-reading" style="display: none;">
-                <button id="share">share reading</button>
-                <a href="/iching/cast">get another reading</a>
+            <div id="header-links">
+                <a href="/iching">home</a>
+                <span id="visible-reading" style="display: none;">
+                    &nbsp;&mdash;&nbsp;
+                    <button id="share" class="button-link">share reading</button>
+                    &nbsp;&mdash;&nbsp;
+                    <a href="/iching/cast">get another reading</a>
+                </span>
             </div>
         </header>
         <main>
             <div id="reading">
-                <button id="flip-button" onclick="flipHandler()">flip coins (6
-                    lines left)</button>
-                <button id="flip-all-button" onclick="flipHandler(true)">flip
-                    coins all at once</button>
-                <button id="flip-none-button" onclick="noFlipHandler()">go
-                    straight to reading</button>
+                <div id="casting-buttons">
+                    <button id="flip-button" onclick="flipHandler()">flip coins
+                        (6 lines left)</button>
+                    <button
+                        id="flip-all-button"
+                        onclick="flipHandler(true)"
+                    >flip coins all at once</button>
+                    <button id="flip-none-button" onclick="noFlipHandler()">go
+                        straight to reading</button>
+                </div>
             </div>
         </main>
         <footer>&copy; <a href="/">Alec Fernandes</a> 2023</footer>

@@ -18,20 +18,27 @@ body {
     }
 
     a,
-    span.anchor-jump {
+    span.anchor-jump,
+    button.button-link {
         color: #69b7ba;
 
         &:hover {
+            cursor: pointer;
             opacity: 0.65;
         }
     }
 
+    button.button-link {
+        appearance: none;
+        background-color: transparent;
+        border: 0;
+        font-size: 1rem;
+        padding: 0;
+        text-decoration: underline;
+    }
+
     span.anchor-jump {
         text-decoration: underline;
-
-        &:hover {
-            cursor: pointer;
-        }
     }
 
     details {
@@ -84,9 +91,14 @@ body {
         justify-content: center;
         flex-direction: column;
         gap: 25px;
-        padding: 20px;
+        padding: 30px 20px 20px;
         position: relative;
         z-index: 0;
+
+        & > * {
+            margin: 0;
+            text-align: center;
+        }
 
         h1 {
             line-height: 1.5rem;
@@ -96,9 +108,9 @@ body {
             line-height: 1rem;
         }
 
-        & > * {
-            margin: 0;
-            text-align: center;
+        #header-links {
+            position: relative;
+            top: -4px;
         }
     }
 

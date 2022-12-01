@@ -79,6 +79,7 @@ function hexInfoTableHtml(hexInfo, hexName, lines) {
             <tr>
                 <th colSpan="2">
                     <a href="/iching/text/#${number}">${number}. ${title}</a>
+                    <br/>
                     (${hexName
                         .split("/")
                         .map(

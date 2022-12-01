@@ -14,18 +14,28 @@ body h3 {
   font-family: "Sharpie", Arial, Helvetica, sans-serif;
 }
 body a,
-body span.anchor-jump {
+body span.anchor-jump,
+body button.button-link {
   color: #69b7ba;
 }
 body a:hover,
-body span.anchor-jump:hover {
+body span.anchor-jump:hover,
+body button.button-link:hover {
+  cursor: pointer;
   opacity: 0.65;
+}
+body button.button-link {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: transparent;
+  border: 0;
+  font-size: 1rem;
+  padding: 0;
+  text-decoration: underline;
 }
 body span.anchor-jump {
   text-decoration: underline;
-}
-body span.anchor-jump:hover {
-  cursor: pointer;
 }
 body details {
   border-bottom: 1px solid white;
@@ -65,9 +75,13 @@ body header {
   justify-content: center;
   flex-direction: column;
   gap: 25px;
-  padding: 20px;
+  padding: 30px 20px 20px;
   position: relative;
   z-index: 0;
+}
+body header > * {
+  margin: 0;
+  text-align: center;
 }
 body header h1 {
   line-height: 1.5rem;
@@ -75,9 +89,9 @@ body header h1 {
 body header h2 {
   line-height: 1rem;
 }
-body header > * {
-  margin: 0;
-  text-align: center;
+body header #header-links {
+  position: relative;
+  top: -4px;
 }
 body main {
   flex: 1;
