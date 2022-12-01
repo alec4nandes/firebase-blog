@@ -17,7 +17,7 @@ body button {
 }
 body .large-button {
   width: 350px;
-  background-color: #c88f59;
+  background-color: #e39448;
   border-radius: 15px;
   box-shadow: 0 4px 4px rgba(170, 170, 170, 0.25);
   box-sizing: border-box;
@@ -84,7 +84,7 @@ body main .content-container #about {
   padding: 0 40px;
 }
 body main .content-container #about h1 {
-  color: #c88f59;
+  color: #e39448;
   font-family: "Pilcrow Rounded", sans-serif;
   font-size: 50px;
   text-shadow: 0 4px 4px rgba(170, 170, 170, 0.25);

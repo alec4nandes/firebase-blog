@@ -18,9 +18,11 @@ body {
         border: 0;
     }
 
+    $accent-color: #e39448;
+
     .large-button {
         width: 350px;
-        background-color: #c88f59;
+        background-color: $accent-color;
         border-radius: 15px;
         box-shadow: 0 4px 4px rgb(170, 170, 170, 0.25);
         box-sizing: border-box;
@@ -93,7 +95,7 @@ body {
                 padding: 0 40px;
 
                 h1 {
-                    color: #c88f59;
+                    color: $accent-color;
                     font-family: "Pilcrow Rounded", sans-serif;
                     font-size: 50px;
                     text-shadow: 0 4px 4px rgb(170, 170, 170, 0.25);
