@@ -1,0 +1,59 @@
+body {
+  background-image: url(../assets/yin-yang-bg-min.png) !important;
+  background-position: center !important;
+  background-size: cover !important;
+}
+body main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+body main #home-links {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: rgba(0, 0, 0, 0.65);
+  border-radius: 10px;
+  box-shadow: 0 0 4px 4px rgba(100, 100, 100, 0.65);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+body main #home-links h1 {
+  height: 40px;
+  background-color: #333;
+  border: 2px solid white;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin: 0;
+  text-align: center;
+}
+body main #home-links a {
+  height: 40px;
+  background-color: cadetblue;
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 0 15px;
+  text-decoration: none;
+}
+body main #home-links a:hover {
+  background-color: #fff;
+  color: cadetblue;
+}
+body footer {
+  background-color: rgba(0, 0, 0, 0.65);
+  padding: 4px;
+  text-align: center;
+}/*# sourceMappingURL=home.css.map */

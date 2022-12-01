@@ -5,7 +5,7 @@ main {
 }
 
 main {
-  background-image: url(../../assets/iching/yin-yang-bg-min.png);
+  background-image: url(../../iching/assets/yin-yang-bg-min.png);
   background-position: center;
   background-size: cover;
 }
@@ -199,11 +199,11 @@ main {
   position: absolute;
 }
 #reading .flipping .coins-container .coin .side.back {
-  background-image: url(../../assets/iching/coin-back-min.png);
+  background-image: url(../../iching/assets/coin-back-min.png);
   transform: rotateZ(20deg) translateZ(0.1px);
 }
 #reading .flipping .coins-container .coin .side.front {
-  background-image: url(../../assets/iching/coin-front-min.png);
+  background-image: url(../../iching/assets/coin-front-min.png);
   transform: rotateZ(20deg) translateZ(-0.1px);
 }
 @-webkit-keyframes spin {
