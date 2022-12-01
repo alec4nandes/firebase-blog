@@ -1,4 +1,4 @@
-@import "../../css/colors.scss";
+@import "./colors.scss";
 
 header {
     .bagua-links {
@@ -56,6 +56,10 @@ main {
         width: 100%;
         max-width: 400px;
         margin: auto;
+
+        a {
+            color: cadetblue;
+        }
 
         th,
         td {

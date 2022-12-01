@@ -48,6 +48,9 @@ main .bagua-table {
   max-width: 400px;
   margin: auto;
 }
+main .bagua-table a {
+  color: cadetblue;
+}
 main .bagua-table th,
 main .bagua-table td {
   background-color: rgba(255, 255, 255, 0.75);
