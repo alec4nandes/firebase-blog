@@ -144,6 +144,9 @@
         </main>
 
         <script>
+            // default anchor link behavior doesn't work if the
+            // target section is hidden in a closed details tag
+            // on mobile. This function is a workaround:
             function anchorJump(id) {
                 const elem = document.getElementById(id),
                     details = elem.parentElement;
