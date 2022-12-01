@@ -3,11 +3,7 @@
 // font-family: 'Pilcrow Rounded', sans-serif;
 
 body {
-    background-color: #1c1c1c;
-    background-image: url(../images/page-background-min.png);
-    background-position: top 45px left;
-    background-repeat: repeat-y;
-    background-size: 33%;
+    background-image: linear-gradient(to right, #1c1c1b 70%, #333);
     font-family: "Archivo", sans-serif;
     margin: 0;
 
@@ -71,35 +67,43 @@ body {
     }
 
     nav,
-    main {
+    .content-container {
         max-width: 800px;
         margin: auto;
     }
 
     main {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        gap: 30px;
+        min-height: 100vh;
+        background-image: url(../images/page-background-min.png);
+        background-position: top left;
+        background-repeat: repeat-y;
+        background-size: 33%;
 
-        * {
-            text-align: center;
-        }
+        .content-container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 30px;
 
-        #about {
-            padding: 0 40px;
-
-            h1 {
-                color: #c88f59;
-                font-family: "Pilcrow Rounded", sans-serif;
-                font-size: 50px;
-                text-shadow: 0 4px 4px rgb(170, 170, 170, 0.25);
+            * {
+                text-align: center;
             }
 
-            p {
-                color: #b9abab;
-                font-size: 18px;
-                line-height: 24px;
+            #about {
+                padding: 0 40px;
+
+                h1 {
+                    color: #c88f59;
+                    font-family: "Pilcrow Rounded", sans-serif;
+                    font-size: 50px;
+                    text-shadow: 0 4px 4px rgb(170, 170, 170, 0.25);
+                }
+
+                p {
+                    color: #b9abab;
+                    font-size: 18px;
+                    line-height: 24px;
+                }
             }
         }
     }
