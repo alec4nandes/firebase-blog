@@ -75,4 +75,5 @@ main .bagua-table tr td ul {
 }
 main .bagua-table tbody tr:first-child td:last-child {
   font-size: 32px;
+  font-weight: bold;
 }/*# sourceMappingURL=bagua.css.map */
