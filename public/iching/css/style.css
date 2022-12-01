@@ -106,4 +106,81 @@ body footer {
 }
 body footer a {
   font-weight: bold;
+}
+body .line,
+body .line .line-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .line .line-number {
+  height: 25px;
+  width: 25px;
+}
+body .line .line-symbol {
+  height: 15px;
+  width: 120px;
+  display: inline-block;
+}
+body .line .line-symbol.changing {
+  opacity: 0.5;
+}
+body .line .line-symbol.yang {
+  background-color: rgb(192, 126, 192);
+  border: 1px solid #aaa;
+}
+body .line .line-symbol.yang.heaven {
+  background-color: rgb(192, 126, 192);
+}
+body .line .line-symbol.yang.earth {
+  background-color: #444;
+}
+body .line .line-symbol.yang.fire {
+  background-color: #ffff77;
+}
+body .line .line-symbol.yang.water {
+  background-color: rgb(240, 86, 86);
+}
+body .line .line-symbol.yang.lake {
+  background-color: rgb(106, 183, 186);
+}
+body .line .line-symbol.yang.mountain {
+  background-color: rgb(51, 146, 51);
+}
+body .line .line-symbol.yang.thunder {
+  background-color: rgb(255, 209, 81);
+}
+body .line .line-symbol.yang.wind {
+  background-color: #ccc;
+}
+body .line .line-symbol.yin {
+  background-image: linear-gradient(to right, #444 40%, #aaa 40%, #aaa calc(40% + 1px), transparent calc(40% + 1px), transparent calc(60% - 1px), #aaa calc(60% - 1px), #aaa 60%, #444 60%);
+  -o-border-image: linear-gradient(to left, #aaa 40%, transparent 40%, transparent 60%, #aaa 60%) 1;
+     border-image: linear-gradient(to left, #aaa 40%, transparent 40%, transparent 60%, #aaa 60%) 1;
+  border-width: 1px;
+  border-style: solid;
+}
+body .line .line-symbol.yin.heaven {
+  background-image: linear-gradient(to right, rgb(192, 126, 192) 40%, #aaa 40%, #aaa calc(40% + 1px), transparent calc(40% + 1px), transparent calc(60% - 1px), #aaa calc(60% - 1px), #aaa 60%, rgb(192, 126, 192) 60%);
+}
+body .line .line-symbol.yin.earth {
+  background-image: linear-gradient(to right, #444 40%, #aaa 40%, #aaa calc(40% + 1px), transparent calc(40% + 1px), transparent calc(60% - 1px), #aaa calc(60% - 1px), #aaa 60%, #444 60%);
+}
+body .line .line-symbol.yin.fire {
+  background-image: linear-gradient(to right, #ffff77 40%, #aaa 40%, #aaa calc(40% + 1px), transparent calc(40% + 1px), transparent calc(60% - 1px), #aaa calc(60% - 1px), #aaa 60%, #ffff77 60%);
+}
+body .line .line-symbol.yin.water {
+  background-image: linear-gradient(to right, rgb(240, 86, 86) 40%, #aaa 40%, #aaa calc(40% + 1px), transparent calc(40% + 1px), transparent calc(60% - 1px), #aaa calc(60% - 1px), #aaa 60%, rgb(240, 86, 86) 60%);
+}
+body .line .line-symbol.yin.lake {
+  background-image: linear-gradient(to right, rgb(106, 183, 186) 40%, #aaa 40%, #aaa calc(40% + 1px), transparent calc(40% + 1px), transparent calc(60% - 1px), #aaa calc(60% - 1px), #aaa 60%, rgb(106, 183, 186) 60%);
+}
+body .line .line-symbol.yin.mountain {
+  background-image: linear-gradient(to right, rgb(51, 146, 51) 40%, #aaa 40%, #aaa calc(40% + 1px), transparent calc(40% + 1px), transparent calc(60% - 1px), #aaa calc(60% - 1px), #aaa 60%, rgb(51, 146, 51) 60%);
+}
+body .line .line-symbol.yin.thunder {
+  background-image: linear-gradient(to right, rgb(255, 209, 81) 40%, #aaa 40%, #aaa calc(40% + 1px), transparent calc(40% + 1px), transparent calc(60% - 1px), #aaa calc(60% - 1px), #aaa 60%, rgb(255, 209, 81) 60%);
+}
+body .line .line-symbol.yin.wind {
+  background-image: linear-gradient(to right, #ccc 40%, #aaa 40%, #aaa calc(40% + 1px), transparent calc(40% + 1px), transparent calc(60% - 1px), #aaa calc(60% - 1px), #aaa 60%, #ccc 60%);
 }/*# sourceMappingURL=style.css.map */

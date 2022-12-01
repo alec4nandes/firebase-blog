@@ -42,6 +42,7 @@
         />
 
         <link rel="icon" type="image/x-icon" href="/assets/logo/favicon.ico" />
+        <link rel="stylesheet" href="/iching/css/faq.css" />
         <link rel="stylesheet" href="/iching/css/style.css" />
     </head>
     <body>
@@ -115,9 +116,10 @@
                 </p>
                 <p>
                     There are 64 distinct pairs of these 8 trigrams (8x8=64).
-                    These six-lined symbols are called hexagrams and their
-                    meanings are broken down line-by-line in the ancient Chinese
-                    text titled the I-Ching.
+                    These six-lined symbols are called
+                    <strong>hexagrams</strong> and their meanings are broken
+                    down line-by-line in the ancient Chinese text titled the
+                    I-Ching.
                 </p>
             </details>
 
@@ -141,7 +143,115 @@
 
             <details>
                 <summary><h3>How to read the I-Ching</h3></summary>
-                <p>COMING SOON</p>
+                <p>
+                    Flipping three coins to read the I-Ching is much more
+                    straightforward than the ancient way of discerning a
+                    <span class="anchor-jump" onclick="anchorJump('trigrams')">
+                        hexagram</span
+                    >
+                    in a pile of sticks. The method is as follows:
+                </p>
+                <ul>
+                    <li>
+                        Flip three coins and add them up: 1 for heads and 0 for
+                        tails. This should produce a number from 0-3 each time.
+                    </li>
+                    <li>
+                        Do this six times, writing the totals in a column from
+                        bottom to top (the first line is on the bottom of the
+                        hexagram).
+                    </li>
+                    <li>
+                        Draw these lines next to their totals: (Line codes)
+                        <ol id="line-types" start="0">
+                            <li>
+                                <div class="line">
+                                    <div class="line-symbol yin"></div>
+                                    <em>yin</em>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="line">
+                                    <div class="line-symbol yang"></div>
+                                    <em>yang</em>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="line">
+                                    <div class="line-symbol yin changing"></div>
+                                    <em>yin changing*</em>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="line">
+                                    <div
+                                        class="line-symbol yang changing"
+                                    ></div>
+                                    <em>yang changing*</em>
+                                </div>
+                            </li>
+                        </ol>
+                        * a changing line turns into its opposite to form a new
+                        hexagram.
+                    </li>
+                    <li>
+                        Now take any changing lines in this hexagram and draw
+                        their opposites next to them to form a new hexagram. If
+                        there are no changing lines, that's okay. If there are,
+                        also include the unchanging lines in this new hexagram.
+                    </li>
+                    <li>
+                        The number of changing lines in a reading determines
+                        which parts of the chapter to read:
+                        <table id="line-rules">
+                            <thead>
+                                <tr>
+                                    <th># changing lines</th>
+                                    <th>rule</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>0</td>
+                                    <td>
+                                        Consider the hexagram text (judgment) of
+                                        the hexagram.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        Consider the line text of the changing
+                                        line.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2-3</td>
+                                    <td>
+                                        Consider the line texts and also the
+                                        hexagram text (judgment) of the
+                                        resulting hexagram.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4-6</td>
+                                    <td>
+                                        Consider the hexagram texts (judgments)
+                                        of the base and resulting hexagrams.
+                                        (You could check out the line texts,
+                                        however they will often be conflicting,
+                                        and may not clearly relate to the
+                                        situation.)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </li>
+                </ul>
+                <p>
+                    Want to skip all that work?
+                    <a href="/iching/cast">Get an automatic reading here!</a>
+                </p>
             </details>
         </main>
 

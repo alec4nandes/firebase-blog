@@ -1,3 +1,4 @@
+@import "./colors.scss";
 @import "https://api.fontshare.com/v2/css?f[]=sharpie@800&f[]=switzer@400&display=swap";
 // font-family: 'Sharpie', sans-serif;
 // font-family: 'Switzer', sans-serif;
@@ -128,6 +129,118 @@ body {
 
         a {
             font-weight: bold;
+        }
+    }
+
+    // lines
+
+    .line {
+        &,
+        .line-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .line-number {
+            height: 25px;
+            width: 25px;
+        }
+
+        .line-symbol {
+            $border-color: #aaa;
+            $border-width: 1px;
+
+            height: 15px;
+            width: 120px;
+            display: inline-block;
+
+            &.changing {
+                opacity: 0.5;
+            }
+
+            &.yang {
+                background-color: $heaven;
+                border: $border-width solid $border-color;
+
+                &.heaven {
+                    background-color: $heaven;
+                }
+                &.earth {
+                    background-color: $earth;
+                }
+                &.fire {
+                    background-color: $fire;
+                }
+                &.water {
+                    background-color: $water;
+                }
+                &.lake {
+                    background-color: $lake;
+                }
+                &.mountain {
+                    background-color: $mountain;
+                }
+                &.thunder {
+                    background-color: $thunder;
+                }
+                &.wind {
+                    background-color: $wind;
+                }
+            }
+
+            &.yin {
+                @mixin bg-image($color) {
+                    background-image: linear-gradient(
+                        to right,
+                        $color 40%,
+                        $border-color 40%,
+                        $border-color calc(40% + $border-width),
+                        transparent calc(40% + $border-width),
+                        transparent calc(60% - $border-width),
+                        $border-color calc(60% - $border-width),
+                        $border-color 60%,
+                        $color 60%
+                    );
+                }
+
+                @include bg-image($earth);
+                border-image: linear-gradient(
+                        to left,
+                        $border-color 40%,
+                        transparent 40%,
+                        transparent 60%,
+                        $border-color 60%
+                    )
+                    1;
+                border-width: $border-width;
+                border-style: solid;
+
+                &.heaven {
+                    @include bg-image($heaven);
+                }
+                &.earth {
+                    @include bg-image($earth);
+                }
+                &.fire {
+                    @include bg-image($fire);
+                }
+                &.water {
+                    @include bg-image($water);
+                }
+                &.lake {
+                    @include bg-image($lake);
+                }
+                &.mountain {
+                    @include bg-image($mountain);
+                }
+                &.thunder {
+                    @include bg-image($thunder);
+                }
+                &.wind {
+                    @include bg-image($wind);
+                }
+            }
         }
     }
 }

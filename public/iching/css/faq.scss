@@ -1,0 +1,44 @@
+ol,
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+ol#line-types {
+    width: fit-content;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+
+    li {
+        .line {
+            justify-content: flex-start;
+            gap: 10px;
+            padding-left: 5px;
+            position: relative;
+            top: 3px;
+        }
+    }
+}
+
+table#line-rules {
+    margin-top: 10px;
+
+    tr {
+        th,
+        td {
+            background-color: #2d2d2d;
+            border: 1px solid #777;
+            padding: 4px;
+
+            &:first-child {
+                text-align: center;
+            }
+        }
+
+        th {
+            text-align: center;
+        }
+    }
+}
