@@ -11,6 +11,32 @@ body {
         color: cadetblue;
     }
 
+    details {
+        border-bottom: 1px solid white;
+        padding: 20px;
+
+        summary,
+        .subsection {
+            font-weight: bold;
+        }
+
+        summary {
+            &:hover {
+                cursor: pointer;
+            }
+
+            h3 {
+                display: inline-block;
+                padding-left: 12px;
+            }
+        }
+
+        .subsection,
+        p {
+            margin-left: 28px;
+        }
+    }
+
     header,
     main {
         & > * {

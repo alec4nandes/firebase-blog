@@ -10,6 +10,25 @@ body {
 body a {
   color: cadetblue;
 }
+body details {
+  border-bottom: 1px solid white;
+  padding: 20px;
+}
+body details summary,
+body details .subsection {
+  font-weight: bold;
+}
+body details summary:hover {
+  cursor: pointer;
+}
+body details summary h3 {
+  display: inline-block;
+  padding-left: 12px;
+}
+body details .subsection,
+body details p {
+  margin-left: 28px;
+}
 body header > *,
 body main > * {
   max-width: 800px;
