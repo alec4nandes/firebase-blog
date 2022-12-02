@@ -467,23 +467,18 @@ function getAllTags(posts) {
 }
 
 function getProjectsData() {
-    const baseUrl = "https://fern.haus";
-    return Object.fromEntries([
-        ["Kings Corner", { url: `${baseUrl}/arcade` }],
-        ["Prova Lab", { url: "https://provalabsocialinnovation.com" }],
-        ["Dharma Gem", { url: `${baseUrl}/dharma-gem` }],
-        ["Mushrooms", { url: `${baseUrl}/mushrooms` }],
-        ["Timers", { url: `${baseUrl}/timers` }],
-        ["I-Ching", { url: `${baseUrl}/iching` }],
-        ["Dharma Deck", { url: `${baseUrl}/dharma-deck` }],
-        [
-            "Buddhist eBook",
-            {
-                url: `${baseUrl}/Weekly%20Suttas,%20Vol%201.epub`,
-            },
-        ],
-        ["Custom Map", { url: `${baseUrl}/my-map` }],
-    ]);
+    return {
+        "Moon-Sun-Tides API": { slug: "moon-sun-tides-api" },
+        "Kings Corner": { slug: "kings-corner" },
+        "Prova Lab": { slug: "prova-lab" },
+        "Dharma Gem": { slug: "dharma-gem" },
+        Timers: { slug: "timers" },
+        "I-Ching": { slug: "iching" },
+        "Dharma Deck": { slug: "dharma-deck" },
+        "Buddhist eBook": { slug: "buddhist-ebook" },
+        Mushrooms: { slug: "mushrooms" },
+        "My Map": { slug: "my-map" },
+    };
 }
 
 function formatDatesDescending(posts) {
