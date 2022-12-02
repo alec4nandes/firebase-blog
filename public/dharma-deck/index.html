@@ -60,34 +60,217 @@
             <div class="content-container">
                 <div id="about">
                     <h1>Dharma Deck</h1>
+
+                    <h2>
+                        Dharma Deck is an attempt to combine Eastern and Western
+                        philosophy and design. Each layout is generated with
+                        JavaScript, CSS, and minimal image files.
+                    </h2>
+
+                    <div id="draw-buttons">
+                        <button
+                            class="large-button"
+                            onclick="showRandomCards(5)"
+                        >
+                            draw 5 random cards
+                        </button>
+                        <button class="large-button" onclick="showAllCards()">
+                            view deck
+                        </button>
+                    </div>
+
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Fermentum odio eu feugiat pretium nibh
-                        ipsum consequat. Fringilla urna porttitor rhoncus dolor
-                        purus non. Id neque aliquam vestibulum morbi blandit
-                        cursus risus. Faucibus interdum posuere lorem ipsum
-                        dolor sit. Odio tempor orci dapibus ultrices in iaculis
-                        nunc sed augue.
+                        These 60 cards are inspired by Tibetan Buddhism, Taoism,
+                        Kabbalah, and Western playing decks. Each suit
+                        represents one of the four elements &mdash; earth, air,
+                        water, and fire, and each has as its ace the related
+                        elemental Buddha from the Tibetan tradition. The "court"
+                        cards of each suit are the ranked elements from lowest
+                        to highest, again: earth, air, water, and fire, and also
+                        the supreme element of "spirit", relating to the Buddha
+                        <a
+                            href="https://en.wikipedia.org/wiki/Vairocana"
+                            target="_blank"
+                            rel="noreferrer"
+                            >Vairocana</a
+                        >
+                        and replacing the rank of King.
                     </p>
+
                     <p>
-                        Arcu non sodales neque sodales ut etiam sit amet. Lectus
-                        urna duis convallis convallis tellus. Et tortor at risus
-                        viverra adipiscing. Leo vel orci porta non pulvinar
-                        neque laoreet suspendisse. Pharetra vel turpis nunc eget
-                        lorem. Felis eget nunc lobortis mattis. Odio eu feugiat
-                        pretium nibh ipsum. Sed tempus urna et pharetra
-                        pharetra. Nisl tincidunt eget nullam non nisi est sit
-                        amet. Aliquet bibendum enim facilisis gravida neque
-                        convallis a. Et malesuada fames ac turpis egestas.
+                        Each card is also labeled on a spectrum from
+                        <a href="/iching/faq.html#yin-and-yang">yin to yang</a>
+                        in the Taoist tradition. These labels derive from the
+                        combination of each card's rank and suit. The underlined
+                        descriptions also come from combining each rank and
+                        suit, with the exception of court cards. These cards
+                        have underlined keywords above short visual descriptions
+                        related to the suit's element.
+                    </p>
+
+                    <div id="tables">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>rank</th>
+                                    <th>
+                                        <a
+                                            href="https://en.wikipedia.org/wiki/Tree_of_life_(Kabbalah)"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            >Kabbalah's<br />Tree of Life</a
+                                        >
+                                    </th>
+                                    <th>
+                                        <a
+                                            href="/iching/faq.html#yin-and-yang"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            >Taoism's<br />yin or yang</a
+                                        >
+                                    </th>
+                                    <th>
+                                        represents
+                                        <br />(<a
+                                            href="https://en.wikipedia.org/wiki/Tree_of_life_(Kabbalah)"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            >ToL</a
+                                        >)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="neutral">
+                                    <td>Ace</td>
+                                    <td>Kether</td>
+                                    <td>neutral</td>
+                                    <td>origin</td>
+                                </tr>
+                                <tr class="yang">
+                                    <td>2</td>
+                                    <td>Chokmah</td>
+                                    <td>yang</td>
+                                    <td>force</td>
+                                </tr>
+                                <tr class="yin">
+                                    <td>3</td>
+                                    <td>Binah</td>
+                                    <td>yin</td>
+                                    <td>concept</td>
+                                </tr>
+                                <tr class="yang">
+                                    <td>4</td>
+                                    <td>Chesed</td>
+                                    <td>yang</td>
+                                    <td>expansion</td>
+                                </tr>
+                                <tr class="yin">
+                                    <td>5</td>
+                                    <td>Geburah</td>
+                                    <td>yin</td>
+                                    <td>restriction</td>
+                                </tr>
+                                <tr class="neutral">
+                                    <td>6</td>
+                                    <td>Tiphareth</td>
+                                    <td>neutral</td>
+                                    <td>illumination</td>
+                                </tr>
+                                <tr class="yang">
+                                    <td>7</td>
+                                    <td>Netzach</td>
+                                    <td>yang</td>
+                                    <td>creativity</td>
+                                </tr>
+                                <tr class="yin">
+                                    <td>8</td>
+                                    <td>Hod</td>
+                                    <td>yin</td>
+                                    <td>logic</td>
+                                </tr>
+                                <tr class="neutral">
+                                    <td>9</td>
+                                    <td>Yesod</td>
+                                    <td>neutral</td>
+                                    <td>potential</td>
+                                </tr>
+                                <tr class="neutral">
+                                    <td>10</td>
+                                    <td>Malkuth</td>
+                                    <td>neutral</td>
+                                    <td>manifestation</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <em
+                                            >(four<br />
+                                            elements)</em
+                                        >
+                                    </td>
+                                    <td><em>(n/a)</em></td>
+                                    <td><em>(see suits)</em></td>
+                                    <td><em>(varies)</em></td>
+                                </tr>
+                                <tr class="neutral">
+                                    <td>Spirit</td>
+                                    <td><em>(n/a)</em></td>
+                                    <td>neutral</td>
+                                    <td><em>(varies)</em></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>suit</th>
+                                    <th>
+                                        <a
+                                            href="/iching/faq.html#yin-and-yang"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            >Taoism's<br />yin or yang</a
+                                        >
+                                    </th>
+                                    <th>represents</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="fire">
+                                    <td>fire</td>
+                                    <td class="yang">yang</td>
+                                    <td>pain</td>
+                                </tr>
+                                <tr class="water">
+                                    <td>water</td>
+                                    <td class="yin">yin</td>
+                                    <td>emotion</td>
+                                </tr>
+                                <tr class="air">
+                                    <td>air</td>
+                                    <td class="yang">yang</td>
+                                    <td>intellect</td>
+                                </tr>
+                                <tr class="earth">
+                                    <td>earth</td>
+                                    <td class="yin">yin</td>
+                                    <td>health</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p>
+                        The deck has no specific games or intended purpose yet.
+                        It could possibly be a good tool for meditation and
+                        inspiration, especially with the visual descriptions
+                        among the court cards. If you have any suggestions,
+                        please contact me at
+                        <a href="mailto:al@fern.haus">al@fern.haus</a>. You can
+                        find the <a href="/">rest of my work here</a>.
                     </p>
                 </div>
-                <button class="large-button" onclick="showRandomCards(5)">
-                    draw 5 random cards
-                </button>
-                <button class="large-button" onclick="showAllCards()">
-                    view deck
-                </button>
                 <div id="cards"></div>
             </div>
         </main>

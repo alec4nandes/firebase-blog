@@ -15,6 +15,7 @@
   border: 1px solid rgba(50, 50, 50, 0.3);
   border-radius: 11.7894736842px;
   box-sizing: border-box;
+  color: #000;
   justify-content: flex-end;
   margin: 0.5vh;
 }

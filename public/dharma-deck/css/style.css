@@ -1,8 +1,15 @@
 @import "https://api.fontshare.com/v2/css?f[]=archivo@400&f[]=pilcrow-rounded@900&display=swap";
 body {
   background-image: linear-gradient(to right, #1c1c1b 70%, #333);
+  color: #b9abab;
   font-family: "Archivo", sans-serif;
   margin: 0;
+}
+body a {
+  color: #e39448;
+}
+body a:hover {
+  opacity: 0.65;
 }
 body button,
 body nav a {
@@ -58,6 +65,7 @@ body header nav a:hover,
 body header nav button:hover {
   color: #fff;
   cursor: pointer;
+  opacity: 1;
 }
 body nav,
 body .content-container {
@@ -89,10 +97,81 @@ body main .content-container #about h1 {
   font-size: 50px;
   text-shadow: 0 4px 4px rgba(170, 170, 170, 0.25);
 }
+body main .content-container #about h2 {
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+  margin-bottom: 40px;
+}
+body main .content-container #about #draw-buttons {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  padding-bottom: 30px;
+}
 body main .content-container #about p {
-  color: #b9abab;
   font-size: 18px;
   line-height: 24px;
+}
+body main .content-container #about #tables {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  margin: 20px 0;
+}
+body main .content-container #about #tables table thead tr th {
+  background-color: #e39448;
+}
+body main .content-container #about #tables table thead tr th a {
+  color: #fee9d5;
+}
+body main .content-container #about #tables table .neutral,
+body main .content-container #about #tables table .neutral td {
+  background-color: #ccc;
+}
+body main .content-container #about #tables table .yang,
+body main .content-container #about #tables table .yang td {
+  background-color: whitesmoke;
+}
+body main .content-container #about #tables table .yin,
+body main .content-container #about #tables table .yin td {
+  background-color: #555;
+  color: whitesmoke;
+}
+body main .content-container #about #tables table tr.fire td {
+  background-color: #fca6a5;
+}
+body main .content-container #about #tables table tr.fire td.yang {
+  background-color: #ffcfce;
+}
+body main .content-container #about #tables table tr.water td {
+  background-color: #bde4ff;
+}
+body main .content-container #about #tables table tr.water td.yin {
+  background-color: #86ceff;
+  color: #222;
+}
+body main .content-container #about #tables table tr.air td {
+  background-color: #c1e1c1;
+}
+body main .content-container #about #tables table tr.air td.yang {
+  background-color: #e3f9e3;
+}
+body main .content-container #about #tables table tr.earth td {
+  background-color: #fefcac;
+}
+body main .content-container #about #tables table tr.earth td.yin {
+  background-color: #fffc85;
+  color: #222;
+}
+body main .content-container #about #tables table tr th,
+body main .content-container #about #tables table tr td {
+  min-width: 80px;
+  background-color: #fee9d5;
+  color: #222;
+  line-height: 1.2rem;
+  padding: 4px;
 }
 @media only screen and (max-width: 420px) {
   body header nav a,

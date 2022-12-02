@@ -4,8 +4,17 @@
 
 body {
     background-image: linear-gradient(to right, #1c1c1b 70%, #333);
+    color: #b9abab;
     font-family: "Archivo", sans-serif;
     margin: 0;
+
+    a {
+        color: #e39448;
+
+        &:hover {
+            opacity: 0.65;
+        }
+    }
 
     button,
     nav a {
@@ -63,6 +72,7 @@ body {
                 &:hover {
                     color: #fff;
                     cursor: pointer;
+                    opacity: 1;
                 }
             }
         }
@@ -101,10 +111,120 @@ body {
                     text-shadow: 0 4px 4px rgb(170, 170, 170, 0.25);
                 }
 
+                h2 {
+                    font-size: 1.4rem;
+                    line-height: 1.8rem;
+                    margin-bottom: 40px;
+                }
+
+                #draw-buttons {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    gap: 30px;
+                    padding-bottom: 30px;
+                }
+
                 p {
-                    color: #b9abab;
                     font-size: 18px;
                     line-height: 24px;
+                }
+
+                #tables {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 25px;
+                    justify-content: center;
+                    margin: 20px 0;
+
+                    table {
+                        thead {
+                            tr {
+                                th {
+                                    background-color: $accent-color;
+
+                                    a {
+                                        color: #fee9d5;
+                                    }
+                                }
+                            }
+                        }
+
+                        .neutral {
+                            &,
+                            td {
+                                background-color: #ccc;
+                            }
+                        }
+
+                        .yang {
+                            &,
+                            td {
+                                background-color: whitesmoke;
+                            }
+                        }
+
+                        .yin {
+                            &,
+                            td {
+                                background-color: #555;
+                                color: whitesmoke;
+                            }
+                        }
+
+                        tr {
+                            &.fire {
+                                td {
+                                    background-color: #fca6a5;
+
+                                    &.yang {
+                                        background-color: #ffcfce;
+                                    }
+                                }
+                            }
+
+                            &.water {
+                                td {
+                                    background-color: #bde4ff;
+
+                                    &.yin {
+                                        background-color: #86ceff;
+                                        color: #222;
+                                    }
+                                }
+                            }
+
+                            &.air {
+                                td {
+                                    background-color: #c1e1c1;
+
+                                    &.yang {
+                                        background-color: #e3f9e3;
+                                    }
+                                }
+                            }
+
+                            &.earth {
+                                td {
+                                    background-color: #fefcac;
+
+                                    &.yin {
+                                        background-color: #fffc85;
+                                        color: #222;
+                                    }
+                                }
+                            }
+
+                            th,
+                            td {
+                                min-width: 80px;
+                                background-color: #fee9d5;
+                                color: #222;
+                                line-height: 1.2rem;
+                                padding: 4px;
+                            }
+                        }
+                    }
                 }
             }
         }
