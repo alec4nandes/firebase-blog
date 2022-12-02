@@ -88,8 +88,9 @@ body main .content-container {
 body main .content-container * {
   text-align: center;
 }
-body main .content-container #about {
-  padding: 0 40px;
+body main .content-container #about > *:not(#tables) {
+  padding-left: 15px;
+  padding-right: 15px;
 }
 body main .content-container #about h1 {
   color: #e39448;
@@ -118,6 +119,7 @@ body main .content-container #about #tables {
   flex-wrap: wrap;
   gap: 25px;
   justify-content: center;
+  font-size: 14px;
   margin: 20px 0;
 }
 body main .content-container #about #tables table thead tr th {

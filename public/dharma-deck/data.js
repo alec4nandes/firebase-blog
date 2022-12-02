@@ -107,8 +107,8 @@ function makeCardObject(rank, suit, i) {
         polarity = getPolarity(rank, suit);
     return {
         cardName,
-        rank,
-        suit,
+        rank: suit === "spirit" ? suit : rank,
+        suit: suit === "spirit" ? rank : suit,
         represents,
         ...(description ? { description } : {}),
         polarity,
@@ -174,13 +174,15 @@ const sefirot = {
 };
 
 function getCardHTML(card) {
-    const isSpirit = card.suit === "spirit",
+    const isSpirit = card.rank === "spirit",
         isNumbered = !isNaN(card.rank);
 
-    return `<div class="card ${card.suit === "spirit" ? card.rank : card.suit}"
+    return `<div class="card ${card.suit}"
         style="${
             card.rank === ranks[0] || isSpirit
-                ? `background-image: url('images/buddha-${card.suit}.png')`
+                ? `background-image: url('images/buddha-${
+                      card[isSpirit ? "rank" : "suit"]
+                  }.png')`
                 : ""
         }">
         <div class="suit-symbols ${
@@ -197,16 +199,12 @@ function getCardHTML(card) {
                       .fill(0)
                       .map(
                           () =>
-                              `<div class="suit-symbol ${
-                                  card[isSpirit ? "rank" : "suit"]
-                              } ${
+                              `<div class="suit-symbol ${card.suit} ${
                                   ranks.includes(card.rank)
                                       ? ""
                                       : `border-${card.rank}`
                               }">
-                              <img src="images/element-${
-                                  card[isSpirit ? "rank" : "suit"]
-                              }.png" />
+                              <img src="images/element-${card.suit}.png" />
                         </div>`
                       )
                       .join("")

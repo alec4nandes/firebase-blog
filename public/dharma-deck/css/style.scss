@@ -102,7 +102,10 @@ body {
             }
 
             #about {
-                padding: 0 40px;
+                & > *:not(#tables) {
+                    padding-left: 15px;
+                    padding-right: 15px;
+                }
 
                 h1 {
                     color: $accent-color;
@@ -135,6 +138,7 @@ body {
                     flex-wrap: wrap;
                     gap: 25px;
                     justify-content: center;
+                    font-size: 14px;
                     margin: 20px 0;
 
                     table {
