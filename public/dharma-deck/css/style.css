@@ -99,6 +99,7 @@ body main .content-container #about h1 {
   text-shadow: 0 4px 4px rgba(170, 170, 170, 0.25);
 }
 body main .content-container #about h2 {
+  max-width: 700px;
   font-size: 1.4rem;
   line-height: 1.8rem;
   margin-bottom: 40px;
