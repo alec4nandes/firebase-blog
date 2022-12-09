@@ -2,14 +2,27 @@
 @import "https://api.fontshare.com/v2/css?f[]=general-sans@400,500&display=swap";
 body {
   background-color: #d9d9d9;
+  color: #222;
   font-family: "General Sans", Arial, Helvetica, sans-serif;
   font-size: 16px;
   margin: 0;
 }
 body button {
+  height: 40px;
+  width: 130px;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
+  background-color: #be9cb4;
+  border: 0.5px solid #884474;
+  color: #222;
+  font-family: "Cinzel Decorative", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+body button:hover {
+  background-color: #884474;
+  color: #fff;
+  cursor: pointer;
 }
 body h1,
 body h2,
