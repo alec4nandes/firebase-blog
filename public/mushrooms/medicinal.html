@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Medicinal Mushrooms</title>
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/flashcards.css" />
+    </head>
+    <body>
+        <header>
+            <nav id="navbar">
+                <div class="nav-links-container">
+                    <a href="/mushrooms">home</a>
+                    <a href="/mushrooms/find.html">find fungi</a>
+                    <a href="/mushrooms/related.html">related species</a>
+                    <a href="/mushrooms/about.html">about</a>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div id="heading">
+                <h1>Flashcards</h1>
+                <h2>Fungi Health Benefits</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Aenean fringilla pellentesque tortor a egestas. Donec leo
+                    arcu, auctor vulputate imperdiet at, aliquet eu arcu. Nulla
+                    sapien metus, tempus eu commodo a, bibendum in erat. Nulla
+                    maximus congue hendrerit.
+                </p>
+            </div>
+            <h3>settings</h3>
+            <div id="card-side-forms">
+                <form id="front">
+                    <h3>front</h3>
+                    <label
+                        ><input
+                            name="single_ailment"
+                            type="checkbox"
+                            onclick="handleSingleAilment(event)"
+                            checked
+                        />
+                        single ailment
+                    </label>
+                    <u>or</u>
+                    <label
+                        ><input
+                            name="images"
+                            type="checkbox"
+                            onclick="handleNotSingleAilment(event)"
+                        />
+                        images
+                    </label>
+                    <label
+                        ><input
+                            name="scientific_name"
+                            type="checkbox"
+                            onclick="handleNotSingleAilment(event)"
+                        />
+                        scientific name
+                    </label>
+                    <label
+                        ><input
+                            name="common_name"
+                            type="checkbox"
+                            onclick="handleNotSingleAilment(event)"
+                        />
+                        common name
+                    </label>
+                    <label
+                        ><input
+                            name="all_ails"
+                            type="checkbox"
+                            onclick="handleNotSingleAilment(event)"
+                        />
+                        all ailments
+                    </label>
+                </form>
+
+                <hr />
+
+                <form id="back">
+                    <h3>back</h3>
+                    <label
+                        ><input
+                            name="single_ailment"
+                            type="checkbox"
+                            onclick="handleSingleAilment(event)"
+                        />
+                        single ailment
+                    </label>
+                    <u>or</u>
+                    <label
+                        ><input
+                            name="images"
+                            type="checkbox"
+                            onclick="handleNotSingleAilment(event)"
+                            checked
+                        />
+                        images
+                    </label>
+                    <label
+                        ><input
+                            name="scientific_name"
+                            type="checkbox"
+                            onclick="handleNotSingleAilment(event)"
+                        />
+                        scientific name
+                    </label>
+                    <label
+                        ><input
+                            name="common_name"
+                            type="checkbox"
+                            onclick="handleNotSingleAilment(event)"
+                            checked
+                        />
+                        common name
+                    </label>
+                    <label
+                        ><input
+                            name="all_ails"
+                            type="checkbox"
+                            onclick="handleNotSingleAilment(event)"
+                        />
+                        all ailments
+                    </label>
+                </form>
+            </div>
+
+            <button id="make-deck-button">make deck</button>
+
+            <hr />
+
+            <div id="card-buttons">
+                <button id="previous-card-button" style="display: none">
+                    previous
+                </button>
+                <button id="next-card-button" style="display: none">
+                    next
+                </button>
+                <button id="flip-card-button" style="display: none">
+                    flip
+                </button>
+            </div>
+
+            <p id="card-count"></p>
+
+            <div id="card" style="display: none"></div>
+        </main>
+
+        <script>
+            function getForm(e) {
+                return e.target.parentElement.parentElement;
+            }
+
+            function getForms() {
+                return [
+                    ...document
+                        .querySelector("#card-side-forms")
+                        .querySelectorAll("form"),
+                ];
+            }
+
+            // HANDLERS
+
+            function handleSingleAilment(e) {
+                const form = getForm(e);
+                form.images.checked = false;
+                form.scientific_name.checked = false;
+                form.common_name.checked = false;
+                form.all_ails.checked = false;
+                clearOnOtherForm(e);
+            }
+
+            function handleNotSingleAilment(e) {
+                clearSingleAilment(e);
+                clearOnOtherForm(e);
+            }
+
+            function clearSingleAilment(e) {
+                const form = getForm(e);
+                form.single_ailment.checked = false;
+            }
+
+            function clearOnOtherForm(e) {
+                const name = e.target.name,
+                    form = getForm(e),
+                    otherForm = getForms().find((f) => f !== form);
+                otherForm[name].checked = false;
+            }
+        </script>
+
+        <script type="module">
+            import makeDeck from "./data/display-flashcard.js";
+
+            const getElem = (id) => document.getElementById(id),
+                makeDeckButton = getElem("make-deck-button"),
+                cardElem = getElem("card"),
+                flipCardButton = getElem("flip-card-button"),
+                previousCardButton = getElem("previous-card-button"),
+                nextCardButton = getElem("next-card-button");
+
+            let index, deck, side;
+
+            makeDeckButton.onclick = handleMakeDeck;
+            flipCardButton.onclick = handleFlipCard;
+            previousCardButton.onclick = handlePreviousCard;
+            nextCardButton.onclick = handleNextCard;
+
+            function handleMakeDeck() {
+                index = 0;
+                deck = makeDeck();
+                side = "front";
+                displayCard();
+                [flipCardButton, previousCardButton, nextCardButton].forEach(
+                    (elem) => (elem.style.display = "inline-block")
+                );
+                cardElem.style.display = "flex";
+            }
+
+            function handleFlipCard() {
+                side = side === "front" ? "back" : "front";
+                displayCard();
+            }
+
+            function handlePreviousCard() {
+                index--;
+                if (index < 0) {
+                    index = deck.length - 1;
+                }
+                side = "front";
+                displayCard();
+            }
+
+            function handleNextCard() {
+                index++;
+                if (index === deck.length) {
+                    index = 0;
+                }
+                side = "front";
+                displayCard();
+            }
+
+            function displayCard() {
+                cardElem.innerHTML = deck[index][side];
+                updateCount();
+            }
+
+            function updateCount() {
+                document.getElementById("card-count").innerHTML = `(${
+                    index + 1
+                }/${deck.length})`;
+            }
+        </script>
+    </body>
+</html>

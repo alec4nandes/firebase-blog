@@ -1,0 +1,158 @@
+body {
+  background-image: url(../assets/sketches-bg.png);
+  background-position: top 45px center;
+  background-repeat: no-repeat;
+  background-size: clamp(400px, 95vw, 900px);
+}
+body button {
+  height: 40px;
+  width: 130px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: #be9cb4;
+  border: 0.5px solid #884474;
+  font-family: "Cinzel Decorative", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+body button:hover {
+  background-color: #884474;
+  color: #fff;
+  cursor: pointer;
+}
+body button,
+body input[type=checkbox] {
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
+}
+body hr {
+  min-height: 0.5px;
+  max-width: 600px;
+  width: 100%;
+  background-color: #884474;
+  border: 0;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+}
+body #heading {
+  margin-bottom: 40px;
+}
+body #heading p {
+  max-width: 600px;
+  margin: 35px auto 50px;
+  text-align: center;
+}
+@media only screen and (max-width: 500px) {
+  body main #card-side-forms {
+    gap: 25px !important;
+  }
+}
+body main #card-side-forms {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  margin-top: 20px;
+}
+body main #card-side-forms form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+body main #card-side-forms form h3,
+body main #card-side-forms form label {
+  line-height: 16px;
+}
+body main #card-side-forms form u {
+  line-height: 20px;
+}
+body main #card-side-forms form label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+body main #card-side-forms form label:hover,
+body main #card-side-forms form label input[type=checkbox]:hover {
+  cursor: pointer;
+}
+body main #card-side-forms form label input[type=checkbox] {
+  height: 15px;
+  width: 15px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 2px solid #a07493;
+  margin: 0;
+  padding: 0;
+}
+body main #card-side-forms form label input[type=checkbox]:checked {
+  background-color: #a07493;
+}
+body main #card-side-forms form u {
+  color: #777;
+  font-family: "Cinzel Decorative", Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+body main #card-side-forms hr {
+  height: initial;
+  width: 0.5px;
+  margin: 0;
+}
+body main #make-deck-button {
+  display: inherit;
+  margin: 30px auto;
+}
+body main #card-buttons {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin: 30px auto 0;
+}
+body main #card-count {
+  margin: 30px 0 0;
+  text-align: center;
+}
+body main #card {
+  height: 350px;
+  max-width: 575px;
+  width: 100%;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  margin: 30px auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 15px;
+}
+body main #card .info-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body main #card .info-row > div {
+  flex: 1;
+}
+body main #card .info-row > div.images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  justify-content: center;
+}
+body main #card .info-row > div.images a {
+  display: flex;
+}
+body main #card .info-row > div.images a img {
+  height: 100px;
+}
+body main #card .info-row > div:not(.images) {
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: left;
+}/*# sourceMappingURL=flashcards.css.map */

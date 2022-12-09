@@ -1,0 +1,78 @@
+body {
+  min-height: 100vh;
+  background-color: #222;
+  background-image: url(../assets/reto-furrer-u1t5jP607V4-unsplash.jpg);
+  background-position: center;
+  background-size: cover;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+body main#homepage {
+  margin: auto;
+}
+@media only screen and (max-width: 575px) {
+  body main#homepage .links-container {
+    margin: 20px auto 40px !important;
+  }
+}
+body main#homepage .links-container {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  margin: 20px 0 40px;
+  padding-right: 22.5px;
+}
+body main#homepage .links-container h1 {
+  width: calc(100% + 22.5px);
+  color: #be9cb4;
+  font-family: "Cinzel Decorative", Arial, Helvetica, sans-serif;
+  font-size: 48px;
+  margin: auto;
+  text-align: center;
+  text-shadow: 2px 2px 2px #555;
+}
+body main#homepage .links-container .home-button {
+  height: 45px;
+  width: 250px;
+  background-image: linear-gradient(to right, rgba(204, 204, 204, 0.6), rgba(190, 156, 180, 0.6));
+  color: #eee;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 500;
+  margin-left: 22.5px;
+  padding: 0 22.5px;
+  position: relative;
+  text-decoration: none;
+}
+body main#homepage .links-container .home-button:hover {
+  background-image: linear-gradient(to right, rgb(204, 204, 204), rgb(190, 156, 180));
+  color: #222;
+  cursor: pointer;
+}
+body main#homepage .links-container .home-button:hover .diamond-end {
+  opacity: 1;
+}
+body main#homepage .links-container .home-button .diamond-end {
+  height: 31.8198051534px;
+  width: 31.8198051534px;
+  opacity: 0.6;
+  position: absolute;
+  top: 6.5900974233px;
+  transform: rotate(45deg);
+}
+body main#homepage .links-container .home-button .diamond-end.left {
+  background-color: #ccc;
+  left: -15.9099025767px;
+}
+body main#homepage .links-container .home-button .diamond-end.right {
+  background-color: #be9cb4;
+  right: -15.9099025767px;
+}/*# sourceMappingURL=home.css.map */

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Related Mushrooms</title>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <header>
+            <nav id="navbar">
+                <div class="nav-links-container">
+                    <a href="/mushrooms">home</a>
+                    <a href="/mushrooms/medicinal.html">flashcards</a>
+                    <a href="/mushrooms/find.html">find fungi</a>
+                    <a href="/mushrooms/about.html">about</a>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <h1>Related Species</h1>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+                fringilla pellentesque tortor a egestas. Donec leo arcu, auctor
+                vulputate imperdiet at, aliquet eu arcu. Nulla sapien metus,
+                tempus eu commodo a, bibendum in erat. Nulla maximus congue
+                hendrerit.
+            </p>
+            <div id="select-menus">
+                <div id="select-genus"><span>select genus: </span></div>
+                <div id="select-species"><span>select species: </span></div>
+            </div>
+
+            <div id="display"></div>
+        </main>
+
+        <script type="module">
+            import {
+                allGenusAndSpecies,
+                filterNames,
+            } from "./data/genus-species.js";
+
+            const { all_genus, all_species } = allGenusAndSpecies,
+                selectGenusElem = document.getElementById("select-genus"),
+                selectSpeciesElem = document.getElementById("select-species"),
+                selectGenus = createSelect(handleSelectGenus, all_genus),
+                selectSpecies = createSelect(handleSelectSpecies, all_species);
+
+            selectGenusElem.appendChild(selectGenus);
+            selectSpeciesElem.appendChild(selectSpecies);
+
+            function createSelect(handler, arr) {
+                const select = document.createElement("select");
+                select.onchange = handler;
+                select.innerHTML = "<option value=''>---</option>";
+                select.innerHTML += arr
+                    .map(
+                        (option) =>
+                            `<option value="${option}">${option}</option>`
+                    )
+                    .join("");
+                return select;
+            }
+
+            function handleSelectGenus(event) {
+                const genus = event.target.value;
+                document.getElementById("display").innerHTML = display(
+                    filterNames({ genus })
+                );
+                resetOtherMenu(event);
+            }
+
+            function handleSelectSpecies(event) {
+                const species = event.target.value;
+                document.getElementById("display").innerHTML = display(
+                    filterNames({ species })
+                );
+                resetOtherMenu(event);
+            }
+
+            function display(data) {
+                const { genus, species } = data,
+                    isGenusArray = Array.isArray(genus),
+                    label = isGenusArray ? "species" : "genus";
+                return `
+                    <p>${label}: ${data[label]}</p>
+                    <ul>
+                        ${(isGenusArray ? genus : species)
+                            .map((part) =>
+                                isGenusArray
+                                    ? `${part} ${species}`
+                                    : `${genus} ${part}`
+                            )
+                            .sort()
+                            .map(
+                                (name) => `
+                                <li>
+                                    <a href="https://en.wikipedia.org/wiki/${name.replaceAll(
+                                        " ",
+                                        "_"
+                                    )}" target="_blank" rel="noreferrer">
+                                        ${name}
+                                    </a>
+                                </li>`
+                            )
+                            .join("")}
+                    </ul>
+                `;
+            }
+
+            function resetOtherMenu(event) {
+                const otherMenu = [
+                    ...document
+                        .querySelector("#select-menus")
+                        .querySelectorAll("select"),
+                ].find((select) => select !== event.target);
+                otherMenu.value = "";
+            }
+        </script>
+    </body>
+</html>

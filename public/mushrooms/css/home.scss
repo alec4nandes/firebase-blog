@@ -1,0 +1,102 @@
+@use "sass:math";
+@import "./colors.scss";
+
+body {
+    min-height: 100vh;
+    background-color: #222;
+    background-image: url(../assets/reto-furrer-u1t5jP607V4-unsplash.jpg);
+    background-position: center;
+    background-size: cover;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+
+    main#homepage {
+        margin: auto;
+
+        @media only screen and (max-width: 575px) {
+            .links-container {
+                margin: 20px auto 40px !important;
+            }
+        }
+
+        .links-container {
+            $home-button-width: 250px;
+            $home-button-height: 45px;
+            $diamond-dim: calc(math.sqrt(calc(math.pow(45, 2) / 2)) * 1px);
+            $diamond-top: calc(calc($home-button-height - $diamond-dim) / 2);
+
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 30px;
+            margin: 20px 0 40px;
+            padding-right: calc($home-button-height / 2);
+
+            h1 {
+                width: calc(100% + calc($home-button-height / 2));
+                color: $light-accent;
+                font-family: "Cinzel Decorative", Arial, Helvetica, sans-serif;
+                font-size: 48px;
+                margin: auto;
+                text-align: center;
+                text-shadow: 2px 2px 2px #555;
+            }
+
+            .home-button {
+                height: $home-button-height;
+                width: $home-button-width;
+                background-image: linear-gradient(
+                    to right,
+                    rgba(204, 204, 204, 0.6),
+                    rgba(190, 156, 180, 0.6)
+                );
+                color: #eee;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 18px;
+                font-weight: 500;
+                margin-left: calc($home-button-height / 2);
+                padding: 0 calc($home-button-height / 2);
+                position: relative;
+                text-decoration: none;
+
+                &:hover {
+                    background-image: linear-gradient(
+                        to right,
+                        rgba(204, 204, 204, 1),
+                        rgba(190, 156, 180, 1)
+                    );
+                    color: #222;
+                    cursor: pointer;
+
+                    .diamond-end {
+                        opacity: 1;
+                    }
+                }
+
+                .diamond-end {
+                    height: $diamond-dim;
+                    width: $diamond-dim;
+                    opacity: 0.6;
+                    position: absolute;
+                    top: $diamond-top;
+                    transform: rotate(45deg);
+
+                    &.left {
+                        background-color: #ccc;
+                        left: calc($diamond-dim / -2);
+                    }
+
+                    &.right {
+                        background-color: $light-accent;
+                        right: calc($diamond-dim / -2);
+                    }
+                }
+            }
+        }
+    }
+}

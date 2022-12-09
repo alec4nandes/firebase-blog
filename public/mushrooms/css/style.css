@@ -1,0 +1,68 @@
+@import "https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap";
+@import "https://api.fontshare.com/v2/css?f[]=general-sans@400,500&display=swap";
+body {
+  background-color: #d9d9d9;
+  font-family: "General Sans", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin: 0;
+}
+body h1,
+body h2,
+body h3 {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-family: "Cinzel Decorative", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  margin: 0 auto;
+}
+body h2,
+body h3 {
+  color: #a07493;
+}
+body h1 {
+  color: #884474;
+  font-size: 41px;
+}
+body h2 {
+  font-size: 21.5px;
+}
+body h3 {
+  font-size: 16px;
+}
+body #navbar {
+  background-color: #be9cb4;
+  margin-bottom: 40px;
+}
+@media only screen and (max-width: 500px) {
+  body #navbar .nav-links-container a {
+    font-size: 14px !important;
+  }
+}
+body #navbar .nav-links-container {
+  height: 45px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+body #navbar .nav-links-container a {
+  color: #222;
+  font-family: "Cinzel Decorative", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+}
+body #navbar .nav-links-container a:hover {
+  color: #fff;
+}
+body main,
+body .nav-links-container {
+  max-width: 800px;
+  width: 100%;
+  margin: auto;
+}
+body main {
+  box-sizing: border-box;
+  padding: 15px;
+}/*# sourceMappingURL=style.css.map */

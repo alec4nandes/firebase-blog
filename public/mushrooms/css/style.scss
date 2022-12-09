@@ -1,0 +1,82 @@
+@import "https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap";
+@import "https://api.fontshare.com/v2/css?f[]=general-sans@400,500&display=swap";
+@import "./colors.scss";
+
+body {
+    background-color: #d9d9d9;
+    font-family: "General Sans", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin: 0;
+
+    h1,
+    h2,
+    h3 {
+        width: fit-content;
+        font-family: "Cinzel Decorative", Arial, Helvetica, sans-serif;
+        font-weight: 400;
+        margin: 0 auto;
+    }
+
+    h2,
+    h3 {
+        color: $medium-accent;
+    }
+
+    h1 {
+        color: $dark-accent;
+        font-size: 41px;
+    }
+
+    h2 {
+        font-size: 21.5px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    #navbar {
+        background-color: #be9cb4;
+        margin-bottom: 40px;
+
+        @media only screen and (max-width: 500px) {
+            .nav-links-container {
+                a {
+                    font-size: 14px !important;
+                }
+            }
+        }
+
+        .nav-links-container {
+            height: 45px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+
+            a {
+                color: #222;
+                font-family: "Cinzel Decorative", Arial, Helvetica, sans-serif;
+                font-size: 16px;
+                text-decoration: none;
+
+                &:hover {
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    main,
+    .nav-links-container {
+        max-width: 800px;
+        width: 100%;
+        margin: auto;
+    }
+
+    main {
+        box-sizing: border-box;
+        padding: 15px;
+    }
+}
