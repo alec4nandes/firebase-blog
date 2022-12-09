@@ -6,6 +6,11 @@ body {
   font-size: 16px;
   margin: 0;
 }
+body button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
 body h1,
 body h2,
 body h3 {
