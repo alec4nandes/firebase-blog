@@ -99,7 +99,9 @@ body .info-row {
   justify-content: center;
 }
 body .info-row > div {
+  box-sizing: border-box;
   flex: 1;
+  padding: 10px;
 }
 body .info-row > div.images {
   display: flex;
@@ -114,7 +116,5 @@ body .info-row > div.images a img {
   height: 100px;
 }
 body .info-row > div:not(.images) {
-  box-sizing: border-box;
-  padding: 10px;
   text-align: left;
 }/*# sourceMappingURL=style.css.map */

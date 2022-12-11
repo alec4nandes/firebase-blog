@@ -114,7 +114,9 @@ body {
         justify-content: center;
 
         & > div {
+            box-sizing: border-box;
             flex: 1;
+            padding: 10px;
 
             &.images {
                 display: flex;
@@ -132,8 +134,6 @@ body {
             }
 
             &:not(.images) {
-                box-sizing: border-box;
-                padding: 10px;
                 text-align: left;
             }
         }

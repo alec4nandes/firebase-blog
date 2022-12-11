@@ -131,22 +131,26 @@
 
             <button id="make-deck-button">make deck</button>
 
+            <hr />
+
             <form id="view-study-guide">
-                <p>or view study guide:</p>
-                <label>
-                    <input
-                        name="sort_by"
-                        value="ailment"
-                        type="radio"
-                        checked
-                    />
-                    sort by ailment
-                </label>
-                <label>
-                    <input name="sort_by" value="mushroom" type="radio" />
-                    sort by mushroom
-                </label>
-                <button id="study-guide-button">review</button>
+                <h3>or view study guide</h3>
+                <div id="study-radio-buttons">
+                    <label>
+                        <input
+                            name="sort_by"
+                            value="ailment"
+                            type="radio"
+                            checked
+                        />
+                        sort by ailment
+                    </label>
+                    <label>
+                        <input name="sort_by" value="mushroom" type="radio" />
+                        sort by mushroom
+                    </label>
+                </div>
+                <button type="submit">review</button>
             </form>
 
             <hr />
@@ -167,7 +171,7 @@
 
             <div id="card" style="display: none"></div>
 
-            <div id="study-guide"></div>
+            <div id="study-guide" style="display: none"></div>
         </main>
 
         <script>

@@ -83,22 +83,27 @@ function handleViewStudyGuide(e) {
     )?.value;
     switch (checked) {
         case "ailment":
-            studyGuide.innerHTML = Object.entries(ailments)
-                .map(
-                    ([ailment, names]) => `
-                    <h3>${ailment}</h3>
-                    ${names
-                        .map((name) => getMushroomFromName(name))
-                        .map((mush) => getInfoRowHTML(mush))
-                        .join("<hr/>")}`
-                )
-                .join("");
+            studyGuide.innerHTML = `
+                <h2>Study Guide</h2>
+                ${Object.entries(ailments)
+                    .sort((a, b) => a[0].localeCompare(b[0]))
+                    .map(
+                        ([ailment, names]) => `
+                        <h3>${ailment}</h3>
+                        ${names
+                            .map((name) => getMushroomFromName(name))
+                            .map((mush) => getInfoRowHTML(mush))
+                            .join("<hr/>")}`
+                    )
+                    .join("")}`;
             toggleView({ showCard: false });
             return;
         case "mushroom":
-            studyGuide.innerHTML = medicinalMushrooms
-                .map((mush) => getInfoRowHTML(mush))
-                .join("<hr/>");
+            studyGuide.innerHTML = `
+                <h2>Study Guide</h2>
+                ${medicinalMushrooms
+                    .map((mush) => getInfoRowHTML(mush))
+                    .join("<hr/>")}`;
             toggleView({ showCard: false });
             return;
     }
