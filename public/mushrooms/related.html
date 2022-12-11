@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Related Mushrooms</title>
         <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/related.css" />
     </head>
     <body>
         <header>
@@ -29,8 +30,8 @@
                 hendrerit.
             </p>
             <div id="select-menus">
-                <div id="select-genus"><span>select genus: </span></div>
-                <div id="select-species"><span>select species: </span></div>
+                <div id="select-genus"><label>genus: &nbsp;</label></div>
+                <div id="select-species"><label>species: &nbsp;</label></div>
             </div>
 
             <div id="display"></div>
@@ -48,8 +49,8 @@
                 selectGenus = createSelect(handleSelectGenus, all_genus),
                 selectSpecies = createSelect(handleSelectSpecies, all_species);
 
-            selectGenusElem.appendChild(selectGenus);
-            selectSpeciesElem.appendChild(selectSpecies);
+            selectGenusElem.querySelector("label").appendChild(selectGenus);
+            selectSpeciesElem.querySelector("label").appendChild(selectSpecies);
 
             function createSelect(handler, arr) {
                 const select = document.createElement("select");
@@ -85,28 +86,27 @@
                     isGenusArray = Array.isArray(genus),
                     label = isGenusArray ? "species" : "genus";
                 return `
-                    <p>${label}: ${data[label]}</p>
-                    <ul>
-                        ${(isGenusArray ? genus : species)
-                            .map((part) =>
-                                isGenusArray
-                                    ? `${part} ${species}`
-                                    : `${genus} ${part}`
-                            )
-                            .sort()
-                            .map(
-                                (name) => `
-                                <li>
-                                    <a href="https://en.wikipedia.org/wiki/${name.replaceAll(
-                                        " ",
-                                        "_"
-                                    )}" target="_blank" rel="noreferrer">
-                                        ${name}
-                                    </a>
-                                </li>`
-                            )
-                            .join("")}
-                    </ul>
+                    ${
+                        // <p>${label}: ${data[label]}</p>
+                        ""
+                    }
+                    ${(isGenusArray ? genus : species)
+                        .map((part) =>
+                            isGenusArray
+                                ? `${part} ${species}`
+                                : `${genus} ${part}`
+                        )
+                        .sort()
+                        .map(
+                            (name) => `
+                                <a href="https://en.wikipedia.org/wiki/${name.replaceAll(
+                                    " ",
+                                    "_"
+                                )}" target="_blank" rel="noreferrer">
+                                    ${name}
+                                </a>`
+                        )
+                        .join("<hr/>")}
                 `;
             }
 
