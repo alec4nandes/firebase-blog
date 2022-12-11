@@ -52,7 +52,7 @@ body main #view-study-guide {
 }
 body main #view-study-guide #study-radio-buttons {
   display: flex;
-  gap: 10px;
+  gap: 15px;
 }
 body main #view-study-guide button[type=submit] {
   margin-top: 8px;
