@@ -105,6 +105,7 @@ body main #view-study-guide #study-radio-buttons label input[type=radio]:checked
   background-color: #a07493;
 }
 body main #view-study-guide button[type=submit] {
+  font-weight: 400;
   margin-top: 8px;
 }
 body main #make-deck-button {
