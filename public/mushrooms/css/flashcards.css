@@ -106,28 +106,10 @@ body main #card {
   overflow-y: auto;
   padding: 15px;
 }
-body main #card .info-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-body main #card .info-row > div {
-  flex: 1;
-}
-body main #card .info-row > div.images {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3px;
-  justify-content: center;
-}
-body main #card .info-row > div.images a {
-  display: flex;
-}
-body main #card .info-row > div.images a img {
-  height: 100px;
-}
-body main #card .info-row > div:not(.images) {
-  box-sizing: border-box;
+body main #study-guide h3 {
+  width: 100%;
+  background-color: #884474;
+  color: #fff;
   padding: 10px;
-  text-align: left;
+  text-align: center;
 }/*# sourceMappingURL=flashcards.css.map */

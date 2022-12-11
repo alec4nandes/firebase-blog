@@ -107,4 +107,35 @@ body {
         box-sizing: border-box;
         padding: 15px;
     }
+
+    .info-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & > div {
+            flex: 1;
+
+            &.images {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 3px;
+                justify-content: center;
+
+                a {
+                    display: flex;
+
+                    img {
+                        height: 100px;
+                    }
+                }
+            }
+
+            &:not(.images) {
+                box-sizing: border-box;
+                padding: 10px;
+                text-align: left;
+            }
+        }
+    }
 }

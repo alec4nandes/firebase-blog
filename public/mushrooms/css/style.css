@@ -92,4 +92,29 @@ body .nav-links-container {
 body main {
   box-sizing: border-box;
   padding: 15px;
+}
+body .info-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .info-row > div {
+  flex: 1;
+}
+body .info-row > div.images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  justify-content: center;
+}
+body .info-row > div.images a {
+  display: flex;
+}
+body .info-row > div.images a img {
+  height: 100px;
+}
+body .info-row > div:not(.images) {
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: left;
 }/*# sourceMappingURL=style.css.map */

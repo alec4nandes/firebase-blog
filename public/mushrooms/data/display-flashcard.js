@@ -61,11 +61,12 @@ function getFrontAndBack(sides, mush) {
 
 // DISPLAY: SINGLE AILMENT
 
+const ailments = getAllAilments();
+
 function getAilEntries(keys) {
-    const ailments = getAllAilments(),
-        validSciNames = findValidChoices(keys).map(
-            (mush) => mush.scientific_name
-        );
+    const validSciNames = findValidChoices(keys).map(
+        (mush) => mush.scientific_name
+    );
     return Object.entries(ailments).filter(
         ([_, val]) => !val.find((v) => !validSciNames.includes(v))
     );
@@ -152,3 +153,4 @@ function getInfoRowHTML(data) {
 }
 
 export default makeDeck;
+export { ailments, getInfoRowHTML };

@@ -131,6 +131,24 @@
 
             <button id="make-deck-button">make deck</button>
 
+            <form id="view-study-guide">
+                <p>or view study guide:</p>
+                <label>
+                    <input
+                        name="sort_by"
+                        value="ailment"
+                        type="radio"
+                        checked
+                    />
+                    sort by ailment
+                </label>
+                <label>
+                    <input name="sort_by" value="mushroom" type="radio" />
+                    sort by mushroom
+                </label>
+                <button id="study-guide-button">review</button>
+            </form>
+
             <hr />
 
             <div id="card-buttons">
@@ -148,6 +166,8 @@
             <p id="card-count"></p>
 
             <div id="card" style="display: none"></div>
+
+            <div id="study-guide"></div>
         </main>
 
         <script>
@@ -192,67 +212,6 @@
             }
         </script>
 
-        <script type="module">
-            import makeDeck from "./data/display-flashcard.js";
-
-            const getElem = (id) => document.getElementById(id),
-                makeDeckButton = getElem("make-deck-button"),
-                cardElem = getElem("card"),
-                flipCardButton = getElem("flip-card-button"),
-                previousCardButton = getElem("previous-card-button"),
-                nextCardButton = getElem("next-card-button");
-
-            let index, deck, side;
-
-            makeDeckButton.onclick = handleMakeDeck;
-            flipCardButton.onclick = handleFlipCard;
-            previousCardButton.onclick = handlePreviousCard;
-            nextCardButton.onclick = handleNextCard;
-
-            function handleMakeDeck() {
-                index = 0;
-                deck = makeDeck();
-                side = "front";
-                displayCard();
-                [flipCardButton, previousCardButton, nextCardButton].forEach(
-                    (elem) => (elem.style.display = "inline-block")
-                );
-                cardElem.style.display = "flex";
-            }
-
-            function handleFlipCard() {
-                side = side === "front" ? "back" : "front";
-                displayCard();
-            }
-
-            function handlePreviousCard() {
-                index--;
-                if (index < 0) {
-                    index = deck.length - 1;
-                }
-                side = "front";
-                displayCard();
-            }
-
-            function handleNextCard() {
-                index++;
-                if (index === deck.length) {
-                    index = 0;
-                }
-                side = "front";
-                displayCard();
-            }
-
-            function displayCard() {
-                cardElem.innerHTML = deck[index][side];
-                updateCount();
-            }
-
-            function updateCount() {
-                document.getElementById("card-count").innerHTML = `(${
-                    index + 1
-                }/${deck.length})`;
-            }
-        </script>
+        <script src="/mushrooms/data/study.js" type="module"></script>
     </body>
 </html>
