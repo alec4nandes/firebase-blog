@@ -1,8 +1,6 @@
-body {
-    $dark-accent: #884474;
-    $medium-accent: #a07493;
-    $light-accent: #be9cb4;
+@import "./colors.scss";
 
+body {
     background-image: url(../assets/sketches-bg.png);
     background-position: top 45px center;
     background-repeat: no-repeat;
@@ -34,13 +32,6 @@ body {
             &:hover {
                 &::after {
                     color: $dark-accent;
-                }
-            }
-
-            &,
-            select {
-                &:hover {
-                    cursor: pointer;
                 }
             }
 

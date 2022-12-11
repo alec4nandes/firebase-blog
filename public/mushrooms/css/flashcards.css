@@ -4,10 +4,6 @@ body {
   background-repeat: no-repeat;
   background-size: clamp(400px, 95vw, 900px);
 }
-body button,
-body input[type=checkbox] {
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
-}
 body #heading {
   margin-bottom: 40px;
 }
@@ -37,33 +33,9 @@ body main #card-side-forms form label {
   line-height: 16px;
 }
 body main #card-side-forms form u {
-  line-height: 20px;
-}
-body main #card-side-forms form label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-body main #card-side-forms form label:hover,
-body main #card-side-forms form label input[type=checkbox]:hover {
-  cursor: pointer;
-}
-body main #card-side-forms form label input[type=checkbox] {
-  height: 15px;
-  width: 15px;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  border: 2px solid #a07493;
-  margin: 0;
-  padding: 0;
-}
-body main #card-side-forms form label input[type=checkbox]:checked {
-  background-color: #a07493;
-}
-body main #card-side-forms form u {
   color: #777;
   font-family: "Cinzel Decorative", Arial, Helvetica, sans-serif;
+  line-height: 20px;
   text-align: center;
 }
 body main #card-side-forms hr {
@@ -82,30 +54,7 @@ body main #view-study-guide #study-radio-buttons {
   display: flex;
   gap: 10px;
 }
-body main #view-study-guide #study-radio-buttons label {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-body main #view-study-guide #study-radio-buttons label:hover,
-body main #view-study-guide #study-radio-buttons label input[type=radio]:hover {
-  cursor: pointer;
-}
-body main #view-study-guide #study-radio-buttons label input[type=radio] {
-  height: 15px;
-  width: 15px;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  background-color: transparent;
-  border: 2px solid #a07493;
-  border-radius: 50%;
-}
-body main #view-study-guide #study-radio-buttons label input[type=radio]:checked {
-  background-color: #a07493;
-}
 body main #view-study-guide button[type=submit] {
-  font-weight: 400;
   margin-top: 8px;
 }
 body main #make-deck-button {

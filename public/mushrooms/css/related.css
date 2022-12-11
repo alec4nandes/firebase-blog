@@ -32,10 +32,6 @@ body #select-menus label::after {
 body #select-menus label:hover::after {
   color: #884474;
 }
-body #select-menus label:hover,
-body #select-menus label select:hover {
-  cursor: pointer;
-}
 body #select-menus label select {
   width: 220px;
   -webkit-appearance: none;
