@@ -1,21 +1,6 @@
 @import "./colors.scss";
 
 body {
-    background-image: url(../assets/sketches-bg.png);
-    background-position: top 45px center;
-    background-repeat: no-repeat;
-    background-size: clamp(400px, 95vw, 900px);
-
-    #heading {
-        margin-bottom: 40px;
-
-        p {
-            max-width: 600px;
-            margin: 35px auto 50px;
-            text-align: center;
-        }
-    }
-
     main {
         @media only screen and (max-width: 500px) {
             #card-side-forms {

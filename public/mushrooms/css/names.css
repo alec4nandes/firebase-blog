@@ -1,12 +1,8 @@
 @charset "UTF-8";
 body {
-  background-image: url(../assets/sketches-bg.png);
-  background-position: top 45px center;
-  background-repeat: no-repeat;
-  background-size: clamp(400px, 95vw, 900px);
   text-align: center;
 }
-body #select-menus {
+body main #select-menus {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -14,25 +10,25 @@ body #select-menus {
   align-items: flex-end;
   flex-direction: column;
   gap: 15px;
-  margin: 40px auto 45px;
+  margin: 0 auto 45px;
 }
-body #select-menus label {
+body main #select-menus label {
   color: #a07493;
   font-family: "Cinzel Decorative", Arial, Helvetica, sans-serif;
   font-size: 16px;
   position: relative;
 }
-body #select-menus label::after {
+body main #select-menus label::after {
   content: "▼";
   font-size: 14px;
   position: absolute;
   right: 0;
   top: 2px;
 }
-body #select-menus label:hover::after {
+body main #select-menus label:hover::after {
   color: #884474;
 }
-body #select-menus label select {
+body main #select-menus label select {
   width: 220px;
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -44,21 +40,17 @@ body #select-menus label select {
   font-family: "General Sans", Arial, Helvetica, sans-serif;
   font-size: 18px;
 }
-body #display {
+body main #display {
   margin-bottom: 30px;
 }
-body #display a {
-  color: #884474;
+body main #display a {
   font-family: "Cinzel Decorative", Arial, Helvetica, sans-serif;
   font-size: 18px;
   text-decoration: none;
 }
-body #display a:hover {
-  color: #222;
-}
-body #display hr {
+body main #display hr {
   width: 100px;
   background-color: #be9cb4;
   color: #be9cb4;
   margin: 10px auto 13px;
-}/*# sourceMappingURL=related.css.map */
+}/*# sourceMappingURL=names.css.map */

@@ -1,0 +1,65 @@
+@import "./colors.scss";
+
+body {
+    text-align: center;
+
+    main {
+        #select-menus {
+            width: fit-content;
+            display: flex;
+            align-items: flex-end;
+            flex-direction: column;
+            gap: 15px;
+            margin: 0 auto 45px;
+
+            label {
+                color: $medium-accent;
+                font-family: "Cinzel Decorative", Arial, Helvetica, sans-serif;
+                font-size: 16px;
+                position: relative;
+
+                &::after {
+                    content: "▼";
+                    font-size: 14px;
+                    position: absolute;
+                    right: 0;
+                    top: 2px;
+                }
+
+                &:hover {
+                    &::after {
+                        color: $dark-accent;
+                    }
+                }
+
+                select {
+                    width: 220px;
+                    appearance: none;
+                    background-color: transparent;
+                    border: 0;
+                    border-bottom: 1px solid $medium-accent;
+                    color: $dark-accent;
+                    font-family: "General Sans", Arial, Helvetica, sans-serif;
+                    font-size: 18px;
+                }
+            }
+        }
+
+        #display {
+            margin-bottom: 30px;
+
+            a {
+                font-family: "Cinzel Decorative", Arial, Helvetica, sans-serif;
+                font-size: 18px;
+                text-decoration: none;
+            }
+
+            hr {
+                width: 100px;
+                background-color: $light-accent;
+                color: $light-accent;
+                margin: 10px auto 13px;
+            }
+        }
+    }
+}

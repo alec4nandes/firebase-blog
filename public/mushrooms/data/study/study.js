@@ -1,5 +1,5 @@
 import makeDeck, { ailments, getInfoRowHTML } from "./display-flashcard.js";
-import { medicinalMushrooms } from "./mushrooms-data.js";
+import { medicinalMushrooms } from "../mushrooms-data.js";
 
 const getElem = (id) => document.getElementById(id),
     makeDeckButton = getElem("make-deck-button"),

@@ -1,4 +1,4 @@
-import { medicinalMushrooms } from "./mushrooms-data.js";
+import { medicinalMushrooms } from "../mushrooms-data.js";
 
 function shuffle(arr) {
     return [...arr].sort(() => Math.random() - 0.5);
