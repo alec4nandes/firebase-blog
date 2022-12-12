@@ -68,6 +68,8 @@ body h3 {
 body h1 {
   color: #884474;
   font-size: 41px;
+  line-height: 45px;
+  margin-bottom: 5px;
 }
 body h2 {
   font-size: 21.5px;
