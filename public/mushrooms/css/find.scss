@@ -1,3 +1,33 @@
-img {
-    height: 200px;
+body {
+    margin-bottom: 50px;
+
+    a {
+        font-weight: bold;
+    }
+
+    .nav-links-container {
+        a {
+            font-weight: 400;
+        }
+    }
+
+    #finder-form {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 15px;
+
+        #area-radio-buttons {
+            display: flex;
+            gap: 15px;
+        }
+    }
+
+    img {
+        height: 200px;
+    }
+
+    #mushroom-info {
+        text-align: center;
+    }
 }

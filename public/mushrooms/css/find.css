@@ -1,3 +1,25 @@
-img {
+body {
+  margin-bottom: 50px;
+}
+body a {
+  font-weight: bold;
+}
+body .nav-links-container a {
+  font-weight: 400;
+}
+body #finder-form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+}
+body #finder-form #area-radio-buttons {
+  display: flex;
+  gap: 15px;
+}
+body img {
   height: 200px;
+}
+body #mushroom-info {
+  text-align: center;
 }/*# sourceMappingURL=find.css.map */

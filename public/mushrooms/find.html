@@ -36,52 +36,57 @@
 
             <form id="finder-form">
                 <h3>area</h3>
-                <label>
-                    <input
-                        type="radio"
-                        name="area"
-                        value="local"
-                        onclick="handleShowMap(false)"
-                        checked
-                    />
-                    your location
-                </label>
-                <label>
-                    <input
-                        type="radio"
-                        name="area"
-                        value="map"
-                        onclick="handleShowMap(true)"
-                    />
-                    map coordinates
-                </label>
+                <div id="area-radio-buttons">
+                    <label>
+                        <input
+                            type="radio"
+                            name="area"
+                            value="local"
+                            onclick="handleShowMap(false)"
+                            checked
+                        />
+                        your location
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            name="area"
+                            value="map"
+                            onclick="handleShowMap(true)"
+                        />
+                        map coordinates
+                    </label>
+                </div>
                 <input name="latitude" type="text" style="display: none" />
                 <input name="longitude" type="text" style="display: none" />
-                <span>range: </span><output>within 25 miles</output>
-                <input
-                    id="miles"
-                    type="range"
-                    name="miles"
-                    min="1"
-                    max="100"
-                    value="25"
-                />
+                <div>
+                    <output>within 25 miles</output>
+                    <input
+                        id="miles"
+                        type="range"
+                        name="miles"
+                        min="1"
+                        max="100"
+                        value="25"
+                    />
+                </div>
+                <div
+                    id="map"
+                    style="height: 300px; width: 100%; display: none"
+                ></div>
                 <button type="submit">find</button>
             </form>
 
-            <div
-                id="map"
-                style="height: 300px; width: 100%; display: none"
-            ></div>
-
-            <div id="display"></div>
+            <div id="mushroom-info"></div>
         </main>
 
         <script>
             function handleShowMap(showMap) {
-                document.getElementById("map").style.display = showMap
-                    ? "block"
-                    : "none";
+                const mapElem = document.getElementById("map"),
+                    infoElem = document.getElementById("mushroom-info");
+                mapElem.style.display = showMap ? "block" : "none";
+                infoElem.innerHTML = "";
+                showMap && mapElem.scrollIntoView({ behavior: "smooth" });
             }
         </script>
 
@@ -100,7 +105,7 @@
             };
 
             document.getElementById("finder-form").onsubmit = (e) =>
-                handleFindMushroom(e, document.getElementById("display"));
+                handleFindMushroom(e, document.getElementById("mushroom-info"));
 
             document.getElementById("miles").onchange = handleRangeInput;
         </script>
