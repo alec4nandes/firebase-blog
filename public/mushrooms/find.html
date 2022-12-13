@@ -4,7 +4,48 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Find Local Fungi &mdash; Alec's Mushrooms</title>
+
+        <title>Find Local Fungi &mdash; Alec Fernandes</title>
+
+        <meta name="type" property="og:type" content="website" />
+        <meta
+            name="title"
+            property="og:title"
+            content="Find Local Fungi &mdash; Alec Fernandes"
+        />
+        <meta
+            name="url"
+            property="og:url"
+            content="https://fern.haus/mushrooms/find.html"
+        />
+        <meta
+            name="description"
+            property="og:description"
+            content="Set your coordinates and find mushrooms around the globe!"
+        />
+        <meta
+            name="image"
+            property="og:image"
+            content="https://fern.haus/mushrooms/assets/mushrooms-min.jpg"
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@alec4nandes" />
+        <meta
+            name="twitter:title"
+            content="Find Local Fungi &mdash; Alec Fernandes"
+        />
+        <meta
+            name="twitter:description"
+            content="Set your coordinates and find mushrooms around the globe!"
+        />
+        <meta
+            name="twitter:image"
+            content="https://fern.haus/mushrooms/assets/mushrooms-min.jpg"
+        />
+
+        <link rel="icon" type="image/x-icon" href="/assets/logo/favicon.ico" />
+
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/find.css" />
     </head>
@@ -25,11 +66,23 @@
                 <h1>Find Local Fungi</h1>
                 <div id="intro">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Aenean fringilla pellentesque tortor a egestas. Donec
-                        leo arcu, auctor vulputate imperdiet at, aliquet eu
-                        arcu. Nulla sapien metus, tempus eu commodo a, bibendum
-                        in erat. Nulla maximus congue hendrerit.
+                        Awhile back I discovered the
+                        <a
+                            href="https://mushroomobserver.org"
+                            target="_blank"
+                            rel="noreferrer"
+                            >Mushroom Observer</a
+                        >
+                        geographical API. It takes a range of coordinates from
+                        the user and returns a list of mushroom sightings within
+                        those bounds.
+                    </p>
+                    <p>
+                        I built the interface below for setting specific
+                        coordinates and finding a random mushroom nearby. Either
+                        share your location with your browser for mushrooms near
+                        your exact spot, or center different regions of the map
+                        to discover fungi around the globe!
                     </p>
                 </div>
             </div>
