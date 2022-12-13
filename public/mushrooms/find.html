@@ -4,8 +4,9 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Find a Local Fungi</title>
+        <title>Find Local Fungi &mdash; Alec's Mushrooms</title>
         <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/find.css" />
     </head>
     <body>
         <header>
@@ -32,6 +33,45 @@
                     </p>
                 </div>
             </div>
+
+            <form id="finder-form">
+                <h3>area</h3>
+                <label>
+                    <input type="radio" name="area" value="local" checked />
+                    your location
+                </label>
+                <label>
+                    <input type="radio" name="area" value="map" />
+                    map coordinates
+                </label>
+                <span>range: </span><output>within 25 miles</output>
+                <input
+                    id="miles"
+                    type="range"
+                    name="miles"
+                    min="1"
+                    max="100"
+                    value="25"
+                />
+                <button type="submit">find</button>
+            </form>
+
+            <div id="display"></div>
         </main>
+
+        <script type="module">
+            import handleFindMushroom from "./data/find/find.js";
+
+            const handleRangeInput = (e) => {
+                const m = e.target.value,
+                    output = e.target.previousElementSibling;
+                output.value = `within ${m} mile${m > 1 ? "s" : ""}`;
+            };
+
+            document.getElementById("finder-form").onsubmit = (e) =>
+                handleFindMushroom(e, document.getElementById("display"));
+
+            document.getElementById("miles").onchange = handleRangeInput;
+        </script>
     </body>
 </html>

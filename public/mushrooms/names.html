@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Related Mushrooms</title>
+        <title>Mushroom Names &mdash; Alec's Mushrooms</title>
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/names.css" />
     </head>
@@ -27,13 +27,14 @@
                 <div id="intro">
                     <p>
                         Biologists group mushrooms and all other known organisms
-                        into different genera (singular: genus) and even further
-                        into species. This model is known as binomial
-                        nomenclature, where a fungus’ group and subgroup names
-                        identify general and more specific relationships with
-                        other mushrooms. Shared characteristics can include
-                        shape, color, spore release method, or simply a shared
-                        evolutionary ancestor, among many other things.
+                        into different genera <em>(singular: genus)</em> and
+                        even further into species. This model is known as
+                        binomial nomenclature, where a fungus' group and
+                        subgroup names identify general and more specific
+                        relationships with other mushrooms. Shared
+                        characteristics can include shape, color, spore release
+                        method, or simply a shared evolutionary ancestor, among
+                        many other things.
                     </p>
                     <p>
                         Select a genus or species from either dropdown menu
@@ -55,10 +56,7 @@
         </main>
 
         <script type="module">
-            import {
-                allGenusAndSpecies,
-                filterNames,
-            } from "./data/genus-species.js";
+            import { allGenusAndSpecies, filterNames } from "./data/names.js";
 
             const { all_genus, all_species } = allGenusAndSpecies,
                 selectGenusElem = document.getElementById("select-genus"),
