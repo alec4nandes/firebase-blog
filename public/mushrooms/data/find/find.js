@@ -36,6 +36,8 @@ function handleError(error, displayElem) {
 }
 
 async function getRandomMushroom(position, miles, displayElem) {
+    // initial scroll
+    displayElem.scrollIntoView({ behavior: "smooth" });
     const { coords } = position,
         {
             maxLat: north,
@@ -43,12 +45,14 @@ async function getRandomMushroom(position, miles, displayElem) {
             maxLong: east,
             minLong: west,
         } = getRange({ coords, miles }),
-        url = `${endpoint}&north=${north}&south=${south}&east=${east}&west=${west}`;
-    const resp = await fetch(url),
+        url = `${endpoint}&north=${north}&south=${south}&east=${east}&west=${west}`,
+        resp = await fetch(url),
         data = await resp.json(),
         randomId = getRandom(data.results),
         mushData = await getSpecificMushroom(randomId, coords);
     displayElem.innerHTML = displayLocalMushroom(mushData);
+    // scroll again when content has loaded
+    displayElem.scrollIntoView({ behavior: "smooth" });
 }
 
 function getRange({ coords, miles }) {

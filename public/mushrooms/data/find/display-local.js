@@ -1,6 +1,8 @@
 export default function displayLocalMushroom(mushroomInfo) {
-    const { latitude, longitude } = mushroomInfo.coords;
-    return `
+    const { images, coords } = mushroomInfo,
+        { latitude, longitude } = coords;
+    if (images) {
+        return `
         <div id="mushroom-info">
             <p>
                 Your Latitude: ${latitude || "N/A"}
@@ -9,12 +11,13 @@ export default function displayLocalMushroom(mushroomInfo) {
             </p>
             ${finderImages(mushroomInfo)}
         </div>`;
+    }
+    throw new Error("No image found for this mushroom. Please try again.");
 }
 
 function finderImages(mushroomInfo) {
     const { images, consensus } = mushroomInfo;
-    return images
-        ? `
+    return `
         <div class="finder-images">
             ${images
                 .map(
@@ -27,8 +30,7 @@ function finderImages(mushroomInfo) {
                 )
                 .join("")}
             ${finderCaption(mushroomInfo)}
-        </div>`
-        : "";
+        </div>`;
 }
 
 function finderCaption(mushroomInfo) {
