@@ -256,10 +256,9 @@ app.get("/iching/text", function (req, res) {
 
 // Moon Tides api route
 // sample:
-// http://localhost:5000/moon-tides/?latitude=32.8400896&longitude=-117.2078592&date=2022-11-30
-
-app.get("/moon-tides", function (req, res) {
-    getMoonSunTidesData();
+// http://localhost:5000/moon-sun-tides-api/?latitude=32.8400896&longitude=-117.2078592&date=2022-11-30
+app.get("/moon-sun-tides-api", function (req, res) {
+    getMoonSunTidesData(req, res);
 });
 
 // 404 page must be final route declaration:

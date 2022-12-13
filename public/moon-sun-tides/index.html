@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Moon-Sun-Tides API</title>
+    </head>
+    <body>
+        <p>
+            sample:
+            https://fern.haus/moon-sun-tides-api/?latitude=32.8400896&longitude=-117.2078592&date=2022-11-30
+        </p>
+        <form>
+            <input type="date" />
+            <div>date: <span id="date"></span></div>
+            <div id="map" style="height: 300px; width: 100%"></div>
+            <div>latitude: <span id="latitude"></span></div>
+            <div>longitude: <span id="longitude"></span></div>
+            <button type="submit">lookup</button>
+        </form>
+
+        <pre id="raw-text"></pre>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRNOo4f2HeGYjzA3zF9yu3Orx_Vc-YBLE"></script>
+
+        <script type="module">
+            import makeMap, {
+                initialPos,
+                setLatLngElems,
+            } from "./scripts/map.js";
+
+            const latElem = document.getElementById("latitude"),
+                lngElem = document.getElementById("longitude"),
+                dateElem = document.getElementById("date"),
+                map = makeMap(latElem, lngElem);
+
+            setLatLngElems(latElem, lngElem, initialPos.lat, initialPos.lng);
+
+            document.querySelector("form").onsubmit = async (event) => {
+                event.preventDefault();
+                const lat = latElem.innerHTML,
+                    lng = lngElem.innerHTML,
+                    date = dateElem.innerHTML,
+                    url = `/moon-sun-tides-api/?latitude=${lat}&longitude=${lng}&date=${date}`,
+                    resp = await fetch(url),
+                    data = await resp.json(),
+                    rawTextElem = document.getElementById("raw-text");
+                rawTextElem.innerHTML = JSON.stringify(data, null, 4);
+                rawTextElem.scrollIntoView({ behavior: "smooth" });
+                console.log(data);
+            };
+
+            // DATE:
+
+            updateDate(new Date());
+
+            document.querySelector("input[type='date']").onchange = (event) =>
+                (dateElem.innerHTML = event.target.value);
+
+            function updateDate(date) {
+                dateElem.innerHTML = formatDate(date);
+            }
+
+            // 2023-01-09
+            function formatDate(date) {
+                const pad = (num) => ("" + num).padStart(2, "0"),
+                    year = date.getFullYear(),
+                    month = pad(date.getMonth() + 1),
+                    day = pad(date.getDate());
+                return `${year}-${month}-${day}`;
+            }
+
+            function handleChangeDate(e) {
+                const date = e.target.value;
+                updateDate(date);
+            }
+        </script>
+    </body>
+</html>

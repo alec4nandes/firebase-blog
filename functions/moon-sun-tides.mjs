@@ -5,7 +5,7 @@ import { find } from "geo-tz";
 // moon data: next full, next new, current percent, phase name
 // TODO: filter station data to get tides (next high && low)
 
-export default async function getMoonSunTidesData() {
+export default async function getMoonSunTidesData(req, res) {
     const { latitude, longitude, date } = req.query,
         sending =
             !isNaN(latitude) && !isNaN(longitude)
@@ -25,7 +25,7 @@ async function handleLocalData(coords, date) {
             latitude,
             longitude,
         });
-    res.send({
+    return {
         coords,
         nearest_NOAA_station: {
             name: nearestStation.name,
@@ -39,7 +39,7 @@ async function handleLocalData(coords, date) {
             date
         ),
         solar: await getSolarData({ latitude, longitude }, date),
-    });
+    };
 }
 
 async function getNOAAStations() {
