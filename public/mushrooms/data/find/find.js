@@ -5,27 +5,35 @@ const getRandom = (arr) => arr[~~(Math.random() * arr.length)],
 
 export default function handleFindMushroom(event, displayElem) {
     event.preventDefault();
+    displayElem.innerHTML = `<p>Finding a mushroom nearby...</p>`;
     const area = event.target.querySelector(
             "input[type='radio']:checked"
         ).value,
         miles = event.target.miles.value;
     // get coordinates, either user's position or from map.
     // this is from user's position w/ miles radius:
-    navigator.geolocation.getCurrentPosition(
-        async (pos) => {
-            if (area === "local") {
-                displayElem.innerHTML = `<p>Finding a mushroom nearby...</p>`;
-                try {
-                    await getRandomMushroom(pos, miles, displayElem);
-                } catch (error) {
-                    handleError(error, displayElem);
-                }
-            } else {
-                alert("Map coming soon!");
-            }
-        },
-        (error) => handleError(error, displayElem)
-    );
+    if (area === "local") {
+        navigator.geolocation.getCurrentPosition(
+            (pos) => {
+                attemptMushroomSearch(pos, miles, displayElem);
+            },
+            (error) => handleError(error, displayElem)
+        );
+    } else {
+        const form = event.target,
+            latitude = +form.latitude.value,
+            longitude = +form.longitude.value,
+            pos = { coords: { latitude, longitude } };
+        attemptMushroomSearch(pos, miles, displayElem);
+    }
+}
+
+async function attemptMushroomSearch(pos, miles, displayElem) {
+    try {
+        await getRandomMushroom(pos, miles, displayElem);
+    } catch (error) {
+        handleError(error, displayElem);
+    }
 }
 
 function handleError(error, displayElem) {

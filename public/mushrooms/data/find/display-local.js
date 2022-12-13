@@ -19,14 +19,16 @@ function finderImages(mushroomInfo) {
     const { images, consensus } = mushroomInfo;
     return `
         <div class="finder-images">
+            <em>(many images are ultra-high resolution and may take a minute to load)</em>
             ${images
                 .map(
                     (image) => `
                 <a href=${image.original_url} target="_blank" rel="noreferrer"><img
                     class="mushroom-image"
                     src=${image.original_url}
-                    alt="most likely the fungus ${consensus.name}"/>
-                </a>`
+                    alt="most likely the fungus ${consensus.name}"
+                    style="display: none;"
+                    onload="event.target.style.display = 'inline-block';" /></a>`
                 )
                 .join("")}
             ${finderCaption(mushroomInfo)}

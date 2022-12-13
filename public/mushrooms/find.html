@@ -37,13 +37,26 @@
             <form id="finder-form">
                 <h3>area</h3>
                 <label>
-                    <input type="radio" name="area" value="local" checked />
+                    <input
+                        type="radio"
+                        name="area"
+                        value="local"
+                        onclick="handleShowMap(false)"
+                        checked
+                    />
                     your location
                 </label>
                 <label>
-                    <input type="radio" name="area" value="map" />
+                    <input
+                        type="radio"
+                        name="area"
+                        value="map"
+                        onclick="handleShowMap(true)"
+                    />
                     map coordinates
                 </label>
+                <input name="latitude" type="text" style="display: none" />
+                <input name="longitude" type="text" style="display: none" />
                 <span>range: </span><output>within 25 miles</output>
                 <input
                     id="miles"
@@ -56,11 +69,29 @@
                 <button type="submit">find</button>
             </form>
 
+            <div
+                id="map"
+                style="height: 300px; width: 100%; display: none"
+            ></div>
+
             <div id="display"></div>
         </main>
 
+        <script>
+            function handleShowMap(showMap) {
+                document.getElementById("map").style.display = showMap
+                    ? "block"
+                    : "none";
+            }
+        </script>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRNOo4f2HeGYjzA3zF9yu3Orx_Vc-YBLE"></script>
+
         <script type="module">
             import handleFindMushroom from "./data/find/find.js";
+            import makeMap from "./data/find/map.js";
+
+            const map = makeMap();
 
             const handleRangeInput = (e) => {
                 const m = e.target.value,
