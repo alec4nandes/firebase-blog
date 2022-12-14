@@ -2,26 +2,32 @@ import fetch from "node-fetch";
 import { find } from "geo-tz";
 import lune from "lune";
 
-// TODO: add moon data from lune package (not local - "universal")
-// moon data: next full, next new, current percent, phase name
-// TODO: filter station data to get tides (next high && low)
-
 export default async function getMoonSunTidesData(req, res) {
-    const { latitude, longitude, date } = req.query,
+    const { latitude, longitude, date, time } = req.query,
         sending =
             !isNaN(latitude) && !isNaN(longitude)
                 ? await handleLocalData(
                       { latitude: +latitude, longitude: +longitude },
-                      date
+                      date,
+                      time
                   )
                 : { error_message: "invalid coordinates" };
     res.send(sending);
 }
 
-async function handleLocalData(coords, date) {
-    const isCurrent = date.includes("CURRENT");
-    date = date.replace("CURRENT", "");
-    const moon = getMoonData(isCurrent ? new Date() : date, coords),
+function formatToday() {
+    const d = new Date(),
+        year = d.getFullYear(),
+        month = d.getMonth() + 1,
+        day = d.getDate();
+    return `${year}-${month}-${day}`;
+}
+
+async function handleLocalData(coords, date, time) {
+    const moon = getMoonData(
+            date ? new Date(`${date} ${time || ""}`) : new Date()
+        ),
+        d = date || formatToday(),
         { latitude, longitude } = coords,
         stations = await getNOAAStations(),
         nearestStation = findNearestStation({
@@ -30,9 +36,7 @@ async function handleLocalData(coords, date) {
             longitude,
         });
     return {
-        time: isCurrent
-            ? new Date()
-            : makeUTCString(date, getTimezoneOffsetFromCoordinates(coords)),
+        time: date ? new Date(`${date} ${time || ""}`) : new Date(),
         coords,
         moon,
         nearest_NOAA_station: {
@@ -41,35 +45,22 @@ async function handleLocalData(coords, date) {
             latitude: nearestStation.lat,
             longitude: nearestStation.lng,
         },
-        tides: await getTidesData(
-            { latitude, longitude },
-            nearestStation,
-            date
-        ),
-        solar: await getSolarData({ latitude, longitude }, date),
+        tides: await getTidesData({ latitude, longitude }, nearestStation, d),
+        solar: await getSolarData({ latitude, longitude }, d),
     };
 }
 
-function getMoonData(date, coords) {
-    let d;
-    if (typeof date === "object") {
-        d = date;
-    } else {
-        const offset = getTimezoneOffsetFromCoordinates(coords),
-            dateString = makeUTCString(date, offset);
-        d = new Date(dateString);
-    }
-    console.log(d);
-    let phases = lune.phase_hunt(d);
-    const phase = lune.phase(d),
+function getMoonData(date) {
+    let phases = lune.phase_hunt(date);
+    const phase = lune.phase(date),
         newMoon = new Date(phases.new_date),
         nextNewMoon = new Date(phases.nextnew_date),
         fullMoon = new Date(phases.full_date),
         result = {
             phase,
-            nextNewMoon: newMoon > d ? newMoon : nextNewMoon,
+            nextNewMoon: newMoon > date ? newMoon : nextNewMoon,
         };
-    if (fullMoon > d) {
+    if (fullMoon > date) {
         const data = { ...result, nextFullMoon: fullMoon };
         return processMoonData(data);
     }
@@ -85,11 +76,11 @@ function getMoonData(date, coords) {
 
 function processMoonData(data) {
     const { illuminated } = data.phase,
-        { nextFullMoon, nextNewMoon } = data,
+        { nextFullMoon: next_full_moon, nextNewMoon: next_new_moon } = data,
         status = data.nextNewMoon < data.nextFullMoon ? "waning" : "waxing";
     return {
-        nextFullMoon,
-        nextNewMoon,
+        next_full_moon,
+        next_new_moon,
         percent_illuminated: illuminated * 100,
         status,
     };

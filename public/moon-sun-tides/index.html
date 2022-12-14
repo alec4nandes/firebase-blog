@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Moon-Sun-Tides API</title>
+        <title>Moon-Sun-Tides API &mdash; Alec Fernandes</title>
     </head>
     <body>
         <p>
@@ -13,11 +13,12 @@
         </p>
         <p>
             sample:
-            https://fern.haus/moon-sun-tides-api/?latitude=32.8400896&longitude=-117.2078592&date=2022-11-30
+            https://fern.haus/moon-sun-tides-api/?latitude=34.0488&longitude=-118.2518&date=2022-11-30&time=04:32:09
         </p>
+        <p>date and time are UTC, not relative to time zone</p>
         <form>
-            <input type="date" />
-            <div>date: <span id="date"></span></div>
+            <div>local time: <input type="datetime-local" /></div>
+            <div>UTC time: <span id="datetime"></span></div>
             <div id="map" style="height: 300px; width: 100%"></div>
             <div>latitude: <span id="latitude"></span></div>
             <div>longitude: <span id="longitude"></span></div>
@@ -31,15 +32,14 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRNOo4f2HeGYjzA3zF9yu3Orx_Vc-YBLE"></script>
 
         <script type="module">
-            import makeMap, {
-                initialPos,
-                setLatLngElems,
-            } from "./scripts/map.js";
+            import makeMap, { initialPos, setLatLngElems } from "./map.js";
 
             const latElem = document.getElementById("latitude"),
                 lngElem = document.getElementById("longitude"),
-                dateElem = document.getElementById("date"),
-                dateInput = document.querySelector("input[type='date']"),
+                dateElem = document.getElementById("datetime"),
+                dateInput = document.querySelector(
+                    "input[type='datetime-local']"
+                ),
                 rawTextElem = document.getElementById("raw-text"),
                 map = makeMap(latElem, lngElem);
 
@@ -52,8 +52,8 @@
                 try {
                     const lat = latElem.innerHTML,
                         lng = lngElem.innerHTML,
-                        date = dateElem.innerHTML,
-                        url = `/moon-sun-tides-api/?latitude=${lat}&longitude=${lng}&date=${date}`,
+                        [date, time] = dateElem.innerHTML.split("T"),
+                        url = `/moon-sun-tides-api/?latitude=${lat}&longitude=${lng}&date=${date}&time=${time}`,
                         resp = await fetch(url),
                         data = await resp.json();
                     displayRawText(data);
@@ -72,12 +72,12 @@
                 navigator.geolocation.getCurrentPosition(
                     async (pos) => {
                         const { latitude: lat, longitude: lng } = pos.coords,
-                            date = formatDate(new Date());
+                            date = formatDateTime(new Date());
                         setLatLngElems(latElem, lngElem, lat, lng);
-                        dateElem.innerHTML = date;
-                        dateInput.value = "";
+                        dateElem.innerHTML = formatUTCDateTime(new Date());
+                        dateInput.value = formatDateTime(new Date());
                         map.setCenter({ lat, lng });
-                        const url = `/moon-sun-tides-api/?latitude=${lat}&longitude=${lng}&date=${date}CURRENT`,
+                        const url = `/moon-sun-tides-api/?latitude=${lat}&longitude=${lng}`,
                             resp = await fetch(url),
                             data = await resp.json();
                         displayRawText(data);
@@ -89,28 +89,33 @@
 
             // DATE:
 
-            updateDate(new Date());
-
-            dateInput.onchange = (event) =>
-                (dateElem.innerHTML = event.target.value);
-
-            function updateDate(date) {
-                dateElem.innerHTML = formatDate(date);
+            function formatUTCDateTime(date) {
+                const pad = (num) => ("" + num).padStart(2, "0"),
+                    year = date.getUTCFullYear(),
+                    month = pad(date.getUTCMonth() + 1),
+                    day = pad(date.getUTCDate()),
+                    hours = pad(date.getUTCHours()),
+                    minutes = pad(date.getMinutes());
+                return `${year}-${month}-${day}T${hours}:${minutes}`;
             }
 
-            // 2023-01-09
-            function formatDate(date) {
+            function formatDateTime(date) {
                 const pad = (num) => ("" + num).padStart(2, "0"),
                     year = date.getFullYear(),
                     month = pad(date.getMonth() + 1),
-                    day = pad(date.getDate());
-                return `${year}-${month}-${day}`;
+                    day = pad(date.getDate()),
+                    hours = pad(date.getHours()),
+                    minutes = pad(date.getMinutes());
+                return `${year}-${month}-${day}T${hours}:${minutes}`;
             }
 
-            function handleChangeDate(e) {
-                const date = e.target.value;
-                updateDate(date);
-            }
+            dateElem.innerHTML = formatUTCDateTime(new Date());
+            dateInput.value = formatDateTime(new Date());
+
+            dateInput.onchange = (event) =>
+                (dateElem.innerHTML = formatUTCDateTime(
+                    new Date(event.target.value)
+                ));
         </script>
     </body>
 </html>
