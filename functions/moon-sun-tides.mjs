@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 import { find } from "geo-tz";
+import lune from "lune";
 
 // TODO: add moon data from lune package (not local - "universal")
 // moon data: next full, next new, current percent, phase name
@@ -18,7 +19,10 @@ export default async function getMoonSunTidesData(req, res) {
 }
 
 async function handleLocalData(coords, date) {
-    const { latitude, longitude } = coords,
+    const isCurrent = date.includes("CURRENT");
+    date = date.replace("CURRENT", "");
+    const moon = getMoonData(isCurrent ? new Date() : date, coords),
+        { latitude, longitude } = coords,
         stations = await getNOAAStations(),
         nearestStation = findNearestStation({
             stations,
@@ -26,7 +30,11 @@ async function handleLocalData(coords, date) {
             longitude,
         });
     return {
+        time: isCurrent
+            ? new Date()
+            : makeUTCString(date, getTimezoneOffsetFromCoordinates(coords)),
         coords,
+        moon,
         nearest_NOAA_station: {
             name: nearestStation.name,
             id: +nearestStation.id,
@@ -39,6 +47,51 @@ async function handleLocalData(coords, date) {
             date
         ),
         solar: await getSolarData({ latitude, longitude }, date),
+    };
+}
+
+function getMoonData(date, coords) {
+    let d;
+    if (typeof date === "object") {
+        d = date;
+    } else {
+        const offset = getTimezoneOffsetFromCoordinates(coords),
+            dateString = makeUTCString(date, offset);
+        d = new Date(dateString);
+    }
+    console.log(d);
+    let phases = lune.phase_hunt(d);
+    const phase = lune.phase(d),
+        newMoon = new Date(phases.new_date),
+        nextNewMoon = new Date(phases.nextnew_date),
+        fullMoon = new Date(phases.full_date),
+        result = {
+            phase,
+            nextNewMoon: newMoon > d ? newMoon : nextNewMoon,
+        };
+    if (fullMoon > d) {
+        const data = { ...result, nextFullMoon: fullMoon };
+        return processMoonData(data);
+    }
+    const dayAfterNew = new Date(
+        nextNewMoon.getFullYear(),
+        nextNewMoon.getMonth(),
+        nextNewMoon.getDate() + 1
+    );
+    phases = lune.phase_hunt(dayAfterNew);
+    const data = { ...result, nextFullMoon: phases.full_date };
+    return processMoonData(data);
+}
+
+function processMoonData(data) {
+    const { illuminated } = data.phase,
+        { nextFullMoon, nextNewMoon } = data,
+        status = data.nextNewMoon < data.nextFullMoon ? "waning" : "waxing";
+    return {
+        nextFullMoon,
+        nextNewMoon,
+        percent_illuminated: illuminated * 100,
+        status,
     };
 }
 
