@@ -116,7 +116,7 @@ function getInfoRowHTML(data) {
                             ${data.images
                                 .map(
                                     (url) => `
-                                        <a href="${url}" target="_blank" rel="noreferrer">
+                                        <a href="${url}" target="_blank" rel="noopener">
                                             <img style="display: none;"
                                                 onload="event.target.style.display = 'inline-block';"
                                                 src="${url}" />

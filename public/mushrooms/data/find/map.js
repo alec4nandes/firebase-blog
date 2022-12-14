@@ -6,14 +6,23 @@ export default function makeMap() {
     setLatLngFormValues(initialPos);
     // initial map position: downtown Los Angeles
     map.setCenter(initialPos);
-    map.addListener("click", (e) => {
+    map.addListener("click", handleClick);
+    map.addListener("center_changed", handleCenterChanged);
+
+    function handleClick(e) {
         const { latLng } = e,
             lat = latLng.lat(),
             lng = latLng.lng();
         console.log(lat, lng);
         setLatLngFormValues({ lat, lng });
         map.setCenter(latLng);
-    });
+    }
+
+    function handleCenterChanged(e) {
+        const { lat, lng } = map.getCenter();
+        setLatLngFormValues({ lat: lat(), lng: lng() });
+    }
+
     return map;
 }
 

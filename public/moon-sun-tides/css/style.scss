@@ -1,0 +1,181 @@
+@import "https://api.fontshare.com/v2/css?f[]=switzer@400&f[]=khand@700&display=swap";
+
+body {
+    min-height: 100vh;
+    background-image: linear-gradient(
+        180deg,
+        #0f0f0d 0%,
+        #0e0e0c 58.11%,
+        #6e3708 100%
+    );
+    color: #fae2cd;
+    font-family: "Switzer";
+    font-size: 16px;
+    margin: 0;
+    text-align: center;
+
+    a {
+        color: #d27e38;
+
+        &:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+    }
+
+    h1,
+    h2 {
+        color: #fdd3ac;
+        font-family: "Khand";
+        font-weight: 700;
+        margin: 0;
+        text-shadow: 0px 0px 10px #d27e38;
+    }
+
+    h1 {
+        font-size: 55px;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    header,
+    main {
+        padding: 15px;
+    }
+
+    header {
+        height: 315px;
+        background-image: url(../assets/moons.png);
+        background-position: top -40px center;
+        background-repeat: no-repeat;
+        background-size: 1200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+
+        #lines {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 2px;
+
+            .line {
+                height: 1.8px;
+                background-color: #fdd3ac;
+                box-shadow: 0px 0px 8px 0.25px #ffcf76;
+
+                &:nth-child(1) {
+                    width: 300px;
+                }
+
+                &:nth-child(2) {
+                    width: 200px;
+                }
+
+                &:nth-child(3) {
+                    width: 100px;
+                }
+            }
+        }
+
+        @media only screen and (max-width: 750px) {
+            & {
+                height: 225px;
+                background-position: top -35px center;
+                background-size: 800px;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            & {
+                height: 150px;
+                background-position: top -30px center;
+                background-size: 550px;
+
+                h1 {
+                    font-size: 36px;
+                    line-height: 48px;
+                }
+            }
+        }
+    }
+
+    main {
+        max-width: 600px;
+        margin: auto;
+
+        button {
+            height: 30px;
+            min-width: 200px;
+            appearance: none;
+            background-color: #d27e38;
+            border: 0;
+            color: #492200;
+            font: 18px "Khand", Arial, sans-serif;
+            padding: 0;
+
+            &:hover {
+                background-color: #492200;
+                color: #fae2cd;
+                cursor: pointer;
+            }
+        }
+
+        table {
+            width: 100%;
+            background-color: #d27e38;
+            border-spacing: 4px;
+            box-shadow: 0px 0px 20px rgba(253, 211, 172, 0.75);
+            color: #492200;
+            margin: 50px auto;
+
+            button {
+                width: 100%;
+            }
+
+            tr {
+                th,
+                td {
+                    padding: 3px;
+                }
+
+                th {
+                    background-color: #fdd3ac;
+
+                    &:first-child {
+                        width: 115px;
+                    }
+                }
+
+                td {
+                    background-color: #fae2cd;
+                }
+            }
+        }
+
+        pre {
+            max-width: 100%;
+            width: fit-content;
+            background-color: rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+            display: none;
+            margin: 50px auto 0;
+            overflow: auto;
+            padding: 15px;
+            text-align: left;
+        }
+    }
+
+    footer {
+        height: 100px;
+        background-color: #0e0e0c;
+        color: #fae2cd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 50px;
+    }
+}

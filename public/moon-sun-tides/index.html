@@ -5,29 +5,116 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Moon-Sun-Tides API &mdash; Alec Fernandes</title>
+        <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
-        <p>
-            APIs USED: lune (npm), https://api.tidesandcurrents.noaa.gov,
-            https://api.sunrise-sunset.org
-        </p>
-        <p>
-            sample:
-            https://fern.haus/moon-sun-tides-api/?latitude=34.0488&longitude=-118.2518&date=2022-11-30&time=04:32:09
-        </p>
-        <p>date and time are UTC, not relative to time zone</p>
-        <form>
-            <div>local time: <input type="datetime-local" /></div>
-            <div>UTC time: <span id="datetime"></span></div>
-            <div id="map" style="height: 300px; width: 100%"></div>
-            <div>latitude: <span id="latitude"></span></div>
-            <div>longitude: <span id="longitude"></span></div>
-            <button type="submit">lookup</button>
-        </form>
+        <header>
+            <h1>Moon-Sun-Tides API</h1>
+            <div id="lines">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </header>
+        <main>
+            <p>
+                APIs USED: lune (npm), https://api.tidesandcurrents.noaa.gov,
+                https://api.sunrise-sunset.org
+            </p>
+            <p>date and time are UTC, not relative to time zone</p>
 
-        <button id="local-info-button">or get your local info</button>
+            <table>
+                <tr>
+                    <th colspan="2">sample endpoint</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        https://fern.haus/moon-sun-tides-api/
+                        <br />?<strong>latitude</strong>=34.0488&<strong>longitude</strong>=-118.2518
+                        <br />&<strong>date</strong>=2022-11-30&<strong>time</strong>=16:32:09
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">parameters</th>
+                </tr>
+                <tr>
+                    <th>latitude</th>
+                    <td>The latitude coordinate. <em>(required)</em></td>
+                </tr>
+                <tr>
+                    <th>longitude</th>
+                    <td>The longitude coordinate. <em>(required)</em></td>
+                </tr>
+                <tr>
+                    <th>
+                        date<br /><em style="font-weight: 400">yyyy-mm-dd</em>
+                    </th>
+                    <td>
+                        A specific date in <u>UTC timezone</u> to search
+                        <em>(optional)</em>. If left blank, will default to the
+                        current date and time.
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        time<br /><em style="font-weight: 400">hh:mm:ss</em>
+                    </th>
+                    <td>
+                        A specific time in <u>UTC timezone</u> to search
+                        <em>(optional)</em>. If left blank, will default to 12am
+                        on the date provided, if any.
+                    </td>
+                </tr>
+            </table>
 
-        <pre id="raw-text"></pre>
+            <h2>Test & Play</h2>
+
+            <form>
+                <table>
+                    <tr>
+                        <th>set time (local):</th>
+                        <td><input type="datetime-local" /></td>
+                    </tr>
+                    <tr>
+                        <th>UTC time:</th>
+                        <td id="datetime"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div
+                                id="map"
+                                style="height: 300px; width: 100%"
+                            ></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>latitude</th>
+                        <td id="latitude"></td>
+                    </tr>
+                    <tr>
+                        <th>longitude</th>
+                        <td id="longitude"></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">
+                            <button type="submit">lookup</button>
+                        </th>
+                    </tr>
+                </table>
+            </form>
+
+            <button id="local-info-button">or get your local info</button>
+
+            <pre id="raw-text"></pre>
+        </main>
+
+        <footer>
+            <p>
+                &copy;
+                <a href="/" target="_blank" rel="noopener">Alec Fernandes</a>
+                2023
+            </p>
+        </footer>
 
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRNOo4f2HeGYjzA3zF9yu3Orx_Vc-YBLE"></script>
 
@@ -47,8 +134,7 @@
 
             document.querySelector("form").onsubmit = async (event) => {
                 event.preventDefault();
-                rawTextElem.innerHTML = "Compiling data...";
-                rawTextElem.scrollIntoView({ behavior: "smooth" });
+                initialRawTextLoad();
                 try {
                     const lat = latElem.innerHTML,
                         lng = lngElem.innerHTML,
@@ -62,13 +148,19 @@
                 }
             };
 
+            function initialRawTextLoad() {
+                rawTextElem.innerHTML = "Compiling data...";
+                rawTextElem.style.display = "block";
+                rawTextElem.scrollIntoView({ behavior: "smooth" });
+            }
+
             function displayRawText(data) {
                 rawTextElem.innerHTML = JSON.stringify(data, null, 4);
                 rawTextElem.scrollIntoView({ behavior: "smooth" });
             }
 
             document.getElementById("local-info-button").onclick = () => {
-                rawTextElem.innerHTML = "Compiling data...";
+                initialRawTextLoad();
                 navigator.geolocation.getCurrentPosition(
                     async (pos) => {
                         const { latitude: lat, longitude: lng } = pos.coords;

@@ -6,13 +6,22 @@ function makeMap(latElem, lngElem) {
     });
     // initial map position: downtown Los Angeles
     map.setCenter(initialPos);
-    map.addListener("click", (e) => {
+    map.addListener("click", handleClick);
+    map.addListener("center_changed", handleCenterChanged);
+
+    function handleClick(e) {
         const { latLng } = e,
             lat = latLng.lat(),
             lng = latLng.lng();
         setLatLngElems(latElem, lngElem, lat, lng);
         map.setCenter(latLng);
-    });
+    }
+
+    function handleCenterChanged(e) {
+        const { lat, lng } = map.getCenter();
+        setLatLngElems(latElem, lngElem, lat(), lng());
+    }
+
     return map;
 }
 

@@ -447,7 +447,7 @@ function getHtml(data, postId, to) {
         <p>
             <a
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener"
                 href="${baseUrl}/post/?id=${postId}"
             >
                 read at ${baseUrl}
@@ -470,10 +470,10 @@ function getHtml(data, postId, to) {
         </div>
         <p>
             <a href="${baseUrl}"
-            target="_blank" rel="noreferrer">
+            target="_blank" rel="noopener">
                 read more</a> |
             <a href="${baseUrl}/unsubscribe/?email=${to}"
-            target="_blank" rel="noreferrer">
+            target="_blank" rel="noopener">
                 click here to unsubscribe</a>
         </p>`;
 }

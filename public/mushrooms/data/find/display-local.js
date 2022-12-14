@@ -20,7 +20,7 @@ function finderImages(mushroomInfo) {
             ${images
                 .map(
                     (image) => `
-                <a href=${image.original_url} target="_blank" rel="noreferrer"><img
+                <a href=${image.original_url} target="_blank" rel="noopener"><img
                     class="mushroom-image"
                     src=${image.original_url}
                     alt="most likely the fungus ${consensus.name}"
@@ -47,10 +47,10 @@ function finderCaption(mushroomInfo) {
         <div class="caption">
             <p>
                 This is
-                <a href=${wikiUrl} target="_blank" rel="noreferrer"><em>${name}</em></a>,
+                <a href=${wikiUrl} target="_blank" rel="noopener"><em>${name}</em></a>,
                 according to members of
                 <strong>MushroomObserver.org</strong>
-                (<a href=${pageUrl} target="_blank" rel="noreferrer">view page</a>)
+                (<a href=${pageUrl} target="_blank" rel="noopener">view page</a>)
             </p>
             ${metaData(mushroomInfo)}
         </div>`;
@@ -61,7 +61,7 @@ function metaData({ userID, username, dateTaken, location }) {
     return `
         <div class="finder-meta-data">
             &copy;
-            <a href=${userUrl} target="_blank" rel="noreferrer">${username}</a>
+            <a href=${userUrl} target="_blank" rel="noopener">${username}</a>
             on ${dateTaken} in ${location.name}
         </div>`;
 }

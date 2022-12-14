@@ -26,6 +26,6 @@ console.log(`${files.length} images`);
 
 [...document.getElementsByClassName("container")].forEach((elem, i) => {
     const url = `/assets/gallery/${files[i].split(".").join("-min.")}`;
-    elem.innerHTML = `<a href="${url}" target="_blank" rel="noreferrer">
+    elem.innerHTML = `<a href="${url}" target="_blank" rel="noopener">
             <img src="${url}" alt="" /> </a>`;
 });
