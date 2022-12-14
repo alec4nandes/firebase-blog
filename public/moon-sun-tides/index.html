@@ -71,8 +71,7 @@
                 rawTextElem.innerHTML = "Compiling data...";
                 navigator.geolocation.getCurrentPosition(
                     async (pos) => {
-                        const { latitude: lat, longitude: lng } = pos.coords,
-                            date = formatDateTime(new Date());
+                        const { latitude: lat, longitude: lng } = pos.coords;
                         setLatLngElems(latElem, lngElem, lat, lng);
                         dateElem.innerHTML = formatUTCDateTime(new Date());
                         dateInput.value = formatDateTime(new Date());
