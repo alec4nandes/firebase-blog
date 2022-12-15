@@ -1,5 +1,5 @@
 .home {
-  height: 100vh;
+  min-height: 100vh;
   background-image: url("../assets/ocean-gliderport-background.jpg");
   background-position: top -100px left 50%;
   background-size: auto calc(100% + 100px);
@@ -20,7 +20,7 @@
   text-align: center;
 }
 .home .half.top {
-  height: 55%;
+  height: 55vh;
   gap: 10px;
   justify-content: flex-end;
   padding: 20px;
@@ -41,6 +41,16 @@
 .home .half.bottom {
   gap: 20px;
   padding: 20px 0;
+}
+.home .half.bottom #view-projects-button {
+  background-color: #004066;
+  border: 1px solid #fff;
+  color: #fff;
+  position: relative;
+  top: -19px;
+}
+.home .half.bottom #view-projects-button:hover {
+  background-color: #002337;
 }
 .home .half.bottom nav {
   width: 100%;
@@ -69,7 +79,7 @@
   gap: 10px;
 }
 .home .half.bottom .search-container .scroll-for-more {
-  height: 100%;
+  height: 42px;
 }
 .home .half.bottom .search-container .scroll-for-more,
 .home .half.bottom .search-container .scroll-for-more span {

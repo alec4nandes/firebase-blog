@@ -31,6 +31,9 @@
                     </form>
                     <div class="scroll-for-more"><span>▼</span></div>
                 </div>
+                <button id="view-projects-button" onclick="handleViewProjects()">
+                    view projects
+                </button>
             </div>
         </header>
         {{> navmenu}}
@@ -43,6 +46,12 @@ preformatted <xmp> code blocks: --}}
             <a href="/">home</a>
             <a href="/admin">admin</a>
         </footer>
+        <script>
+            function handleViewProjects() {
+                const navElem = document.querySelector(".subscribe-container nav");
+                navElem.className = "open";
+            }
+        </script>
         <script src="/scripts.js"></script>
         <script src="/bundle.js"></script>
     </body>
