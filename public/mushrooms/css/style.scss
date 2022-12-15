@@ -214,9 +214,12 @@ body {
     }
 
     footer {
-        min-height: 120px;
         width: 100%;
-        background-color: rgba(190, 156, 180, 0.8);
+        background-image: linear-gradient(
+            to right,
+            rgba(204, 204, 204, 0.8),
+            rgba(190, 156, 180, 0.8)
+        );
         box-sizing: border-box;
         color: #222;
         display: flex;
