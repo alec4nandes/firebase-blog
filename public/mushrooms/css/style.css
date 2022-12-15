@@ -178,21 +178,27 @@ body .info-row > div:not(.images) {
   text-align: left;
 }
 body footer {
-  height: 120px;
+  min-height: 120px;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  color: #eee;
+  background-color: rgba(190, 156, 180, 0.8);
+  box-sizing: border-box;
+  color: #222;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 7px;
+  padding: 15px;
   position: absolute;
   bottom: 0;
+}
+body footer a {
+  font-weight: bold;
 }
 body footer hr {
   width: 200px;
 }
 body footer p {
   margin: 0;
+  text-align: center;
 }/*# sourceMappingURL=style.css.map */
