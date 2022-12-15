@@ -33,9 +33,14 @@ body header,
 body main {
   padding: 15px;
 }
+body .line {
+  height: 1.8px;
+  background-color: #fdd3ac;
+  box-shadow: 0px 0px 8px 0.25px #ffcf76;
+}
 body header {
   height: 315px;
-  background-image: url(../assets/moons.png);
+  background-image: url(../assets/moons-min.png);
   background-position: top -40px center;
   background-repeat: no-repeat;
   background-size: 1200px;
@@ -49,11 +54,6 @@ body header #lines {
   flex-direction: column;
   gap: 14px;
   margin-top: 2px;
-}
-body header #lines .line {
-  height: 1.8px;
-  background-color: #fdd3ac;
-  box-shadow: 0px 0px 8px 0.25px #ffcf76;
 }
 body header #lines .line:nth-child(1) {
   width: 300px;
@@ -103,6 +103,13 @@ body main button:hover {
   color: #fae2cd;
   cursor: pointer;
 }
+body main ul {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+  text-align: left;
+}
 body main table {
   width: 100%;
   background-color: #d27e38;
@@ -147,5 +154,14 @@ body footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  gap: 7px;
   margin-top: 50px;
+}
+body footer hr {
+  width: 200px;
+  border: 0;
+}
+body footer p {
+  margin: 0;
 }/*# sourceMappingURL=style.css.map */

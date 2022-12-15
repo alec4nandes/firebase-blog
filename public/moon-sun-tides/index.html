@@ -4,7 +4,48 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <title>Moon-Sun-Tides API &mdash; Alec Fernandes</title>
+
+        <meta name="type" property="og:type" content="website" />
+        <meta
+            name="title"
+            property="og:title"
+            content="Moon-Sun-Tides API &mdash; Alec Fernandes"
+        />
+        <meta
+            name="url"
+            property="og:url"
+            content="https://fern.haus/moon-sun-tides"
+        />
+        <meta
+            name="description"
+            property="og:description"
+            content="Fetch data about the moon, sun and tides in the US, all in one place!"
+        />
+        <meta
+            name="image"
+            property="og:image"
+            content="https://fern.haus/moon-sun-tides/assets/moons-min.png"
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@alec4nandes" />
+        <meta
+            name="twitter:title"
+            content="Moon-Sun-Tides API &mdash; Alec Fernandes"
+        />
+        <meta
+            name="twitter:description"
+            content="Fetch data about the moon, sun and tides in the US, all in one place!"
+        />
+        <meta
+            name="twitter:image"
+            content="https://fern.haus/moon-sun-tides/assets/moons-min.png"
+        />
+
+        <link rel="icon" type="image/x-icon" href="/assets/logo/favicon.ico" />
+
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
@@ -18,10 +59,62 @@
         </header>
         <main>
             <p>
-                APIs USED: lune (npm), https://api.tidesandcurrents.noaa.gov,
-                https://api.sunrise-sunset.org
+                A while ago I needed an API for an astronomical dashboard I
+                designed as a fun bonus-feature of my
+                <a href="/arcade" target="_blank" rel="noopener"
+                    >Kings Corner</a
+                >
+                game. This widget showed the dates of the next full and new
+                moons, sunrise and sunset times, and even data on local tides
+                for those in the US living near the coast. However, I was
+                surprised how much digging I had to do to find all this data.
             </p>
-            <p>date and time are UTC, not relative to time zone</p>
+            <p>
+                Eventually I found three different API endpoints to build the
+                single data object I needed for that project. These sources of
+                data are:
+            </p>
+            <ul>
+                <li>
+                    <a
+                        href="https://sunrise-sunset.org/api"
+                        target="_blank"
+                        rel="noopener"
+                        >sunrise-sunset.org/api</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="https://www.npmjs.com/package/lune"
+                        target="_blank"
+                        rel="noopener"
+                        >lune (npm)</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="https://tidesandcurrents.noaa.gov"
+                        target="_blank"
+                        rel="noopener"
+                        >tidesandcurrents.noaa.gov</a
+                    >
+                </li>
+            </ul>
+            <p>
+                All of these yielded excellent results. After much parsing and
+                standardizing the data
+                <em>(i.e. all timestamps are now in the UTC timezone)</em>, I
+                decided to share it as my own custom API!
+            </p>
+            <p>
+                Below is a sample endpoint and an explanation of its parameters,
+                as well as what it returns. There is also a map interface for
+                testing at the bottom of this page. For any questions about this
+                <a href="/" target="_blank" rel="noopener"
+                    >or any of my other projects</a
+                >, please send me an email at
+                <a href="mailto:al@fern.haus">al@fern.haus</a>.
+            </p>
 
             <table>
                 <tr>
@@ -63,6 +156,38 @@
                         A specific time in <u>UTC timezone</u> to search
                         <em>(optional)</em>. If left blank, will default to 12am
                         on the date provided, if any.
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">API response</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <strong><u>general data</u>:</strong> a timestamp* of
+                        the declared or default date and time parameters and the
+                        declared coordinates.
+                        <br />
+                        <strong><u>moon</u>:</strong> times* of the next full
+                        and new moons, the percentage of the moon's
+                        illumination, and the status of the moon (either
+                        "waxing" or "waning").
+                        <br />
+                        <strong><u>sun</u>:</strong> sunrise, sunset, and solar
+                        noon times* along with the day's length in seconds.
+                        <br />
+                        <strong><u>tides</u>:</strong> details about the nearest
+                        NOAA station and the times* of the next high and low
+                        tides.
+                        <br />
+                        <br />
+                        Play around with the interface below to better
+                        understand how the data is structured.
+                        <br />
+                        <br />
+                        <em
+                            ><strong>* <u>note</u>:</strong> all returned times
+                            are in the UTC timezone.</em
+                        >
                     </td>
                 </tr>
             </table>
@@ -113,6 +238,23 @@
                 &copy;
                 <a href="/" target="_blank" rel="noopener">Alec Fernandes</a>
                 2023
+            </p>
+            <hr class="line" />
+            <p>
+                header photo by
+                <a
+                    href="https://unsplash.com/@tegethoff?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+                    target="_blank"
+                    rel="noopener"
+                    >Mark Tegethoff</a
+                >
+                on
+                <a
+                    href="https://unsplash.com/s/photos/moon-over-ocean?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+                    target="_blank"
+                    rel="noopener"
+                    >Unsplash</a
+                >
             </p>
         </footer>
 

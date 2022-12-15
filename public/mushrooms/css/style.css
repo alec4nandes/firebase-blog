@@ -6,6 +6,8 @@ body {
   font-family: "General Sans", Arial, Helvetica, sans-serif;
   font-size: 16px;
   margin: 0;
+  padding-bottom: 120px;
+  position: relative;
 }
 body:not(#home) {
   background-image: url(../assets/sketches-bg-min.png);
@@ -174,4 +176,23 @@ body .info-row > div.images a img {
 }
 body .info-row > div:not(.images) {
   text-align: left;
+}
+body footer {
+  height: 120px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 7px;
+  position: absolute;
+  bottom: 0;
+}
+body footer hr {
+  width: 200px;
+}
+body footer p {
+  margin: 0;
 }/*# sourceMappingURL=style.css.map */

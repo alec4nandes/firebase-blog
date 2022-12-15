@@ -45,9 +45,15 @@ body {
         padding: 15px;
     }
 
+    .line {
+        height: 1.8px;
+        background-color: #fdd3ac;
+        box-shadow: 0px 0px 8px 0.25px #ffcf76;
+    }
+
     header {
         height: 315px;
-        background-image: url(../assets/moons.png);
+        background-image: url(../assets/moons-min.png);
         background-position: top -40px center;
         background-repeat: no-repeat;
         background-size: 1200px;
@@ -63,10 +69,6 @@ body {
             margin-top: 2px;
 
             .line {
-                height: 1.8px;
-                background-color: #fdd3ac;
-                box-shadow: 0px 0px 8px 0.25px #ffcf76;
-
                 &:nth-child(1) {
                     width: 300px;
                 }
@@ -124,6 +126,12 @@ body {
             }
         }
 
+        ul {
+            width: fit-content;
+            margin: auto;
+            text-align: left;
+        }
+
         table {
             width: 100%;
             background-color: #d27e38;
@@ -176,6 +184,17 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
+        gap: 7px;
         margin-top: 50px;
+
+        hr {
+            width: 200px;
+            border: 0;
+        }
+
+        p {
+            margin: 0;
+        }
     }
 }
