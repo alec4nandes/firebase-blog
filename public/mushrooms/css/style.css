@@ -8,6 +8,8 @@ body {
   margin: 0;
   padding-bottom: 120px;
   position: relative;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 body:not(#home) {
   background-image: url(../assets/sketches-bg-min.png);

@@ -1,8 +1,6 @@
 // * 60 for minutes
-const workTime = 25 * 60,
-    breakTime = 5 * 60,
-    breakStartBeep = new Audio("./audio/break-start-beep.mp3"),
-    breakEndBeep = new Audio("./audio/break-end-beep.mp3"),
+const workTime = 3, // 25 * 60,
+    breakTime = 2, // 5 * 60,
     timeElem = document.getElementById("time"),
     overallTimeElem = document.getElementById("overall-time");
 
@@ -25,8 +23,21 @@ const displayOverallTime = (overallTime) =>
     `OVERALL TIME: ${timeFormatter(overallTime)}`;
 
 function startTimerHandler() {
+    /* Mobile workaround:
+        Mobile browsers will not play sounds repeatedly with setInterval.
+        Create arrays of Audio objects to play separately.
+    */
+    const breakBeeps = [],
+        workBeeps = [];
+    for (let i = 0; i < 24; i++) {
+        breakBeeps.push(new Audio("./audio/break-start-beep.mp3"));
+        workBeeps.push(new Audio("./audio/break-end-beep.mp3"));
+    }
+    workBeeps.pop();
+
     if (!interval) {
-        interval = setInterval(() => {
+        let count = -1;
+        interval = setInterval(async () => {
             time++;
             overallTime++;
             timeElem.innerHTML = displayTime(time, isBreak);
@@ -34,13 +45,20 @@ function startTimerHandler() {
             const isBreakStart = time && !(time % workTime),
                 isBreakEnd = isBreak && !(time % breakTime);
             if (isBreakStart) {
-                breakStartBeep.play();
+                count++;
+                await breakBeeps[count].play();
                 alert("BREAK TIME");
                 isBreak = true;
                 time = 0;
                 timeElem.classList.add("break");
             } else if (isBreakEnd) {
-                breakEndBeep.play();
+                if (workBeeps[count]) {
+                    await workBeeps[count].play();
+                } else {
+                    alert("TIMER HAS RUN FOR 12 HOURS. PLEASE REFRESH PAGE.");
+                    clearInterval(interval);
+                    return;
+                }
                 alert("BACK TO WORK");
                 isBreak = false;
                 time = 0;

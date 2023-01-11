@@ -1,0 +1,36 @@
+.coin {
+    height: 100px;
+    width: 100px;
+    position: relative;
+    transform-style: preserve-3d;
+
+    .side {
+        height: 100%;
+        width: 100%;
+        animation: spin 0.75s infinite;
+        border-radius: 50%;
+        position: absolute;
+
+        &.back {
+            background-color: red;
+            transform: translateZ(0.1px);
+        }
+
+        &.front {
+            background-color: blue;
+            transform: translateZ(-0.1px);
+        }
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotateX(0deg);
+    }
+    50% {
+        transform: rotateX(180deg);
+    }
+    100% {
+        transform: rotateХ(360deg);
+    }
+}

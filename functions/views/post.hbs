@@ -14,7 +14,7 @@
         {{> navmenu}}
         <main>
             <article>
-                <h2 class="title">{{post.title}}</h2>
+                <h2 class="title">{{{post.title}}}</h2>
                 {{#if is_draft}}
                     <div>
                         <a href="/admin/?id={{post.post_id}}&type=drafts">
@@ -22,7 +22,7 @@
                         </a>
                     </div>
                 {{/if}}
-                <h3 class="subtitle">{{post.subtitle}}</h3>
+                <h3 class="subtitle">{{{post.subtitle}}}</h3>
                 <p class="date-posted">{{post.date}}</p>
                 <figure>
                     <img src="{{post.feature_image}}" />

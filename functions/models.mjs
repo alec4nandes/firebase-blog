@@ -46,7 +46,9 @@ async function getPostsWithTag(tag) {
 async function getPostsContaining(query) {
     const posts = await getPublishedPosts();
     return posts.filter((post) =>
-        Object.values(post)
+        Object.entries(post)
+            .filter(([key]) => key !== "feature_image")
+            .map(([_, val]) => val)
             .filter(
                 (value) => typeof value === "string" || Array.isArray(value)
             )

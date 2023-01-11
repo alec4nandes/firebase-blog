@@ -1,5 +1,5 @@
 import fetch from "node-fetch";
-import { find } from "geo-tz";
+// import { find } from "geo-tz";
 import lune from "lune";
 
 export default async function getMoonSunTidesData(req, res) {
@@ -45,7 +45,7 @@ async function handleLocalData(coords, date, time) {
             latitude: nearestStation.lat,
             longitude: nearestStation.lng,
         },
-        tides: await getTidesData({ latitude, longitude }, nearestStation, d),
+        tides: await getTidesData(nearestStation, d),
         solar: await getSolarData({ latitude, longitude }, d),
     };
 }
@@ -76,11 +76,12 @@ function getMoonData(date) {
 
 function processMoonData(data) {
     const { illuminated } = data.phase,
-        { nextFullMoon: next_full_moon, nextNewMoon: next_new_moon } = data,
-        status = data.nextNewMoon < data.nextFullMoon ? "waning" : "waxing";
+        { nextFullMoon, nextNewMoon } = data,
+        status = data.nextNewMoon < data.nextFullMoon ? "waning" : "waxing",
+        parseResult = (dateTime) => new Date(dateTime).toUTCString();
     return {
-        next_full_moon,
-        next_new_moon,
+        next_full_moon: parseResult(nextFullMoon),
+        next_new_moon: parseResult(nextNewMoon),
         percent_illuminated: illuminated * 100,
         status,
     };
@@ -119,46 +120,47 @@ function findNearestStation({ stations, latitude, longitude }) {
     return nearestStation;
 }
 
-async function getTidesData({ latitude, longitude }, nearestStation, date) {
+async function getTidesData(nearestStation, date) {
     // scanning from yesterday to tomorrow to avoid any timezone issues
-    const url = `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=${date.replaceAll(
-            "-",
-            ""
-        )}&range=48&product=predictions&datum=mllw&interval=hilo&format=json&units=metric&time_zone=lst_ldt&station=${
-            nearestStation.id
-        }`,
+    const parsedDate = date
+            .split("-")
+            .map((str, i) => (i ? str.padStart(2, "0") : str))
+            .join(""),
+        url = `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=${parsedDate}&range=48&product=predictions&datum=mllw&interval=hilo&format=json&units=metric&time_zone=gmt&station=${nearestStation.id}`,
         response = await fetch(url),
         tides = await response.json(),
-        offset = getTimezoneOffsetFromCoordinates({ latitude, longitude }),
+        // UTC conversion not needed with time_zone=gmt parameter
+        // offset = getTimezoneOffsetFromCoordinates({ latitude, longitude }),
         parseTides = (type) =>
             tides.predictions
                 .filter((tide) => tide.type === type)
                 .slice(0, 2)
-                .map((tide) => makeUTCString(tide.t, offset));
+                // .map((tide) => makeUTCString(tide.t, offset));
+                .map((tide) => new Date(tide.t + ":00 GMT").toUTCString());
     return {
         high_tides: parseTides("H"),
         low_tides: parseTides("L"),
     };
 }
 
-function getTimezoneOffsetFromCoordinates({ latitude, longitude }) {
-    const timeZone = find(latitude, longitude),
-        local = new Date().toLocaleString("en-US", {
-            timeZone,
-        }),
-        msDifference = new Date(local) - new Date(),
-        secondsDifference = msDifference / 1000,
-        hoursDifference = secondsDifference / 60 / 60;
-    return ~~hoursDifference;
-}
+// function getTimezoneOffsetFromCoordinates({ latitude, longitude }) {
+//     const timeZone = find(latitude, longitude),
+//         local = new Date().toLocaleString("en-US", {
+//             timeZone,
+//         }),
+//         msDifference = new Date(local) - new Date(),
+//         secondsDifference = msDifference / 1000,
+//         hoursDifference = secondsDifference / 60 / 60;
+//     return ~~hoursDifference;
+// }
 
-function makeUTCString(localTime, offset) {
-    return new Date(
-        `${localTime} GMT${offset && offset < 0 ? "-" : "+"}${
-            offset ? Math.abs(offset) : 0
-        }`
-    ).toUTCString();
-}
+// function makeUTCString(localTime, offset) {
+//     return new Date(
+//         `${localTime} GMT${offset && offset < 0 ? "-" : "+"}${
+//             offset ? Math.abs(offset) : 0
+//         }`
+//     ).toUTCString();
+// }
 
 async function getSolarData({ latitude, longitude }, date) {
     const response = await fetch(
