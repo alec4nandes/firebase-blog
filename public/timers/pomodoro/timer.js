@@ -1,6 +1,6 @@
 // * 60 for minutes
-const workTime = 3, // 25 * 60,
-    breakTime = 2, // 5 * 60,
+const workTime = 25 * 60,
+    breakTime = 5 * 60,
     timeElem = document.getElementById("time"),
     overallTimeElem = document.getElementById("overall-time");
 
