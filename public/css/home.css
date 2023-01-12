@@ -6,6 +6,7 @@ body {
 
 body {
   min-height: 100vh;
+  background-color: #ddd;
   display: flex;
   margin: 0;
 }
@@ -29,70 +30,129 @@ body header h1 {
   text-align: center;
 }
 body main {
+  color: #444;
+  display: flex;
+  align-items: center;
   flex: 1;
+}
+body main #main-container {
+  max-height: 100%;
+  width: 100%;
+  box-sizing: border-box;
   overflow: auto;
   padding: 10px;
 }
-body main section {
+body main #main-container section {
   padding: 20px 0;
 }
-body main section h2 {
+body main #main-container section h2 {
   margin-top: 0;
 }
-body main section .content-bubble {
-  border: 1px solid #ddd;
+body main #main-container section .content-bubble {
+  background-color: #eee;
   border-radius: 15px;
+  box-shadow: 5px 5px 5px rgba(50, 50, 50, 0.5);
   display: flex;
 }
-body main section .content-bubble.post .feature-image {
+body main #main-container section .content-bubble.post .feature-image {
   border-radius: 15px 0 0 15px;
 }
-body main section .content-bubble.gallery .content {
+body main #main-container section .content-bubble.gallery .content {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-body main section .content-bubble.gallery .feature-image {
-  border-radius: 0 15px 15px 0;
-}
-body main section .content-bubble .content {
-  flex: 1;
-  padding: 10px;
-}
-body main section .content-bubble .content * {
   margin: 0;
 }
-body main section .content-bubble .feature-image {
-  height: 100px;
-  width: 100px;
+body main #main-container section .content-bubble.gallery .feature-image {
+  height: 10vw;
+  border-radius: 0 15px 15px 0;
+}
+body main #main-container section .content-bubble .content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+}
+body main #main-container section .content-bubble .content * {
+  margin: 0;
+}
+body main #main-container section .content-bubble .feature-image {
+  height: auto;
+  min-height: 6vw;
+  width: 15vw;
   background-position: center;
   background-size: cover;
 }
-body main section #projects {
+body main #main-container section #projects {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
 }
-body main section #projects div {
+body main #main-container section #projects > a {
+  color: #fff;
+  text-decoration: none;
+}
+body main #main-container section #projects > a:hover {
+  opacity: 0.5;
+}
+body main #main-container section #projects > a > div {
   height: 100px;
   width: 100px;
+  background-color: #111;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px rgba(50, 50, 50, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+body main #main-container section #projects > a > div .project-image {
   background-position: center;
-  background-size: cover;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  border-radius: 10px 10px 0 0;
+  flex: 1;
+}
+body main #main-container section #projects > a > div span {
+  width: 100%;
+  background-color: #333;
+  border-radius: 0 0 10px 10px;
+  text-align: center;
 }
 body footer {
   width: 16.667%;
   background-color: #46697d;
   display: flex;
   flex-direction: column;
+  text-align: center;
+}
+body footer section:not(#tags) {
+  box-sizing: border-box;
+  padding: 10px;
+}
+body footer section:not(#tags) * {
+  margin: 0;
+  padding: 0;
 }
 body footer input {
   width: 100%;
 }
 body footer #tags {
   background-color: #5d8094;
+  display: flex;
   flex: 1;
+  flex-direction: column;
   overflow: auto;
+  padding-bottom: 20px;
+}
+body footer #tags ul {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
 }
 
 @media only screen and (max-width: 1100px) {
@@ -123,12 +183,26 @@ body footer {
   body main {
     overflow: visible;
   }
-  body main #latest-post #latest-pic {
-    height: 150px;
-    width: 150px;
+  body main #main-container section {
+    padding: 20px 0;
+  }
+  body main #main-container section .content-bubble.post .feature-image {
+    height: auto;
+    width: 40vw;
+  }
+  body main #main-container section .content-bubble.gallery .feature-image {
+    height: 30vw;
+    width: 40vw;
+  }
+  body main #main-container section h2 {
+    margin-top: 0;
+  }
+  body footer input {
+    width: initial;
   }
   body footer #tags ul {
     display: inline-flex;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 1px 5px;
     justify-content: center;
