@@ -68,19 +68,21 @@ function setCDNHeaders(res) {
 
 app.get("/", function (req, res) {
     setCDNHeaders(res);
-    getPublishedPosts().then((posts) =>
-        res.render("home", {
-            latest_post: { ...posts[0], date: formatDate(posts[0].date) },
-            projects: posts
-                .filter((post) => post.tags.includes("projects"))
-                .map((post) => ({
-                    post_id: post.post_id,
-                    name: post.post_id.replaceAll("-", " "),
-                    image: post.feature_image,
-                })),
-            tags: getAllTags(posts),
-        })
-    );
+    getPublishedPosts()
+        .then((posts) => formatDatesDescending(posts))
+        .then((posts) =>
+            res.render("home", {
+                latest_post: posts[0],
+                projects: posts
+                    .filter((post) => post.tags.includes("projects"))
+                    .map((post) => ({
+                        post_id: post.post_id,
+                        name: post.post_id.replaceAll("-", " "),
+                        image: post.feature_image,
+                    })),
+                tags: getAllTags(posts),
+            })
+        );
 });
 
 app.get("/blog", function (req, res) {
