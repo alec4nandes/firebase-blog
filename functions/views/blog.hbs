@@ -10,21 +10,7 @@
         <link rel="stylesheet" href="/css/article.css" />
     </head>
     <body class="preload">
-        <header class="small-header-container">
-            <div class="small-header">
-                <h1><a href="/">Alec Fernandes</a></h1>
-                <h2>{{search_type}}: {{query}}</h2>
-                {{!-- <div class="all-tags">
-                    related tags:
-                    {{#each top_tags}}{{#if @index}}, {{/if}}<a
-                            href="/search/?tag={{this}}"
-                        >{{this}}</a>{{/each}}
-                </div> --}}
-                <form class="search-form searching" action="/search/">
-                    <input type="text" name="query" /><button>search</button>
-                </form>
-            </div>
-        </header>
+        {{> smallheader}}
         {{> navmenu}}
         <main>
 {{!-- no white space before this partial in case there are
@@ -35,6 +21,12 @@ preformatted <xmp> code blocks: --}}
             <a href="/">home</a>
             <a href="/admin">admin</a>
         </footer>
+        <script>
+            function handleViewProjects() {
+                const navElem = document.querySelector(".subscribe-container nav");
+                navElem.className = "open";
+            }
+        </script>
         <script src="/scripts.js"></script>
         <script src="/bundle.js"></script>
     </body>

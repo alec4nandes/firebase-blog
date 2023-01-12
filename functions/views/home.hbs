@@ -3,55 +3,82 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        {{{meta_tags}}}
-        <link rel="icon" type="image/x-icon" href="/assets/logo/favicon.ico" />
-        <link rel="stylesheet" href="/css/style.css" />
-        <link rel="stylesheet" href="/css/header-menu.css" />
-        <link rel="stylesheet" href="/css/article.css" />
+        <title>Document</title>
+        <link rel="stylesheet" href="/css/home.css" />
     </head>
-    <body class="preload">
-        <header class="home">
-            <div class="top half">
-                <h1>Alec Fernandes</h1>
-                <h2>modern mindful code</h2>
-            </div>
-            <div class="bottom half">
-                <nav>
-                    <h3>tags:
-                        {{#each top_tags}}{{#if @index}} // {{/if}}<a
-                                href="/search/?tag={{this}}"
-                            >{{this}}</a>{{/each}}
-                    </h3>
-                </nav>
-                <div class="search-container">
-                    <form class="search-form" action="/search/">
-                        <input type="text" name="query" /><button>
-                            search
-                        </button>
-                    </form>
-                    <div class="scroll-for-more"><span>▼</span></div>
-                </div>
-                <button id="view-projects-button" onclick="handleViewProjects()">
-                    view projects
-                </button>
-            </div>
+    <body>
+        <header>
+            <h1>Alec Fernandes</h1>
         </header>
-        {{> navmenu}}
         <main>
-{{!-- no white space before this partial in case there are
-preformatted <xmp> code blocks: --}}
-{{> multipost}}
+            <section>
+                <h2>Latest Post <a href="./blog">(read all)</a></h2>
+                <div class="content-bubble post">
+                    <div
+                        class="feature-image"
+                        style="
+                            background-image: url('{{latest_post.feature_image}}');
+                        "
+                    ></div>
+                    <div class="content">
+                        <h3>{{latest_post.title}}</h3>
+                        <h4>{{latest_post.subtitle}}</h4>
+                        <p class="date-posted">{{latest_post.date}}</p>
+                        <p><a href="./blog">(read more)</a></p>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2>Projects</h2>
+                <div id="projects">
+                    {{#each projects}}
+                        <a href="/post/?id={{this.post_id}}">
+                            <div
+                                style="background-image: url('{{this.image}}');"
+                            >{{this.name}}</div>
+                        </a>
+                    {{/each}}
+                </div>
+            </section>
+            <section>
+                <div class="content-bubble gallery">
+                    <div class="content">
+                        <a href="/gallery">View Gallery</a>
+                    </div>
+                    <div
+                        class="feature-image"
+                        style="
+                            background-image: url('/assets/gallery/house-of-loud-min.gif');
+                        "
+                    ></div>
+                </div>
+            </section>
         </main>
         <footer>
-            <a href="/">home</a>
-            <a href="/admin">admin</a>
+            <section>
+                <form class="search-form" action="/search/">
+                    <input type="text" name="query" /><button>search</button>
+                </form>
+            </section>
+            <section id="tags">
+                <h2>tags</h2>
+                <ul>
+                    {{#each tags}}
+                        <li>
+                            <a href="/search/?tag={{this}}">{{this}}</a>
+                        </li>
+                    {{/each}}
+                </ul>
+            </section>
+            <section>
+                <p>get new posts by email:</p>
+                <form class="subscribe-form">
+                    <input type="email" name="email" placeholder="email" />
+                    <button>subscribe</button>
+                </form>
+            </section>
         </footer>
-        <script>
-            function handleViewProjects() {
-                const navElem = document.querySelector(".subscribe-container nav");
-                navElem.className = "open";
-            }
-        </script>
+
         <script src="/scripts.js"></script>
         <script src="/bundle.js"></script>
     </body>

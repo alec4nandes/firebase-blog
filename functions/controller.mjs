@@ -68,7 +68,24 @@ function setCDNHeaders(res) {
 
 app.get("/", function (req, res) {
     setCDNHeaders(res);
-    getPublishedPosts().then((posts) => renderHome(res, posts));
+    getPublishedPosts().then((posts) =>
+        res.render("home", {
+            latest_post: { ...posts[0], date: formatDate(posts[0].date) },
+            projects: posts
+                .filter((post) => post.tags.includes("projects"))
+                .map((post) => ({
+                    post_id: post.post_id,
+                    name: post.post_id.replaceAll("-", " "),
+                    image: post.feature_image,
+                })),
+            tags: getAllTags(posts),
+        })
+    );
+});
+
+app.get("/blog", function (req, res) {
+    setCDNHeaders(res);
+    getPublishedPosts().then((posts) => renderBlog(res, posts));
 });
 
 app.get("/search", function (req, res) {
@@ -269,9 +286,9 @@ app.get("*", function (req, res) {
 
 // SERVER RENDER FUNCTIONS
 
-function renderHome(res, posts) {
+function renderBlog(res, posts) {
     const all_tags = getAllTags(posts);
-    res.render("home", {
+    res.render("blog", {
         posts: formatDatesDescending(posts),
         all_tags,
         top_tags: all_tags,
@@ -284,9 +301,9 @@ async function renderSearch(res, posts, search_type, query) {
     res.render("search", {
         posts: formatDatesDescending(posts),
         all_tags: getAllTags(await getPublishedPosts()),
-        top_tags: getAllTags(posts),
+        // top_tags: getAllTags(posts),
         projects: getProjectsData(),
-        search_type,
+        search_type: search_type === "query" ? "search" : search_type,
         query,
         meta_tags: makeMetaTags(posts),
     });
@@ -333,7 +350,9 @@ async function verifyUser(req) {
 }
 
 function getAllTags(posts) {
-    return [...new Set(posts.map((post) => post.tags).flat())].sort();
+    return [...new Set(posts.map((post) => post.tags).flat())].sort((a, b) =>
+        a.toLowerCase().localeCompare(b.toLowerCase())
+    );
 }
 
 function getProjectsData() {

@@ -1,0 +1,146 @@
+@import url("https://api.fontshare.com/v2/css?f[]=supreme@400&f[]=bespoke-stencil@700&display=swap");
+html,
+body {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  margin: 0;
+}
+body h2 {
+  text-align: center;
+}
+body header {
+  width: 50%;
+  background-color: navy;
+  background-image: url("https://fern.haus/assets/ocean-gliderport-background.jpg");
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Bespoke Stencil", sans-serif;
+}
+body header h1 {
+  font-size: 5vw;
+  text-align: center;
+}
+body main {
+  flex: 1;
+  overflow: auto;
+  padding: 10px;
+}
+body main section {
+  padding: 20px 0;
+}
+body main section h2 {
+  margin-top: 0;
+}
+body main section .content-bubble {
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  display: flex;
+}
+body main section .content-bubble.post .feature-image {
+  border-radius: 15px 0 0 15px;
+}
+body main section .content-bubble.gallery .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body main section .content-bubble.gallery .feature-image {
+  border-radius: 0 15px 15px 0;
+}
+body main section .content-bubble .content {
+  flex: 1;
+  padding: 10px;
+}
+body main section .content-bubble .content * {
+  margin: 0;
+}
+body main section .content-bubble .feature-image {
+  height: 100px;
+  width: 100px;
+  background-position: center;
+  background-size: cover;
+}
+body main section #projects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+body main section #projects div {
+  height: 100px;
+  width: 100px;
+  background-position: center;
+  background-size: cover;
+}
+body footer {
+  width: 16.667%;
+  background-color: #46697d;
+  display: flex;
+  flex-direction: column;
+}
+body footer input {
+  width: 100%;
+}
+body footer #tags {
+  background-color: #5d8094;
+  flex: 1;
+  overflow: auto;
+}
+
+@media only screen and (max-width: 1100px) {
+  body header {
+    width: 41.665%;
+  }
+}
+@media only screen and (max-width: 725px) {
+  html,
+body {
+    height: auto;
+  }
+  body {
+    flex-direction: column;
+  }
+  body header,
+body main,
+body footer {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  body header {
+    height: 400px;
+  }
+  body header h1 {
+    font-size: 9vw;
+  }
+  body main {
+    overflow: visible;
+  }
+  body main #latest-post #latest-pic {
+    height: 150px;
+    width: 150px;
+  }
+  body footer #tags ul {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 1px 5px;
+    justify-content: center;
+    padding: 0;
+  }
+  body footer #tags ul li {
+    display: inline-flex;
+  }
+  body footer #tags ul li:last-child::after {
+    content: "";
+  }
+  body footer #tags ul li::after {
+    content: ", ";
+  }
+}/*# sourceMappingURL=home.css.map */

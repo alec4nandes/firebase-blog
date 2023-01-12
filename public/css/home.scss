@@ -1,0 +1,180 @@
+@import url("https://api.fontshare.com/v2/css?f[]=supreme@400&f[]=bespoke-stencil@700&display=swap");
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    margin: 0;
+
+    h2 {
+        text-align: center;
+    }
+
+    header {
+        width: 50%;
+        background-color: navy;
+        background-image: url("https://fern.haus/assets/ocean-gliderport-background.jpg");
+        background-position: center;
+        background-size: cover;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Bespoke Stencil", sans-serif;
+
+        h1 {
+            font-size: 5vw;
+            text-align: center;
+        }
+    }
+
+    main {
+        flex: 1;
+        overflow: auto;
+        padding: 10px;
+
+        section {
+            padding: 20px 0;
+
+            h2 {
+                margin-top: 0;
+            }
+
+            .content-bubble {
+                border: 1px solid #ddd;
+                border-radius: 15px;
+                display: flex;
+
+                &.post .feature-image {
+                    border-radius: 15px 0 0 15px;
+                }
+
+                &.gallery {
+                    .content {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+                    .feature-image {
+                        border-radius: 0 15px 15px 0;
+                    }
+                }
+
+                .content {
+                    flex: 1;
+                    padding: 10px;
+
+                    * {
+                        margin: 0;
+                    }
+                }
+
+                .feature-image {
+                    height: 100px;
+                    width: 100px;
+                    background-position: center;
+                    background-size: cover;
+                }
+            }
+
+            #projects {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                justify-content: center;
+
+                div {
+                    height: 100px;
+                    width: 100px;
+                    background-position: center;
+                    background-size: cover;
+                }
+            }
+        }
+    }
+
+    footer {
+        width: 16.667%;
+        background-color: #46697d;
+        display: flex;
+        flex-direction: column;
+
+        input {
+            width: 100%;
+        }
+
+        #tags {
+            background-color: #5d8094;
+            flex: 1;
+            overflow: auto;
+        }
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    body {
+        header {
+            width: 41.665%;
+        }
+    }
+}
+
+@media only screen and (max-width: 725px) {
+    html,
+    body {
+        height: auto;
+    }
+
+    body {
+        flex-direction: column;
+
+        header,
+        main,
+        footer {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        header {
+            height: 400px;
+
+            h1 {
+                font-size: 9vw;
+            }
+        }
+
+        main {
+            overflow: visible;
+
+            #latest-post #latest-pic {
+                height: 150px;
+                width: 150px;
+            }
+        }
+
+        footer #tags ul {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 1px 5px;
+            justify-content: center;
+            padding: 0;
+
+            li {
+                display: inline-flex;
+
+                &:last-child::after {
+                    content: "";
+                }
+
+                &::after {
+                    content: ", ";
+                }
+            }
+        }
+    }
+}
