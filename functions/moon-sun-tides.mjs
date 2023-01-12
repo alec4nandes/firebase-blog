@@ -36,7 +36,10 @@ async function handleLocalData(coords, date, time) {
             longitude,
         });
     return {
-        time: date ? new Date(`${date} ${time || ""}`) : new Date(),
+        time: (date
+            ? new Date(`${date} ${time || ""}`)
+            : new Date()
+        ).toUTCString(),
         coords,
         moon,
         nearest_NOAA_station: {

@@ -23,7 +23,8 @@ const displayOverallTime = (overallTime) =>
     `OVERALL TIME: ${timeFormatter(overallTime)}`;
 
 function startTimerHandler() {
-    /* Mobile workaround:
+    /*
+        Mobile workaround:
         Mobile browsers will not play sounds repeatedly with setInterval.
         Create arrays of Audio objects to play separately.
     */

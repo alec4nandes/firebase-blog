@@ -20,7 +20,8 @@ function formHandler(event) {
     const { reps, repTime, breakTime } = getFormData();
     document.getElementById("start-timer").disabled = true;
 
-    /* Mobile workaround:
+    /*
+        Mobile workaround:
         Mobile browsers will not play sounds repeatedly with setInterval.
         Create arrays of Audio objects to play separately.
     */
