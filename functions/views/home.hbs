@@ -9,11 +9,25 @@
     <body>
         <header>
             <h1>Alec Fernandes</h1>
+            <div id="header-forms">
+                <form action="/search/">
+                    <input type="text" name="query" />
+                    <button>search</button>
+                </form>
+                <section>
+                    <p>get new posts by email:</p>
+                    <form>
+                        <input type="email" name="email" placeholder="email" />
+                        <button>subscribe</button>
+                    </form>
+                </section>
+            </div>
         </header>
         <main>
             <div id="main-container">
                 <section>
-                    <h2>Latest Post <a href="./blog">(read all)</a></h2>
+                    <h2 class="small-link-heading">Latest Post
+                        <a href="./blog">(read all)</a></h2>
                     <div class="content-bubble post">
                         <a
                             href="/blog"
@@ -23,7 +37,7 @@
                         "
                         ></a>
                         <div class="content">
-                            <h3>{{latest_post.title}}</h3>
+                            <h3><a href="./blog">{{latest_post.title}}</a></h3>
                             <h4>{{latest_post.subtitle}}</h4>
                             <p class="date-posted">{{latest_post.date}}</p>
                             <p><a href="./blog">(read more)</a></p>
@@ -61,32 +75,18 @@
                         ></a>
                     </div>
                 </section>
+                <section id="tags">
+                    <h2>Tags</h2>
+                    <ul>
+                        {{#each tags}}
+                            <li>
+                                <a href="/search/?tag={{this}}">{{this}}</a>
+                            </li>
+                        {{/each}}
+                    </ul>
+                </section>
             </div>
         </main>
-        <footer>
-            <section>
-                <form class="search-form" action="/search/">
-                    <input type="text" name="query" /><button>search</button>
-                </form>
-            </section>
-            <section id="tags">
-                <h2>tags</h2>
-                <ul>
-                    {{#each tags}}
-                        <li>
-                            <a href="/search/?tag={{this}}">{{this}}</a>
-                        </li>
-                    {{/each}}
-                </ul>
-            </section>
-            <section>
-                <p>get new posts by email:</p>
-                <form class="subscribe-form">
-                    <input type="email" name="email" placeholder="email" />
-                    <button>subscribe</button>
-                </form>
-            </section>
-        </footer>
 
         <script src="/scripts.js"></script>
         <script src="/bundle.js"></script>

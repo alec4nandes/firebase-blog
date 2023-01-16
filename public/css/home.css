@@ -1,4 +1,4 @@
-@import url("https://api.fontshare.com/v2/css?f[]=supreme@400&f[]=bespoke-stencil@700&display=swap");
+@import url("https://api.fontshare.com/v2/css?f[]=switzer@300,500,700&f[]=gambarino@400&display=swap");
 html,
 body {
   height: 100%;
@@ -6,28 +6,93 @@ body {
 
 body {
   min-height: 100vh;
-  background-color: #ddd;
+  background-color: #edf6ff;
   display: flex;
+  font-family: "Switzer", sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.3rem;
   margin: 0;
 }
+body a {
+  color: rgb(105, 138, 199);
+  text-decoration: none;
+}
+body a:hover {
+  opacity: 0.5;
+}
+body h1,
 body h2 {
+  font-family: "Switzer", sans-serif;
   text-align: center;
 }
+body h2 {
+  color: #626e79;
+}
+body h3,
+body h4,
+body h5,
+body h6 {
+  font-weight: 500;
+}
+body h4 {
+  color: #626e79;
+}
+body .small-link-heading a {
+  font-size: 1rem;
+  font-weight: 300;
+}
+body .date-posted {
+  color: #888;
+}
 body header {
-  width: 50%;
-  background-color: navy;
-  background-image: url("https://fern.haus/assets/ocean-gliderport-background.jpg");
+  width: 40%;
+  background-image: url("/assets/ocean-gliderport-background.jpg");
   background-position: center;
   background-size: cover;
-  color: #fff;
+  flex-direction: column;
+}
+body header,
+body header h1,
+body header #header-forms {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Bespoke Stencil", sans-serif;
 }
 body header h1 {
-  font-size: 5vw;
+  color: #fff;
+  flex: 1;
+  font-size: 4.5vw;
   text-align: center;
+}
+body header #header-forms {
+  width: 100%;
+  background-color: rgba(128, 147, 177, 0.75);
+  box-sizing: border-box;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  text-align: center;
+}
+body header #header-forms form,
+body header #header-forms p {
+  margin: 0;
+}
+body header #header-forms form button,
+body header #header-forms form input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 0;
+}
+body header #header-forms form button {
+  width: 80px;
+}
+body header #header-forms form input {
+  width: 160px;
+}
+body header #header-forms p {
+  color: #fff;
 }
 body main {
   color: #444;
@@ -39,22 +104,47 @@ body main #main-container {
   max-height: 100%;
   width: 100%;
   box-sizing: border-box;
-  overflow: auto;
-  padding: 10px;
+  overflow: scroll;
+  padding: 4.2vw;
 }
 body main #main-container section {
-  padding: 20px 0;
+  padding: 30px 0;
+}
+body main #main-container section:first-child {
+  padding-top: 10px;
+}
+body main #main-container section:last-child {
+  padding-bottom: 10px;
+}
+body main #main-container section#tags ul {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1px 5px;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+body main #main-container section#tags ul li {
+  display: inline-flex;
+}
+body main #main-container section#tags ul li:last-child::after {
+  content: "";
+}
+body main #main-container section#tags ul li::after {
+  content: ", ";
 }
 body main #main-container section h2 {
   margin-top: 0;
 }
 body main #main-container section .content-bubble {
-  background-color: #eee;
+  background-color: #fff;
   border-radius: 15px;
   box-shadow: 5px 5px 5px rgba(50, 50, 50, 0.5);
   display: flex;
 }
 body main #main-container section .content-bubble.post .feature-image {
+  width: 15vw;
   border-radius: 15px 0 0 15px;
 }
 body main #main-container section .content-bubble.gallery .content {
@@ -64,13 +154,15 @@ body main #main-container section .content-bubble.gallery .content {
   margin: 0;
 }
 body main #main-container section .content-bubble.gallery .feature-image {
-  height: 10vw;
+  height: 12vw;
+  width: 50%;
   border-radius: 0 15px 15px 0;
 }
 body main #main-container section .content-bubble .content {
   display: flex;
   flex: 1;
   flex-direction: column;
+  gap: 10px;
   justify-content: center;
   padding: 10px;
 }
@@ -80,7 +172,6 @@ body main #main-container section .content-bubble .content * {
 body main #main-container section .content-bubble .feature-image {
   height: auto;
   min-height: 6vw;
-  width: 15vw;
   background-position: center;
   background-size: cover;
 }
@@ -98,8 +189,8 @@ body main #main-container section #projects > a:hover {
   opacity: 0.5;
 }
 body main #main-container section #projects > a > div {
-  height: 100px;
-  width: 100px;
+  height: 14vw;
+  width: 14vw;
   background-color: #111;
   border-radius: 10px;
   box-shadow: 5px 5px 5px rgba(50, 50, 50, 0.5);
@@ -115,51 +206,14 @@ body main #main-container section #projects > a > div .project-image {
 }
 body main #main-container section #projects > a > div span {
   width: 100%;
-  background-color: #333;
+  background-color: #626e79;
   border-radius: 0 0 10px 10px;
-  text-align: center;
-}
-body footer {
-  width: 16.667%;
-  background-color: #46697d;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-body footer section:not(#tags) {
   box-sizing: border-box;
-  padding: 10px;
-}
-body footer section:not(#tags) * {
-  margin: 0;
-  padding: 0;
-}
-body footer input {
-  width: 100%;
-}
-body footer #tags {
-  background-color: #5d8094;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  overflow: auto;
-  padding-bottom: 20px;
-}
-body footer #tags ul {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
-  list-style: none;
-  margin: 0 auto;
-  padding: 0;
+  line-height: 1rem;
+  padding: 2px;
+  text-align: center;
 }
 
-@media only screen and (max-width: 1100px) {
-  body header {
-    width: 41.665%;
-  }
-}
 @media only screen and (max-width: 725px) {
   html,
 body {
@@ -168,53 +222,31 @@ body {
   body {
     flex-direction: column;
   }
-  body header,
-body main,
-body footer {
-    width: 100%;
-    box-sizing: border-box;
-  }
   body header {
     height: 400px;
+    width: 100%;
   }
   body header h1 {
     font-size: 9vw;
   }
-  body main {
-    overflow: visible;
+  body main #main-container {
+    padding: 15px;
   }
-  body main #main-container section {
-    padding: 20px 0;
+  body main #main-container section:first-child {
+    padding-top: 30px;
+  }
+  body main #main-container section:last-child {
+    padding-bottom: 30px;
   }
   body main #main-container section .content-bubble.post .feature-image {
     height: auto;
     width: 40vw;
   }
   body main #main-container section .content-bubble.gallery .feature-image {
-    height: 30vw;
-    width: 40vw;
+    height: 25vw;
   }
-  body main #main-container section h2 {
-    margin-top: 0;
-  }
-  body footer input {
-    width: initial;
-  }
-  body footer #tags ul {
-    display: inline-flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 1px 5px;
-    justify-content: center;
-    padding: 0;
-  }
-  body footer #tags ul li {
-    display: inline-flex;
-  }
-  body footer #tags ul li:last-child::after {
-    content: "";
-  }
-  body footer #tags ul li::after {
-    content: ", ";
+  body main #main-container section #projects > a > div {
+    height: 25vw;
+    width: 25vw;
   }
 }/*# sourceMappingURL=home.css.map */
