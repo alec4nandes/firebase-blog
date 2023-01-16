@@ -55,7 +55,7 @@ body {
     }
 
     header {
-        width: 40%;
+        width: 40vw;
         background-image: url("/assets/ocean-gliderport-background.jpg");
         background-position: center;
         background-size: cover;
@@ -78,7 +78,7 @@ body {
 
         #header-forms {
             width: 100%;
-            background-color: rgb(128, 147, 177, 0.75);
+            background-color: rgb(128, 147, 177, 0.85);
             box-sizing: border-box;
             flex-direction: column;
             gap: 20px;
@@ -95,10 +95,18 @@ body {
                 input {
                     appearance: none;
                     border: 0;
+                    border-radius: 5px;
+                    padding: 5px;
                 }
 
                 button {
                     width: 80px;
+                    background-color: #e0efff;
+
+                    &:hover {
+                        background-color: #edf6ff;
+                        cursor: pointer;
+                    }
                 }
 
                 input {
@@ -194,7 +202,7 @@ body {
                         flex-direction: column;
                         gap: 10px;
                         justify-content: center;
-                        padding: 10px;
+                        padding: 20px 10px;
 
                         * {
                             margin: 0;
@@ -203,7 +211,7 @@ body {
 
                     .feature-image {
                         height: auto;
-                        min-height: 6vw;
+                        min-height: 12vw;
                         background-position: center;
                         background-size: cover;
                     }
@@ -212,7 +220,7 @@ body {
                 #projects {
                     display: flex;
                     flex-wrap: wrap;
-                    gap: 10px;
+                    gap: 2.5vw;
                     justify-content: center;
 
                     & > a {
@@ -224,8 +232,10 @@ body {
                         }
 
                         & > div {
-                            height: 14vw;
-                            width: 14vw;
+                            height: 15.5vw;
+                            max-height: 200px;
+                            max-width: 200px;
+                            width: 15.5vw;
                             background-color: #111;
                             border-radius: 10px;
                             box-shadow: 5px 5px 5px rgba(50, 50, 50, 0.5);
@@ -279,7 +289,7 @@ body {
             width: 100%;
 
             h1 {
-                font-size: 9vw;
+                font-size: 10vw;
             }
         }
 
@@ -303,15 +313,16 @@ body {
                         }
 
                         &.gallery .feature-image {
-                            height: 25vw;
+                            height: 30vw;
                         }
                     }
 
                     #projects {
                         & > a {
                             & > div {
-                                height: 25vw;
-                                width: 25vw;
+                                $dim: calc((100vw - 5vw - 30px) / 3);
+                                height: $dim;
+                                width: $dim;
                             }
                         }
                     }
