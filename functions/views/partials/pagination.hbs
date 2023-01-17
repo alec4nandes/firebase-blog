@@ -1,0 +1,20 @@
+{{#if total_pages}}
+    <div class="pagination">
+        {{#if prev_page}}
+            <a href="./?{{searching}}page={{prev_page}}"><< newer</a>
+        {{/if}}
+        <p>
+            page
+            {{page_num}}
+            of
+            {{total_pages}}
+        </p>
+        {{#if next_page}}
+            {{#if searching}}
+                <a href="./?{{searching}}page={{next_page}}">older >></a>
+            {{else}}
+                <a href="/blog/?page={{next_page}}">older >></a>
+            {{/if}}
+        {{/if}}
+    </div>
+{{/if}}

@@ -24,6 +24,7 @@
     .small-header {
         display: flex;
         flex-direction: column;
+        gap: 10px;
         justify-content: flex-start;
         padding: 20px;
         position: relative;
@@ -36,27 +37,27 @@
         h1 {
             a {
                 color: #fff;
-                padding: 0 5px;
+                padding: 0;
                 text-decoration: none;
             }
         }
 
         h2 {
             width: fit-content;
-            background-color: rgba(0, 66, 87, 0.5);
-            color: #fff;
-            padding: 0 5px;
+            background-color: rgb(105, 138, 199);
+            color: #edf6ff;
+            font-weight: 400;
         }
 
-        .all-tags {
-            width: fit-content;
-            background-color: #fff;
-            font-weight: bold;
-            padding: 2px 5px;
-        }
+        // .all-tags {
+        //     width: fit-content;
+        //     background-color: #fff;
+        //     font-weight: bold;
+        //     padding: 2px 5px;
+        // }
 
         .search-form {
-            margin: 20px 0 0;
+            margin: 0;
 
             &.searching {
                 margin-top: 0;

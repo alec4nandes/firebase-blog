@@ -5,6 +5,10 @@ article {
     margin: auto;
     padding: 40px 0;
 
+    &:last-child {
+        border-bottom: 0;
+    }
+
     .title {
         font-size: 40px;
         line-height: 40px;
@@ -40,7 +44,7 @@ article {
         }
 
         figcaption {
-            color: #555;
+            color: #666;
             font-style: italic;
         }
     }

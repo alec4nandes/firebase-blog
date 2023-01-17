@@ -23,6 +23,7 @@ import getMoonSunTidesData from "./moon-sun-tides.mjs";
 // for __dirname in module:
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+import { start } from "repl";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
@@ -66,6 +67,8 @@ function setCDNHeaders(res) {
 
 // SERVER ROUTES
 
+const POSTS_PER_PAGE = 4;
+
 app.get("/", function (req, res) {
     setCDNHeaders(res);
     getPublishedPosts()
@@ -87,18 +90,19 @@ app.get("/", function (req, res) {
 });
 
 app.get("/blog", function (req, res) {
+    const { page } = req.query;
     setCDNHeaders(res);
-    getPublishedPosts().then((posts) => renderBlog(res, posts));
+    renderBlog(res, page);
 });
 
 app.get("/search", function (req, res) {
     setCDNHeaders(res);
-    const { tag, query } = req.query,
+    const { tag, query, page } = req.query,
         promise = tag
             ? getPostsWithTag(tag)
             : query && getPostsContaining(query);
     promise?.then((posts) =>
-        renderSearch(res, posts, tag ? "tag" : "query", tag || query)
+        renderSearch(res, posts, page, tag ? "tag" : "query", tag || query)
     ) || res.redirect("/404.html");
 });
 
@@ -289,26 +293,69 @@ app.get("*", function (req, res) {
 
 // SERVER RENDER FUNCTIONS
 
-function renderBlog(res, posts) {
-    const all_tags = getAllTags(posts);
+async function renderBlog(res, pageNum) {
+    const { all_posts, posts, page_num, total_pages, prev_page, next_page } =
+            await paginate(pageNum),
+        all_tags = getAllTags(all_posts);
     res.render("blog", {
-        posts: formatDatesDescending(posts),
+        posts,
         all_tags,
         top_tags: all_tags,
         projects: getProjectsData(),
         meta_tags: makeMetaTags(posts),
+        page_num,
+        total_pages,
+        prev_page,
+        next_page,
     });
 }
 
-async function renderSearch(res, posts, search_type, query) {
+async function paginate(pageNum, searchPosts) {
+    const page_num = isNaN(pageNum) || ~~+pageNum < 1 ? 1 : ~~+pageNum,
+        all_posts = await getPublishedPosts(),
+        posts = postsForPage(
+            formatDatesDescending(searchPosts || all_posts),
+            page_num
+        ),
+        total_posts = (searchPosts || all_posts)?.length,
+        total_pages =
+            ~~(total_posts / POSTS_PER_PAGE) +
+            (total_posts % POSTS_PER_PAGE ? 1 : 0),
+        prev_page = page_num > 1 && page_num - 1,
+        next_page = page_num < total_pages && page_num + 1;
+    return {
+        all_posts,
+        posts,
+        page_num,
+        total_pages,
+        prev_page,
+        next_page,
+    };
+}
+
+function postsForPage(posts, pageNum) {
+    const start = pageNum * POSTS_PER_PAGE - POSTS_PER_PAGE,
+        end = start + POSTS_PER_PAGE;
+    return posts.slice(start, end);
+}
+
+async function renderSearch(res, searchPosts, pageNum, search_type, query) {
+    const { all_posts, posts, page_num, total_pages, prev_page, next_page } =
+            await paginate(pageNum, searchPosts),
+        all_tags = getAllTags(all_posts);
     res.render("search", {
-        posts: formatDatesDescending(posts),
-        all_tags: getAllTags(await getPublishedPosts()),
+        posts,
+        all_tags,
         // top_tags: getAllTags(posts),
         projects: getProjectsData(),
         search_type: search_type === "query" ? "search" : search_type,
         query,
         meta_tags: makeMetaTags(posts),
+        page_num,
+        total_pages,
+        prev_page,
+        next_page,
+        searching: `${search_type}=${query}&`,
     });
 }
 
@@ -396,7 +443,9 @@ function makeMetaTags(postsData) {
         title = post?.title
             ? `${post.title} — Alec Fernandes`
             : "Alec Fernandes",
-        subtitle = post?.subtitle || "Writer and Web Developer",
+        subtitle =
+            post?.subtitle ||
+            "Writer and web developer. Follow me @alec4nandes on most major socials.",
         feature_image =
             post?.feature_image ||
             "https://fern.haus/images/ocean-gliderport-background.jpg",

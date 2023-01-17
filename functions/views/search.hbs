@@ -20,21 +20,20 @@
                             href="/search/?tag={{this}}"
                         >{{this}}</a>{{/each}}
                 </div> --}}
-                <form class="search-form searching" action="/search/">
+                <form class="search-form searching single-line-form" action="/search/">
                     <input type="text" name="query" /><button>search</button>
                 </form>
             </div>
         </header>
         {{> navmenu}}
+        {{> pagination}}
         <main>
 {{!-- no white space before this partial in case there are
 preformatted <xmp> code blocks: --}}
 {{> multipost}}
         </main>
-        <footer>
-            <a href="/">home</a>
-            <a href="/admin">admin</a>
-        </footer>
+        {{> pagination}}
+        {{> footer}}
         <script src="/scripts.js"></script>
         <script src="/bundle.js"></script>
     </body>

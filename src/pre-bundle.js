@@ -125,7 +125,7 @@ function addAuthHandlers() {
         (signOutElem.onclick = async () => {
             await signOut(auth);
             document.cookie = await makeCookie();
-            window.location.href = "/";
+            window.location.href = "/blog";
         });
 }
 

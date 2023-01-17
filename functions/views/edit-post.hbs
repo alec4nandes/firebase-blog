@@ -12,7 +12,7 @@
         <header class="small-header-container">
             <div class="small-header">
                 <h1><a href="/">Alec Fernandes</a></h1>
-                <form class="search-form" action="/search">
+                <form class="search-form single-line-form" action="/search">
                     <input type="text" name="query" /><button>search</button>
                 </form>
             </div>
@@ -85,10 +85,13 @@
             </div>
         </main>
         <footer>
-            <a href="/">home</a>
-            <a href="/admin/?is_new=true">new post</a>
-            <a href="/admin">admin</a>
-            <button id="sign-out">sign out</button>
+            <div id="footer-container">
+                <a href="/">home</a>
+                <a href="/blog">blog</a>
+                <a href="/admin/?is_new=true">new post</a>
+                <a href="/admin">admin</a>
+                <button id="sign-out">sign out</button>
+            </div>
         </footer>
         <script src="/bundle.js"></script>
     </body>

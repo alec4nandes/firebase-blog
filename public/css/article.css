@@ -5,6 +5,9 @@ article {
   margin: auto;
   padding: 40px 0;
 }
+article:last-child {
+  border-bottom: 0;
+}
 article .title {
   font-size: 40px;
   line-height: 40px;
@@ -35,7 +38,7 @@ article figure img {
   width: auto;
 }
 article figure figcaption {
-  color: #555;
+  color: #666;
   font-style: italic;
 }
 article .tags {

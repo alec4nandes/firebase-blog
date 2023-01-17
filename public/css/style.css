@@ -1,7 +1,10 @@
 @import url("https://api.fontshare.com/v2/css?f[]=supreme@400&f[]=bespoke-stencil@700&display=swap");
 @import url("https://api.fontshare.com/v2/css?f[]=switzer@300,500,700&display=swap");
 body {
+  min-height: 100vh;
   color: #222;
+  display: flex;
+  flex-direction: column;
   font-family: "Switzer", sans-serif;
   font-size: 1rem;
   line-height: 1.6rem;
@@ -47,7 +50,9 @@ body form.single-line-form input {
 }
 body main {
   max-width: 800px;
+  width: 100%;
   box-sizing: border-box;
+  flex: 1;
   margin: auto;
   padding: 0 20px;
   position: relative;
@@ -102,6 +107,7 @@ body main .save-or-delete-buttons {
   justify-content: center;
   gap: 20px;
   margin-top: 20px;
+  margin-bottom: 30px;
 }
 body main .save-or-delete-buttons button {
   width: 120px;
@@ -175,6 +181,20 @@ body input:-ms-input-placeholder {
 body input::placeholder {
   color: #aaa;
 }
+body .pagination {
+  height: 30px;
+  align-items: center;
+  background-color: #eee;
+  color: #999;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  font-style: italic;
+  font-weight: 300;
+}
+body .pagination a {
+  text-decoration: none;
+}
 body .search-form input,
 body .subscribe-container input {
   max-width: 150px;
@@ -196,6 +216,9 @@ body .unsubscribe p {
   margin: 0;
 }
 body footer {
+  background-color: rgb(128, 147, 177);
+}
+body footer #footer-container {
   height: 100px;
   max-width: 800px;
   box-sizing: border-box;
@@ -204,4 +227,7 @@ body footer {
   justify-content: space-between;
   margin: auto;
   padding: 20px;
+}
+body footer #footer-container a {
+  color: #fff;
 }/*# sourceMappingURL=style.css.map */

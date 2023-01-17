@@ -12,12 +12,12 @@
         <header class="small-header-container">
             <div class="small-header">
                 <h1><a href="/">Alec Fernandes</a></h1>
-                <form class="search-form" action="/search">
+                <form class="search-form single-line-form" action="/search">
                     <input type="text" name="query" /><button>search</button>
                 </form>
             </div>
         </header>
-        <main class="centered-content">
+        <main class="centered-content" style="padding: 10px 0 30px">
             <h1>Sign In</h1>
             <form id="sign-in-form">
                 <input type="email" name="email" placeholder="email" />
@@ -25,7 +25,13 @@
                 <button type="submit">sign in</button>
             </form>
         </main>
-        <footer><a href="/">home</a><a href="/admin">admin</a></footer>
+        <footer>
+            <div id="footer-container">
+                <a href="/">home</a>
+                <a href="/blog">blog</a>
+                <a href="/admin">admin</a>
+            </div>
+        </footer>
         <script src="/scripts.js"></script>
         <script src="/bundle.js"></script>
     </body>
