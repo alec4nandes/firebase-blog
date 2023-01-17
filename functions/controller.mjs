@@ -81,6 +81,7 @@ app.get("/", function (req, res) {
                         image: post.feature_image,
                     })),
                 tags: getAllTags(posts),
+                meta_tags: makeMetaTags(),
             })
         );
 });
@@ -391,13 +392,11 @@ function formatDate(timestamp) {
 }
 
 function makeMetaTags(postsData) {
-    const post = postsData.length === 1 && postsData[0],
+    const post = postsData?.length === 1 && postsData[0],
         title = post?.title
             ? `${post.title} — Alec Fernandes`
-            : "Alec Fernandes — Modern Mindful Code",
-        subtitle =
-            post?.subtitle ||
-            "Enhance everyday mindfulness with meditation tips and elegant code.",
+            : "Alec Fernandes",
+        subtitle = post?.subtitle || "Writer and Web Developer",
         feature_image =
             post?.feature_image ||
             "https://fern.haus/images/ocean-gliderport-background.jpg",

@@ -20,9 +20,9 @@ article {
     }
 
     .subtitle {
-        color: #555;
+        color: #666;
         font-size: 25px;
-        line-height: 25px;
+        line-height: initial;
     }
 
     figure {
@@ -30,7 +30,7 @@ article {
         display: flex;
         align-items: center;
         flex-direction: column;
-        margin: 0;
+        margin: 35px 0;
 
         img {
             height: auto;

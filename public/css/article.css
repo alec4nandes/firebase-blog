@@ -17,16 +17,16 @@ article .edit-upload-links {
   font-size: 18px;
 }
 article .subtitle {
-  color: #555;
+  color: #666;
   font-size: 25px;
-  line-height: 25px;
+  line-height: initial;
 }
 article figure {
   background-color: #eee;
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 0;
+  margin: 35px 0;
 }
 article figure img {
   height: auto;

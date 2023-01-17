@@ -3,7 +3,8 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        {{{meta_tags}}}
+        <link rel="icon" type="image/x-icon" href="/assets/logo/favicon.ico" />
         <link rel="stylesheet" href="/css/home.css" />
     </head>
     <body>
@@ -24,68 +25,65 @@
             </div>
         </header>
         <main>
-            <div id="main-container">
-                <section>
-                    <h2 class="small-link-heading">Latest Post
-                        <a href="./blog">(read all)</a></h2>
-                    <div class="content-bubble post">
-                        <a
-                            href="/blog"
-                            class="feature-image"
-                            style="
+            <section>
+                <h2 class="small-link-heading">Latest Post
+                    <a href="./blog">(read all)</a></h2>
+                <div class="content-bubble post">
+                    <a
+                        href="/blog"
+                        class="feature-image"
+                        style="
                             background-image: url('{{latest_post.feature_image}}');
                         "
-                        ></a>
-                        <div class="content">
-                            <h3><a href="./blog">{{latest_post.title}}</a></h3>
-                            <h4>{{latest_post.subtitle}}</h4>
-                            <p class="date-posted">{{latest_post.date}}</p>
-                            <p><a href="./blog">(read more)</a></p>
-                        </div>
+                    ></a>
+                    <div class="content">
+                        <h3><a href="./blog">{{latest_post.title}}</a></h3>
+                        <h4>{{latest_post.subtitle}}</h4>
+                        <p class="date-posted">{{latest_post.date}}</p>
+                        <p><a href="./blog">(read more)</a></p>
                     </div>
-                </section>
-                <section>
-                    <h2>Projects</h2>
-                    <div id="projects">
-                        {{#each projects}}
-                            <a href="/post/?id={{this.post_id}}">
-                                <div>
-                                    <div
-                                        class="project-image"
-                                        style="background-image: url('{{this.image}}');"
-                                    >
-                                    </div>
-                                    <span>{{this.name}}</span>
+                </div>
+            </section>
+            <section>
+                <h2>Projects</h2>
+                <div id="projects">
+                    {{#each projects}}
+                        <a href="/post/?id={{this.post_id}}">
+                            <div>
+                                <div
+                                    class="project-image"
+                                    style="background-image: url('{{this.image}}');"
+                                >
                                 </div>
-                            </a>
-                        {{/each}}
-                    </div>
-                </section>
-                <section>
+                                <span>{{this.name}}</span>
+                            </div>
+                        </a>
+                    {{/each}}
+                </div>
+            </section>
+            <section>
+                <a href="/gallery">
                     <div class="content-bubble gallery">
-                        <h2 class="content">
-                            <a href="/gallery">View Gallery</a>
-                        </h2>
-                        <a
-                            href="/gallery"
+                        <h2 class="content">View Gallery</h2>
+                        <div
                             class="feature-image"
                             style="
                             background-image: url('/assets/gallery/house-of-loud-min.gif');
                         "
-                        ></a>
+                        ></div>
                     </div>
-                </section>
-                <section id="tags">
-                    <h2>Tags</h2>
-                    <ul>
-                        {{#each tags}}
-                            <li>
-                                <a href="/search/?tag={{this}}">{{this}}</a>
-                            </li>
-                        {{/each}}
-                    </ul>
-                </section>
-            </div>
+                </a>
+            </section>
+            <section id="tags">
+                <h2>Tags</h2>
+                <ul>
+                    {{#each tags}}
+                        <li>
+                            <a href="/search/?tag={{this}}">{{this}}</a>
+                        </li>
+                    {{/each}}
+                </ul>
+            </section>
         </main>
 
         <script src="/scripts.js"></script>

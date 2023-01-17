@@ -43,7 +43,7 @@ function toggleNavMenu(isOpening) {
 }
 
 function copyLink(id) {
-    const text = `http://localhost:5000/post/?id=${id}`;
+    const text = `https://fern.haus/post/?id=${id}`;
     navigator.clipboard.writeText(text);
     alert("Link copied!");
 }
