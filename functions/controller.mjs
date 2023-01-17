@@ -67,8 +67,6 @@ function setCDNHeaders(res) {
 
 // SERVER ROUTES
 
-const POSTS_PER_PAGE = 4;
-
 app.get("/", function (req, res) {
     setCDNHeaders(res);
     getPublishedPosts()
@@ -311,16 +309,15 @@ async function renderBlog(res, pageNum) {
 }
 
 async function paginate(pageNum, searchPosts) {
-    const page_num = isNaN(pageNum) || ~~+pageNum < 1 ? 1 : ~~+pageNum,
+    const postsPerPage = 4,
+        page_num = isNaN(pageNum) || ~~+pageNum < 1 ? 1 : ~~+pageNum,
+        start = page_num * postsPerPage - postsPerPage,
+        end = start + postsPerPage,
         all_posts = await getPublishedPosts(),
-        posts = postsForPage(
-            formatDatesDescending(searchPosts || all_posts),
-            page_num
-        ),
-        total_posts = (searchPosts || all_posts)?.length,
-        total_pages =
-            ~~(total_posts / POSTS_PER_PAGE) +
-            (total_posts % POSTS_PER_PAGE ? 1 : 0),
+        arr = searchPosts || all_posts,
+        posts = formatDatesDescending(arr).slice(start, end),
+        total_posts = arr.length,
+        total_pages = Math.ceil(total_posts / postsPerPage),
         prev_page = page_num > 1 && page_num - 1,
         next_page = page_num < total_pages && page_num + 1;
     return {
@@ -331,12 +328,6 @@ async function paginate(pageNum, searchPosts) {
         prev_page,
         next_page,
     };
-}
-
-function postsForPage(posts, pageNum) {
-    const start = pageNum * POSTS_PER_PAGE - POSTS_PER_PAGE,
-        end = start + POSTS_PER_PAGE;
-    return posts.slice(start, end);
 }
 
 async function renderSearch(res, searchPosts, pageNum, search_type, query) {
