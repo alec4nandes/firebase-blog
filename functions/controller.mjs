@@ -465,7 +465,7 @@ function makeMetaTags(postsData) {
             "Writer and web developer. Follow me @alec4nandes on most major socials.",
         feature_image =
             post?.feature_image ||
-            "https://fern.haus/images/ocean-gliderport-background.jpg",
+            "https://fern.haus/assets/ocean-gliderport-background.jpg",
         url = getURL(post);
     return `
         <title>${title}</title>

@@ -152,7 +152,6 @@ body main section .content-bubble {
 }
 body main section .content-bubble.post .feature-image {
   min-height: 15.5333333333vw;
-  width: 15vw;
   border-radius: 15px 0 0 15px;
 }
 body main section .content-bubble.gallery .content {
@@ -164,7 +163,6 @@ body main section .content-bubble.gallery .content {
 body main section .content-bubble.gallery .feature-image {
   height: 15.5333333333vw;
   max-height: 200px;
-  width: 50%;
   border-radius: 0 15px 15px 0;
 }
 body main section .content-bubble .content {
@@ -180,6 +178,7 @@ body main section .content-bubble .content * {
 }
 body main section .content-bubble .feature-image {
   height: auto;
+  width: 40%;
   background-position: center;
   background-size: cover;
 }
@@ -246,7 +245,6 @@ body {
   body main section .content-bubble.post .feature-image {
     height: auto;
     min-height: 28.8666666667vw;
-    width: 40vw;
   }
   body main section .content-bubble.gallery .feature-image {
     height: 28.8666666667vw;
