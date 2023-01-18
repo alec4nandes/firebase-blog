@@ -21,11 +21,12 @@ import {
     getAllTags,
     makeMetaTags,
     formatDatesDescending,
+    getProjectsData,
 } from "./server-functions.mjs";
-// for emailing the mailing list each new post:
-import cookieParser from "cookie-parser";
 // contact form & email subscribers
 import { emailMe, sendMailingListUpdate } from "./email.mjs";
+// for emailing the mailing list each new post:
+import cookieParser from "cookie-parser";
 // project scripts:
 import baguaInfo from "./iching-bagua-info.mjs";
 import definitions from "./iching-definitions.mjs";

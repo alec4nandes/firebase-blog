@@ -9,14 +9,7 @@
         <title>Edit Post</title>
     </head>
     <body class="preload">
-        <header class="small-header-container">
-            <div class="small-header">
-                <h1><a href="/">Alec Fernandes</a></h1>
-                <form class="search-form single-line-form" action="/search">
-                    <input type="text" name="query" /><button>search</button>
-                </form>
-            </div>
-        </header>
+        {{> smallheader}}
         <main>
             <h1 class="centered">Edit Post</h1>
             <form id="edit-post-form" action="/preview" method="post">

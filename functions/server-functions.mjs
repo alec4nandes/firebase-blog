@@ -211,4 +211,5 @@ export {
     getAllTags,
     makeMetaTags,
     formatDatesDescending,
+    getProjectsData,
 };
