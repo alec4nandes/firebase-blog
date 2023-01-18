@@ -10,12 +10,22 @@ import {
     removeSubscriber,
     parseFormDataForUpload,
 } from "./models.mjs";
+import {
+    admin,
+    renderBlog,
+    renderSearch,
+    renderPost,
+    renderEditPosts,
+    renderGallery,
+    verifyUser,
+    getAllTags,
+    makeMetaTags,
+    formatDatesDescending,
+} from "./server-functions.mjs";
 // for emailing the mailing list each new post:
-import admin from "firebase-admin";
-import serviceAccount from "./node-blog-369520-firebase-adminsdk-68fp3-0d9391300a.json" assert { type: "json" };
-import dotenv from "dotenv";
-import nodemailer from "nodemailer";
 import cookieParser from "cookie-parser";
+// contact form & email subscribers
+import { emailMe, sendMailingListUpdate } from "./email.mjs";
 // project scripts:
 import baguaInfo from "./iching-bagua-info.mjs";
 import definitions from "./iching-definitions.mjs";
@@ -23,13 +33,9 @@ import getMoonSunTidesData from "./moon-sun-tides.mjs";
 // for __dirname in module:
 import { dirname } from "path";
 import { fileURLToPath } from "url";
-import { start } from "repl";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
-dotenv.config();
-
-// SERVER
+/* SERVER CONFIG */
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -65,7 +71,7 @@ function setCDNHeaders(res) {
     res.set("Cache-Control", "public, max-age=300, s-maxage=600");
 }
 
-// SERVER ROUTES
+/* SERVER ROUTES */
 
 app.get("/", function (req, res) {
     setCDNHeaders(res);
@@ -184,6 +190,23 @@ app.get("/gallery", function (req, res) {
     renderGallery(res);
 });
 
+// contact form
+app.get("/contact", function (req, res) {
+    res.send(`
+        <form action="/contact-thanks">
+            <label>email: <input name="email" type="email" /></label>
+            <label><input name="single_page_site" type="checkbox"/> single page site</label>
+            <label><input name="multiple_pages_single_site" type="checkbox"/> multiple pages for single site</label>
+            <label><input name="multiple_sites" type="checkbox"/> multiple sites</label>
+            <button type="submit">contact me</button>
+        </form>
+    `);
+});
+
+app.get("/contact-thanks", function (req, res) {
+    emailMe(req.query, res);
+});
+
 // I-Ching routes
 app.get("/iching/cast", function (req, res) {
     const { lines } = req.query;
@@ -289,282 +312,9 @@ app.get("*", function (req, res) {
     res.redirect("/404.html");
 });
 
-// SERVER RENDER FUNCTIONS
+/* END SERVER ROUTES */
 
-async function renderBlog(res, pageNum) {
-    const { all_posts, posts, page_num, total_pages, prev_page, next_page } =
-            await paginate(pageNum),
-        all_tags = getAllTags(all_posts);
-    res.render("blog", {
-        posts,
-        all_tags,
-        top_tags: all_tags,
-        projects: getProjectsData(),
-        meta_tags: makeMetaTags(posts),
-        page_num,
-        total_pages,
-        prev_page,
-        next_page,
-    });
-}
-
-async function paginate(pageNum, searchPosts) {
-    const postsPerPage = 4,
-        page_num = isNaN(pageNum) || ~~+pageNum < 1 ? 1 : ~~+pageNum,
-        start = page_num * postsPerPage - postsPerPage,
-        end = start + postsPerPage,
-        all_posts = await getPublishedPosts(),
-        arr = searchPosts || all_posts,
-        posts = formatDatesDescending(arr).slice(start, end),
-        total_posts = arr.length,
-        total_pages = Math.ceil(total_posts / postsPerPage),
-        prev_page = page_num > 1 && page_num - 1,
-        next_page = page_num < total_pages && page_num + 1;
-    return {
-        all_posts,
-        posts,
-        page_num,
-        total_pages,
-        prev_page,
-        next_page,
-    };
-}
-
-async function renderSearch(res, searchPosts, pageNum, search_type, query) {
-    const { all_posts, posts, page_num, total_pages, prev_page, next_page } =
-            await paginate(pageNum, searchPosts),
-        all_tags = getAllTags(all_posts);
-    res.render("search", {
-        posts,
-        all_tags,
-        // top_tags: getAllTags(posts),
-        projects: getProjectsData(),
-        search_type: search_type === "query" ? "search" : search_type,
-        query,
-        meta_tags: makeMetaTags(posts),
-        page_num,
-        total_pages,
-        prev_page,
-        next_page,
-        searching: `${search_type}=${query}&`,
-    });
-}
-
-async function renderPost(res, post, is_draft) {
-    res.render("post", {
-        post: updateDate(post),
-        all_tags: getAllTags(await getPublishedPosts()),
-        projects: getProjectsData(),
-        is_draft,
-        meta_tags: makeMetaTags([post]),
-    });
-}
-
-async function renderEditPosts(res) {
-    res.render("edit-posts", {
-        posts: formatDatesDescending(await getDocsHelper("posts")),
-        drafts: formatDatesDescending(await getDocsHelper("drafts")),
-    });
-}
-
-async function getDocsHelper(type) {
-    const snapshot = await admin.firestore().collection(type).get();
-    return snapshot.docs.map((doc) => ({
-        ...doc.data(),
-        post_id: doc.id,
-    }));
-}
-
-async function renderGallery(res) {
-    res.render("gallery", {
-        projects: getProjectsData(),
-        all_tags: getAllTags(await getPublishedPosts()),
-    });
-}
-
-// SERVER MISC
-
-// verify user token cookie
-async function verifyUser(req) {
-    const token = req.cookies.__session || "";
-    return await admin.auth().verifyIdToken(token);
-}
-
-function getAllTags(posts) {
-    return [...new Set(posts.map((post) => post.tags).flat())].sort((a, b) =>
-        a.toLowerCase().localeCompare(b.toLowerCase())
-    );
-}
-
-function getProjectsData() {
-    return {
-        Mushrooms: { slug: "mushrooms" },
-        "Moon-Sun-Tides API": { slug: "moon-sun-tides-api" },
-        "Kings Corner": { slug: "kings-corner" },
-        "Prova Lab": { slug: "prova-lab" },
-        "I-Ching": { slug: "iching" },
-        Timers: { slug: "timers" },
-        "Dharma Gem": { slug: "dharma-gem" },
-        "Dharma Deck": { slug: "dharma-deck" },
-        "Buddhist eBook": { slug: "buddhist-ebook" },
-        // "My Map": { slug: "my-map" },
-    };
-}
-
-function formatDatesDescending(posts) {
-    return posts
-        .sort((a, b) => b.date.seconds - a.date.seconds)
-        .map((post) => updateDate(post));
-}
-
-function updateDate(post) {
-    return {
-        ...post,
-        date: formatDate(post.date),
-    };
-}
-
-function formatDate(timestamp) {
-    // return milliseconds, then JS parses to date on client side
-    const utcDate = new Date(timestamp.seconds * 1000),
-        localDateString = utcDate.toLocaleString("en-US", {
-            timeZone: "America/Los_Angeles",
-        }),
-        d = new Date(localDateString),
-        months = [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December",
-        ],
-        month = months[d.getMonth()],
-        day = d.getDate(),
-        year = d.getFullYear(),
-        hours = d.getHours(),
-        hour = hours % 12 || 12,
-        minutes = ("" + d.getMinutes()).padStart(2, "0"),
-        amPm = hours < 12 ? "am" : "pm";
-    return `${month} ${day}, ${year} at ${hour}:${minutes} ${amPm} PST`;
-}
-
-function makeMetaTags(postsData) {
-    const post = postsData?.length === 1 && postsData[0],
-        title = post?.title
-            ? `${post.title} — Alec Fernandes`
-            : "Alec Fernandes",
-        subtitle =
-            post?.subtitle ||
-            "Writer and web developer. Follow me @alec4nandes on most major socials.",
-        feature_image =
-            post?.feature_image ||
-            "https://fern.haus/assets/ocean-gliderport-background.jpg",
-        url = getURL(post);
-    return `
-        <title>${title}</title>
-        <meta name="type" property="og:type" content="website" />
-        <meta name="title" property="og:title" content="${title}" />
-        <meta name="url" property="og:url" content="${url}" />
-        <meta name="description" property="og:description" content="${subtitle}" />
-        <meta name="image" property="og:image" content="${feature_image}" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@alec4nandes" />
-        <meta name="twitter:title" content="${title}" />
-        <meta name="twitter:description" content="${subtitle}" />
-        <meta name="twitter:image" content="${feature_image}" />`;
-}
-
-function getURL(post) {
-    return `https://fern.haus${post ? `/post/?id=${post.post_id}` : ""}`;
-}
-
-// END SERVER
-
-// MAILING LIST NEW POST ALERT
-
-// google account credentials used to send email
-const transporter = nodemailer.createTransport({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    secure: true,
-    auth: {
-        user: process.env.DB_USER,
-        pass: process.env.DB_PASS,
-    },
-});
-
-async function sendMailingListUpdate(snap, context) {
-    const subscribers = await admin
-            .firestore()
-            .collection("mailing list")
-            .doc("subscribers")
-            .get(),
-        bcc = subscribers.data().all,
-        data = snap.data(),
-        { postId } = context.params;
-    // send individually in loop so each one has custom
-    // unsubscribe link at bottom. also prevents reply-alls
-    bcc.forEach((to) => {
-        const mailOptions = {
-            from: process.env.DB_USER,
-            to,
-            subject: data.title,
-            html: getHtml(data, postId, to),
-        };
-        transporter.sendMail(mailOptions, (error, data) => {
-            console.log(error || "Sent: " + JSON.stringify(data, null, 4));
-        });
-    });
-    return;
-}
-
-function getHtml(data, postId, to) {
-    const { subtitle, feature_image, feature_image_caption, content } = data,
-        baseUrl = "https://fern.haus";
-    return `
-        ${subtitle ? `<p><strong>${subtitle}</strong></p>` : ""}
-        <p>
-            <a
-                target="_blank"
-                rel="noopener"
-                href="${baseUrl}/post/?id=${postId}"
-            >
-                read at ${baseUrl}
-            </a>
-        </p>
-        ${
-            feature_image
-                ? `<img src="${feature_image}" alt=""
-                    style="max-width: 100%; margin: auto;"/>`
-                : ""
-        }
-        ${
-            feature_image && feature_image_caption
-                ? `<br/><em>${feature_image_caption}</em>`
-                : ""
-        }
-        <hr/>
-        <div class="content">
-            ${content}
-        </div>
-        <p>
-            <a href="${baseUrl}"
-            target="_blank" rel="noopener">
-                read more</a> |
-            <a href="${baseUrl}/unsubscribe/?email=${to}"
-            target="_blank" rel="noopener">
-                click here to unsubscribe</a>
-        </p>`;
-}
-
-// APPLY FUNCTIONS
+/* APPLY FUNCTIONS */
 
 const func = functions.https.onRequest(app),
     sendEmail = functions.firestore

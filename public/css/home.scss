@@ -90,9 +90,27 @@ body {
             background-color: rgb(128, 147, 177, 0.85);
             box-sizing: border-box;
             flex-direction: column;
-            gap: 20px;
-            padding: 20px;
+            gap: 10px;
+            padding: 15px 0;
             text-align: center;
+
+            #contact-link {
+                width: 100%;
+                background-color: rgb(105, 138, 199);
+                box-sizing: border-box;
+                color: #edf6ff;
+                font-weight: bold;
+                padding: 5px;
+                position: relative;
+                top: 3px;
+                transition: 1s;
+
+                &:hover {
+                    background-color: #edf6ff;
+                    color: rgb(105, 138, 199);
+                    opacity: 1;
+                }
+            }
 
             form,
             p {
