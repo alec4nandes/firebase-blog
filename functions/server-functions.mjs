@@ -1,76 +1,90 @@
 import admin from "firebase-admin";
 import serviceAccount from "./node-blog-369520-firebase-adminsdk-68fp3-c4f95da553.json" assert { type: "json" };
-import { getPublishedPosts } from "./models.mjs";
+import { getPublishedPosts, parseFormDataForUpload } from "./models.mjs";
 
 admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
 
 /* RENDERING (Handlebars) */
 
-async function renderBlog(res, pageNum) {
-    const { all_posts, posts, page_num, total_pages, prev_page, next_page } =
-            await paginate(pageNum),
-        all_tags = getAllTags(all_posts);
-    res.render("blog", {
-        posts,
-        all_tags,
-        top_tags: all_tags,
-        projects: getProjectsData(),
-        meta_tags: makeMetaTags(posts),
-        page_num,
-        total_pages,
-        prev_page,
-        next_page,
+async function renderHome(res) {
+    const posts = formatDatesDescending(await getPublishedPosts());
+    res.render("home", {
+        latest_post: posts[0],
+        projects: getHomePageProjects(posts),
+        tags: getAllTags(posts),
+        meta_tags: makeMetaTags(),
     });
 }
 
+async function renderBlog(res, pageNum) {
+    res.render("blog", await paginate(pageNum));
+}
+
 async function renderSearch(res, searchPosts, pageNum, search_type, query) {
-    const { all_posts, posts, page_num, total_pages, prev_page, next_page } =
-            await paginate(pageNum, searchPosts),
-        all_tags = getAllTags(all_posts);
     res.render("search", {
-        posts,
-        all_tags,
-        // top_tags: getAllTags(posts),
-        projects: getProjectsData(),
-        search_type: search_type === "query" ? "search" : search_type,
+        ...(await paginate(pageNum, searchPosts)),
         query,
-        meta_tags: makeMetaTags(posts),
-        page_num,
-        total_pages,
-        prev_page,
-        next_page,
+        search_type: search_type === "query" ? "search" : search_type,
         searching: `${search_type}=${query}&`,
     });
 }
 
 async function renderPost(res, post, is_draft) {
     res.render("post", {
+        ...(await getNavMenuData()),
         post: updateDate(post),
-        all_tags: getAllTags(await getPublishedPosts()),
-        projects: getProjectsData(),
         is_draft,
         meta_tags: makeMetaTags([post]),
     });
 }
 
+async function renderPreview(res, p) {
+    const post = { ...p };
+    post.date = { seconds: ~~(new Date().getTime() / 1000) };
+    const parsed = parseFormDataForUpload(post);
+    await admin.firestore().collection("drafts").doc(post.post_id).set(parsed);
+    const previewPost = {
+        ...parsed,
+        date: post.date,
+        post_id: post.post_id,
+    };
+    await renderPost(res, previewPost, true);
+}
+
 async function renderEditPosts(res) {
+    const getSorted = async (type) =>
+        formatDatesDescending(await getDocsHelper(type));
     res.render("edit-posts", {
-        posts: formatDatesDescending(await getDocsHelper("posts")),
-        drafts: formatDatesDescending(await getDocsHelper("drafts")),
+        posts: await getSorted("posts"),
+        drafts: await getSorted("drafts"),
     });
 }
 
+async function renderEditDraft(res, type, post_id) {
+    const doc = await admin.firestore().collection(type).doc(post_id).get();
+    if (doc) {
+        const post = { ...doc.data(), post_id: doc.id };
+        res.render("edit-post", post || {});
+    }
+}
+
+async function renderAdmin(req, res) {
+    const { is_new, id: post_id } = req.query,
+        type = ["posts", "drafts"].find((t) => t === req.query.type);
+    is_new
+        ? res.render("edit-post", {})
+        : post_id && type
+        ? renderEditDraft(res, type, post_id)
+        : renderEditPosts(res);
+}
+
 async function renderGallery(res) {
-    res.render("gallery", {
-        projects: getProjectsData(),
-        all_tags: getAllTags(await getPublishedPosts()),
-    });
+    res.render("gallery", await getNavMenuData());
 }
 
 async function renderContact(res, isConfirm, error) {
     res.render("contact", {
-        projects: getProjectsData(),
-        all_tags: getAllTags(await getPublishedPosts()),
+        ...(await getNavMenuData()),
         confirm:
             isConfirm &&
             (error
@@ -79,7 +93,24 @@ async function renderContact(res, isConfirm, error) {
     });
 }
 
+async function renderUnsubscribe(res, message) {
+    res.render("unsubscribe", {
+        ...(await getNavMenuData()),
+        message,
+    });
+}
+
 /* MISC */
+
+function getHomePageProjects(posts) {
+    return posts
+        .filter((post) => post.tags.includes("projects"))
+        .map((post) => ({
+            post_id: post.post_id,
+            name: post.post_id.replaceAll("-", " "),
+            image: post.feature_image,
+        }));
+}
 
 async function paginate(pageNum, searchPosts) {
     const postsPerPage = 4,
@@ -87,6 +118,7 @@ async function paginate(pageNum, searchPosts) {
         start = page_num * postsPerPage - postsPerPage,
         end = start + postsPerPage,
         all_posts = await getPublishedPosts(),
+        all_tags = getAllTags(all_posts),
         arr = searchPosts || all_posts,
         posts = formatDatesDescending(arr).slice(start, end),
         total_posts = arr.length,
@@ -94,12 +126,21 @@ async function paginate(pageNum, searchPosts) {
         prev_page = page_num > 1 && page_num - 1,
         next_page = page_num < total_pages && page_num + 1;
     return {
-        all_posts,
+        all_tags,
         posts,
         page_num,
         total_pages,
         prev_page,
         next_page,
+        projects: getProjectsData(),
+        meta_tags: makeMetaTags(posts),
+    };
+}
+
+async function getNavMenuData() {
+    return {
+        all_tags: getAllTags(await getPublishedPosts()),
+        projects: getProjectsData(),
     };
 }
 
@@ -152,7 +193,6 @@ function updateDate(post) {
 }
 
 function formatDate(timestamp) {
-    // return milliseconds, then JS parses to date on client side
     const utcDate = new Date(timestamp.seconds * 1000),
         localDateString = utcDate.toLocaleString("en-US", {
             timeZone: "America/Los_Angeles",
@@ -214,15 +254,14 @@ function getURL(post) {
 
 export {
     admin,
+    renderHome,
     renderBlog,
     renderSearch,
     renderPost,
-    renderEditPosts,
+    renderPreview,
+    renderAdmin,
     renderGallery,
     renderContact,
+    renderUnsubscribe,
     verifyUser,
-    getAllTags,
-    makeMetaTags,
-    formatDatesDescending,
-    getProjectsData,
 };
