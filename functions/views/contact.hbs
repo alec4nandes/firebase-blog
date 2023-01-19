@@ -1,0 +1,78 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Contact Me &mdash; Alec Fernandes</title>
+
+        <meta name="type" property="og:type" content="website" />
+        <meta
+            name="title"
+            property="og:title"
+            content="Contact Me &mdash; Alec Fernandes"
+        />
+        <meta name="url" property="og:url" content="https://fern.haus/contact" />
+        <meta
+            name="description"
+            property="og:description"
+            content="Fill out this form to let me know your website needs."
+        />
+        <meta
+            name="image"
+            property="og:image"
+            content="https://fern.haus/assets/ocean-gliderport-background.jpg"
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@alec4nandes" />
+        <meta name="twitter:title" content="Contact Me &mdash; Alec Fernandes" />
+        <meta
+            name="twitter:description"
+            content="Fill out this form to let me know your website needs."
+        />
+        <meta
+            name="twitter:image"
+            content="https://fern.haus/assets/ocean-gliderport-background.jpg"
+        />
+
+        <link rel="icon" type="image/x-icon" href="/assets/logo/favicon.ico" />
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/header-menu.css" />
+        <link rel="stylesheet" href="/css/contact.css" />
+    </head>
+    <body class="preload">
+        {{> smallheader}}
+        {{> navmenu}}
+        <main>
+            <h1>Need a website?</h1>
+            {{#if confirm}}
+                <p>{{{confirm}}}</p>
+                <p><a href="/">view home page</a></p>
+            {{else}}
+                <p>
+                    Please fill out the form below, or send me a summary of what
+                    you need at
+                    <a href="mailto:al@fern.haus">al@fern.haus</a>.
+                </p>
+                <form action="/contact-thanks" id="contact-form">
+                    <label>email: <input name="email" type="email" /></label>
+                    <label><input name="single_page_site" type="checkbox" />
+                        single page site</label>
+                    <label><input
+                            name="multiple_pages_single_site"
+                            type="checkbox"
+                        />
+                        multiple pages for single site</label>
+                    <label><input name="multiple_sites" type="checkbox" />
+                        multiple sites</label>
+                    <button type="submit">contact me</button>
+                </form>
+            {{/if}}
+        </main>
+        {{> stickycontact}}
+        {{> footer}}
+        <script src="/scripts.js"></script>
+        <script src="/bundle.js"></script>
+    </body>
+</html>

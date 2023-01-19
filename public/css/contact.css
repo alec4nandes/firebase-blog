@@ -1,0 +1,30 @@
+main {
+  margin: 80px auto !important;
+  text-align: center;
+}
+main h1 {
+  line-height: 2.2rem;
+  margin-top: 0;
+}
+main #contact-form {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 40px auto 0;
+  text-align: left;
+}
+main #contact-form label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+main #contact-form label input[type=checkbox] {
+  height: 1rem;
+  width: 1rem;
+}
+main #contact-form label input[type=checkbox]:checked {
+  background-color: aquamarine;
+}/*# sourceMappingURL=contact.css.map */

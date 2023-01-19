@@ -12,7 +12,11 @@
             property="og:title"
             content="I-Ching: Read the Text"
         />
-        <meta name="url" property="og:url" content="https://fern.haus/text" />
+        <meta
+            name="url"
+            property="og:url"
+            content="https://fern.haus/iching/text"
+        />
         <meta
             name="description"
             property="og:description"
@@ -76,12 +80,12 @@
                         <p>{{this.definition}}</p>
                         <em>line texts:</em>
                         <ol>
-                            <li>{{this.[1]}}</li>
-                            <li>{{this.[2]}}</li>
-                            <li>{{this.[3]}}</li>
-                            <li>{{this.[4]}}</li>
-                            <li>{{this.[5]}}</li>
-                            <li>{{this.[6]}}</li>
+                            <li>{{this.1}}</li>
+                            <li>{{this.2}}</li>
+                            <li>{{this.3}}</li>
+                            <li>{{this.4}}</li>
+                            <li>{{this.5}}</li>
+                            <li>{{this.6}}</li>
                         </ol>
                     </div>
                 {{/each}}

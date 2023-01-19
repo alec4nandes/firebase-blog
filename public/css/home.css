@@ -89,7 +89,7 @@ body header #header-forms #contact-link {
   padding: 5px;
   position: relative;
   top: 3px;
-  transition: 1s;
+  transition: background-color 1s, color 1s;
 }
 body header #header-forms #contact-link:hover {
   background-color: #edf6ff;

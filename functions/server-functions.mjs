@@ -67,6 +67,18 @@ async function renderGallery(res) {
     });
 }
 
+async function renderContact(res, isConfirm, error) {
+    res.render("contact", {
+        projects: getProjectsData(),
+        all_tags: getAllTags(await getPublishedPosts()),
+        confirm:
+            isConfirm &&
+            (error
+                ? `I'm sorry, but there was an error submitting the form. Please email me directly at <a href="mailto:al@fern.haus">al@fern.haus</a>.`
+                : "Thank you for reaching out! I will be in touch with you shortly."),
+    });
+}
+
 /* MISC */
 
 async function paginate(pageNum, searchPosts) {
@@ -207,6 +219,7 @@ export {
     renderPost,
     renderEditPosts,
     renderGallery,
+    renderContact,
     verifyUser,
     getAllTags,
     makeMetaTags,

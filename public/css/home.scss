@@ -103,7 +103,7 @@ body {
                 padding: 5px;
                 position: relative;
                 top: 3px;
-                transition: 1s;
+                transition: background-color 1s, color 1s;
 
                 &:hover {
                     background-color: #edf6ff;

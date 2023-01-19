@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
-import { admin } from "./server-functions.mjs";
+import { admin, renderContact } from "./server-functions.mjs";
 
 dotenv.config();
 
@@ -16,20 +16,20 @@ const transporter = nodemailer.createTransport({
 });
 
 function emailMe(formData, res) {
-    const from = formData.email,
-        mailOptions = {
-            from,
-            to: cred.user,
-            subject: `${from} wants a website!`,
-            html: `<pre>${JSON.stringify(formData, null, 4)}</pre>`,
-        };
+    const from = formData.email;
+    if (!from.trim().length) {
+        renderContact(res, true, true);
+        return;
+    }
+    const mailOptions = {
+        from,
+        to: process.env.DB_USER,
+        subject: `${from} wants a website!`,
+        html: `<pre>${JSON.stringify(formData, null, 4)}</pre>`,
+    };
     transporter.sendMail(mailOptions, (error, data) => {
         console.log(error || "Sent: " + JSON.stringify(data, null, 4));
-        res.send(
-            error
-                ? "I'm sorry, but there was an error submitting the form. Please email me directly at al@fern.haus"
-                : "Thank you for reaching out! I will be in touch with you shortly."
-        );
+        renderContact(res, true, error);
     });
 }
 

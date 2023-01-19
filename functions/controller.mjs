@@ -17,6 +17,7 @@ import {
     renderPost,
     renderEditPosts,
     renderGallery,
+    renderContact,
     verifyUser,
     getAllTags,
     makeMetaTags,
@@ -193,15 +194,7 @@ app.get("/gallery", function (req, res) {
 
 // contact form
 app.get("/contact", function (req, res) {
-    res.send(`
-        <form action="/contact-thanks">
-            <label>email: <input name="email" type="email" /></label>
-            <label><input name="single_page_site" type="checkbox"/> single page site</label>
-            <label><input name="multiple_pages_single_site" type="checkbox"/> multiple pages for single site</label>
-            <label><input name="multiple_sites" type="checkbox"/> multiple sites</label>
-            <button type="submit">contact me</button>
-        </form>
-    `);
+    renderContact(res);
 });
 
 app.get("/contact-thanks", function (req, res) {
@@ -235,7 +228,7 @@ app.get("/iching/bagua", function (req, res) {
         meta: {
             title: `I-Ching: Bagua${bagua ? ` — ${bagua}` : ""}`,
             description: bagua
-                ? "Learn all about the bagua $bagua and its trigram!"
+                ? `Learn all about the bagua ${bagua} and its trigram!`
                 : "Learn all about the 8 bagua and their trigrams!",
             url: `https://fern.haus/iching/bagua${
                 bagua ? "/?bagua=$bagua" : ""

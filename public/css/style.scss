@@ -248,8 +248,39 @@ body {
         }
     }
 
+    .sticky-contact {
+        height: 60px;
+        width: 60px;
+        background-color: #e0efff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 5px;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+
+        img {
+            height: 50%;
+            width: 50%;
+            animation: flash 1s alternate infinite;
+        }
+
+        @keyframes flash {
+            0% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    }
+
     footer {
         background-color: rgb(128, 147, 177);
+        position: relative;
 
         #footer-container {
             height: 100px;
