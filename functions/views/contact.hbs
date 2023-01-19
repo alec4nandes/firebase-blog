@@ -12,7 +12,11 @@
             property="og:title"
             content="Contact Me &mdash; Alec Fernandes"
         />
-        <meta name="url" property="og:url" content="https://fern.haus/contact" />
+        <meta
+            name="url"
+            property="og:url"
+            content="https://fern.haus/contact"
+        />
         <meta
             name="description"
             property="og:description"
@@ -26,7 +30,10 @@
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@alec4nandes" />
-        <meta name="twitter:title" content="Contact Me &mdash; Alec Fernandes" />
+        <meta
+            name="twitter:title"
+            content="Contact Me &mdash; Alec Fernandes"
+        />
         <meta
             name="twitter:description"
             content="Fill out this form to let me know your website needs."
@@ -56,16 +63,303 @@
                     <a href="mailto:al@fern.haus">al@fern.haus</a>.
                 </p>
                 <form action="/contact-thanks" id="contact-form">
-                    <label>email: <input name="email" type="email" /></label>
-                    <label><input name="single_page_site" type="checkbox" />
-                        single page site</label>
-                    <label><input
-                            name="multiple_pages_single_site"
-                            type="checkbox"
-                        />
-                        multiple pages for single site</label>
-                    <label><input name="multiple_sites" type="checkbox" />
-                        multiple sites</label>
+                    <label style="margin: auto">
+                        email:
+                        <input name="email" type="email" required />
+                    </label>
+
+                    <ol>
+                        <li>
+                            Type of website(s):
+                            <ul>
+                                <li>
+                                    <label>
+                                        <input
+                                            name="site-type"
+                                            value="single-page-site"
+                                            type="radio"
+                                        />
+                                        single page site
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input
+                                            name="site-type"
+                                            value="multiple-pages-single-site"
+                                            type="radio"
+                                        />
+                                        multiple pages for single site
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input
+                                            name="site-type"
+                                            value="multiple-sites"
+                                            type="radio"
+                                        />
+                                        multiple sites
+                                    </label>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            Client already has:
+                            <ul>
+                                <li>
+                                    <label>
+                                        <input
+                                            name="domain-name"
+                                            type="checkbox"
+                                        />
+                                        domain name
+                                        <em>(ex. amazingbusiness.com)</em>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input name="hosting" type="checkbox" />
+                                        hosting
+                                        <em>(ex. Bluehost, GoDaddy, Firebase
+                                            Hosting, etc.)</em>
+                                    </label>
+                                    <label class="tabbed">
+                                        current or desired host:
+                                        <input
+                                            name="current-or-desired-host"
+                                            type="text"
+                                        />
+                                    </label>
+                                </li>
+                                <p>images</p>
+                                <li>
+                                    <label>
+                                        <input
+                                            name="images"
+                                            value="all-images"
+                                            type="radio"
+                                        />
+                                        all images
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input
+                                            name="images"
+                                            value="some-images"
+                                            type="radio"
+                                        />
+                                        some images
+                                    </label>
+                                </li>
+                                <p>text copy</p>
+                                <li>
+                                    <label>
+                                        <input
+                                            name="text-copy"
+                                            value="all-copy"
+                                            type="radio"
+                                        />
+                                        all text copy
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input
+                                            name="text-copy"
+                                            value="some-copy"
+                                            type="radio"
+                                        />
+                                        some text copy
+                                    </label>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>Client's site needs:
+                            <ul>
+                                <li>
+                                    <label>
+                                        <input name="landing" type="checkbox" />
+                                        landing page or section
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input name="blog" type="checkbox" />
+                                        blog
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input
+                                            name="online-shop"
+                                            type="checkbox"
+                                        />
+                                        online shop
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input
+                                            name="user-signup-and-login"
+                                            type="checkbox"
+                                        />
+                                        user signup and login
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input name="chat" type="checkbox" />
+                                        chat feature
+                                    </label>
+                                </li>
+                                <p>embedded</p>
+                                <li>
+                                    <label>
+                                        <input
+                                            name="video-or-audio"
+                                            type="checkbox"
+                                        />
+                                        video and/or audio
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input
+                                            name="social-media-posts"
+                                            type="checkbox"
+                                        />
+                                        social media posts
+                                    </label>
+                                </li>
+                                <p>About</p>
+                                <li>
+                                    <label>
+                                        <input
+                                            name="about"
+                                            value="about-page"
+                                            type="radio"
+                                        />
+                                        "About" page
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input
+                                            name="about"
+                                            value="about-section"
+                                            type="radio"
+                                        />
+                                        "About" section
+                                    </label>
+                                    <label class="tabbed">
+                                        pages:
+                                        <input
+                                            name="about-section-on-pages"
+                                            type="text"
+                                        />
+                                    </label>
+                                </li>
+                                <p>Contact</p>
+                                <li>
+                                    <label>
+                                        <input
+                                            name="contact-form"
+                                            type="checkbox"
+                                        />
+                                        email contact form
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input
+                                            name="contact"
+                                            value="contact-page"
+                                            type="radio"
+                                        />
+                                        "Contact" page
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input
+                                            name="contact"
+                                            value="contact-section"
+                                            type="radio"
+                                        />
+                                        "Contact" section
+                                    </label>
+                                    <label class="tabbed">
+                                        pages:
+                                        <input
+                                            name="contact-section-on-pages"
+                                            type="text"
+                                        />
+                                    </label>
+                                </li>
+                                <p>miscellaneous</p>
+                                <li>
+                                    <label for="other-pages">
+                                        other pages (please list):
+                                    </label>
+                                    <input
+                                        id="other-pages"
+                                        name="other-pages"
+                                        type="text"
+                                    />
+                                </li>
+                                <li>
+                                    <label for="existing-web-apps">
+                                        existing web apps (please list):
+                                    </label>
+                                    <input
+                                        id="existing-web-apps"
+                                        name="existing-web-apps"
+                                        type="text"
+                                    />
+                                </li>
+                                <li>
+                                    <label for="custom-web-apps">
+                                        custom web apps (please describe):
+                                    </label>
+                                    <input
+                                        id="custom-web-apps"
+                                        name="custom-web-apps"
+                                        type="text"
+                                    />
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            Site maintenance:
+                            <ul>
+                                <li>
+                                    <label>
+                                        <input
+                                            name="maintenance"
+                                            value="one-time-setup"
+                                            type="radio"
+                                        />
+                                        one time setup
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input
+                                            name="maintenance"
+                                            value="ongoing-maintenance"
+                                            type="radio"
+                                        />
+                                        ongoing maintenance
+                                    </label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
                     <button type="submit">contact me</button>
                 </form>
             {{/if}}

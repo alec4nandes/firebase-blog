@@ -16,17 +16,13 @@ const transporter = nodemailer.createTransport({
 });
 
 function emailMe(formData, res) {
-    const from = formData.email;
-    if (!from.trim().length) {
-        renderContact(res, true, true);
-        return;
-    }
-    const mailOptions = {
-        from,
-        to: process.env.DB_USER,
-        subject: `${from} wants a website!`,
-        html: `<pre>${JSON.stringify(formData, null, 4)}</pre>`,
-    };
+    const from = formData.email,
+        mailOptions = {
+            from,
+            to: process.env.DB_USER,
+            subject: `${from} wants a website!`,
+            html: `<pre>${JSON.stringify(formData, null, 4)}</pre>`,
+        };
     transporter.sendMail(mailOptions, (error, data) => {
         console.log(error || "Sent: " + JSON.stringify(data, null, 4));
         renderContact(res, true, error);
