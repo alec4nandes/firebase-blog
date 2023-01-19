@@ -57,8 +57,11 @@
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  z-index: 999;
 }
 .subscribe-container .subscribe {
+  height: 30px;
+  box-sizing: border-box;
   gap: 10px;
   padding: 0 20px;
 }
@@ -69,7 +72,7 @@
 }
 .subscribe-container .subscribe .close-nav,
 .subscribe-container .subscribe .open-nav {
-  height: 26px;
+  height: 30px;
   background-color: transparent;
   border: 0;
   display: flex;
@@ -90,11 +93,14 @@
   height: 100vh;
   width: 300px;
   background-color: rgba(128, 147, 177, 0.95);
+  box-sizing: border-box;
   color: white;
   overflow-y: auto;
   transition: left 1s;
+  padding-bottom: 100px;
   position: fixed;
   top: 0;
+  z-index: 2;
 }
 .subscribe-container .subscribe nav.closed {
   left: -300px;
@@ -168,6 +174,7 @@
   display: flex;
   gap: 10px;
   justify-content: flex-end;
+  z-index: 1;
 }
 .subscribe-container .subscribe .social-icons a {
   display: flex;

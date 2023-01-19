@@ -27,7 +27,7 @@ body {
     form.single-line-form {
         display: flex;
         align-items: center;
-        flex-wrap: wrap;
+        // flex-wrap: wrap;
         gap: 3px;
 
         button,
@@ -53,7 +53,8 @@ body {
         }
 
         input {
-            width: 160px;
+            max-width: 160px;
+            width: 100%;
         }
     }
 

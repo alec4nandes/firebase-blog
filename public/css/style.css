@@ -20,7 +20,6 @@ body .date-posted {
 body form.single-line-form {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: 3px;
 }
 body form.single-line-form button,
@@ -45,7 +44,8 @@ body form.single-line-form button:hover {
   cursor: pointer;
 }
 body form.single-line-form input {
-  width: 160px;
+  max-width: 160px;
+  width: 100%;
 }
 body main {
   max-width: 800px;
