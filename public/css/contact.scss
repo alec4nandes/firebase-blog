@@ -9,15 +9,23 @@ main {
 
     #contact-form {
         width: fit-content;
+        background-color: #f7fbff;
+        border: 1px solid #e0efff;
+        border-radius: 10px;
         display: flex;
         flex-direction: column;
         gap: 5px;
         margin: 40px auto 0;
+        padding: 10px;
         text-align: left;
 
-        ol > li {
-            font-weight: bold;
-            padding-bottom: 15px;
+        ol {
+            padding-left: 20px;
+
+            & > li {
+                font-weight: bold;
+                padding-bottom: 15px;
+            }
         }
 
         ul {
@@ -56,6 +64,15 @@ main {
             input[type="radio"] {
                 border-radius: 50%;
             }
+
+            input[type="text"] {
+                width: auto;
+                flex: 1;
+            }
+        }
+
+        input[type="text"] {
+            width: 100%;
         }
 
         button[type="submit"] {

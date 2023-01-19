@@ -10,11 +10,18 @@ main #contact-form {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  background-color: #f7fbff;
+  border: 1px solid #e0efff;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   gap: 5px;
   margin: 40px auto 0;
+  padding: 10px;
   text-align: left;
+}
+main #contact-form ol {
+  padding-left: 20px;
 }
 main #contact-form ol > li {
   font-weight: bold;
@@ -50,6 +57,13 @@ main #contact-form label input[type=radio]:checked {
 }
 main #contact-form label input[type=radio] {
   border-radius: 50%;
+}
+main #contact-form label input[type=text] {
+  width: auto;
+  flex: 1;
+}
+main #contact-form input[type=text] {
+  width: 100%;
 }
 main #contact-form button[type=submit] {
   width: -webkit-fit-content;
