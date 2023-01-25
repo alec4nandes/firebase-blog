@@ -71,7 +71,7 @@ function getHtml(data, postId, to) {
         ${
             feature_image
                 ? `<img src="${feature_image}" alt=""
-                    style="max-width: 100%; margin: auto;"/>`
+                    style="width: 100%; max-width: 700px; margin: auto;" />`
                 : ""
         }
         ${
