@@ -161,8 +161,7 @@ body .centered {
 body code {
   font-size: 16px;
 }
-body code pre,
-body code xmp {
+body pre {
   width: 100%;
   background-color: #edf6ff;
   border-radius: 10px;
