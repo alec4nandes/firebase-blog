@@ -19,6 +19,7 @@ import {
     renderContact,
     renderUnsubscribe,
     verifyUser,
+    render404,
 } from "./server-functions.mjs";
 import { emailMe, sendMailingListUpdate } from "./email.mjs";
 import cookieParser from "cookie-parser";
@@ -164,10 +165,14 @@ app.get("/moon-sun-tides-api", function (req, res) {
     getMoonSunTidesData(req, res);
 });
 
+app.get("/404", function (req, res) {
+    render404(res);
+});
+
 // 404 page must be final route declaration:
 app.get("*", function (req, res) {
     setCDNHeaders(res);
-    res.redirect("/404.html");
+    res.redirect("/404");
 });
 
 /* APPLY FUNCTIONS */

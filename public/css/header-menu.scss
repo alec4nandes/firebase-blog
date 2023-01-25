@@ -10,6 +10,7 @@
     background-position: bottom center;
     background-size: cover;
     position: relative;
+    z-index: 555;
 
     &::before {
         content: "";

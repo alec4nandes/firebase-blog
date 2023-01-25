@@ -100,6 +100,10 @@ async function renderUnsubscribe(res, message) {
     });
 }
 
+async function render404(res) {
+    res.render("404", await getNavMenuData());
+}
+
 /* MISC */
 
 function getHomePageProjects(posts) {
@@ -263,5 +267,6 @@ export {
     renderGallery,
     renderContact,
     renderUnsubscribe,
+    render404,
     verifyUser,
 };

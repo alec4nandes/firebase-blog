@@ -1,0 +1,40 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/header-menu.css" />
+        <title>Page Not Found &mdash; Alec Fernandes</title>
+        <style>
+            h1 {
+                line-height: 2.2rem;
+            }
+        </style>
+    </head>
+    <body class="preload">
+        {{> smallheader}}
+        {{> navmenu}}
+        <main class="centered-content">
+            <h1 class="centered">404 &mdash; Page Not Found!</h1>
+        </main>
+        {{> stickycontact}}
+        {{> footer}}
+        <script src="/scripts.js"></script>
+        <script src="/bundle.js"></script>
+        <script>
+            function getScrollBottom() {
+                const scrollPos = window.scrollY,
+                    screenHeight = window.innerHeight,
+                    bodyHeight = document.body.scrollHeight,
+                    footerHeight = document.querySelector("footer").offsetHeight,
+                    removeSticky = scrollPos + screenHeight > bodyHeight - footerHeight,
+                    stickyContact = document.querySelector(".sticky-contact");
+                stickyContact.style.position = removeSticky ? "absolute" : "fixed";
+                stickyContact.style.bottom = removeSticky ? "100px" : 0;
+            }
+            getScrollBottom();
+            window.onscroll = getScrollBottom;
+        </script>
+    </body>
+</html>
