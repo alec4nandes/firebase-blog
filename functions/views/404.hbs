@@ -23,18 +23,22 @@
         <script src="/scripts.js"></script>
         <script src="/bundle.js"></script>
         <script>
-            function getScrollBottom() {
-                const scrollPos = window.scrollY,
-                    screenHeight = window.innerHeight,
+            stopFixedScrollAboveFooter();
+
+            function stopFixedScrollAboveFooter() {
+                stopFixedScrollAboveFooterHelper();
+                window.onscroll = stopFixedScrollAboveFooterHelper;
+            }
+
+            function stopFixedScrollAboveFooterHelper() {
+                const {scrollY: scrollPos, innerHeight: screenHeight} = window,
                     bodyHeight = document.body.scrollHeight,
                     footerHeight = document.querySelector("footer").offsetHeight,
-                    removeSticky = scrollPos + screenHeight > bodyHeight - footerHeight,
-                    stickyContact = document.querySelector(".sticky-contact");
-                stickyContact.style.position = removeSticky ? "absolute" : "fixed";
-                stickyContact.style.bottom = removeSticky ? "100px" : 0;
+                    isRemoveFixed = scrollPos + screenHeight > bodyHeight - footerHeight,
+                    fixedElem = document.querySelector(".sticky-contact");
+                fixedElem.style.position = isRemoveFixed ? "absolute" : "fixed";
+                fixedElem.style.bottom = isRemoveFixed ? `${footerHeight}px` : 0;
             }
-            getScrollBottom();
-            window.onscroll = getScrollBottom;
         </script>
     </body>
 </html>
