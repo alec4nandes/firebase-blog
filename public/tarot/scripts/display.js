@@ -167,15 +167,19 @@ function getSpreadStatsTablesHTML(stats) {
                                 </tr>
                             </thead>
                             <tbody>
-                                ${ents
-                                    .map(
-                                        ([key, val]) => `
-                                        <tr>
-                                            <td>${key}</td>
-                                            <td>${val}</td>
-                                        </tr>`
-                                    )
-                                    .join("")}
+                                ${
+                                    ents.length
+                                        ? ents
+                                              .map(
+                                                  ([key, val]) => `
+                                                    <tr>
+                                                        <td>${key}</td>
+                                                        <td>${val}</td>
+                                                    </tr>`
+                                              )
+                                              .join("")
+                                        : `<tr><td><em>none</em></td></tr>`
+                                }
                             </tbody>
                         </table>`;
                 })
