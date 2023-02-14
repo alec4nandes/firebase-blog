@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Document</title>
+    </head>
+    <body>
+        <form id="random-spread">
+            <label
+                >cards:
+                <input type="number" name="size" value="5" min="2" max="10"
+            /></label>
+            <button type="submit">draw spread</button>
+        </form>
+        <hr />
+        <form id="custom-spread">
+            <select name="card1" class="pick-card"></select>
+            <select name="card2" class="pick-card"></select>
+            <select name="card3" class="pick-card"></select>
+            <select name="card4" class="pick-card"></select>
+            <select name="card5" class="pick-card"></select>
+            <select name="card6" class="pick-card"></select>
+            <select name="card7" class="pick-card"></select>
+            <select name="card8" class="pick-card"></select>
+            <select name="card9" class="pick-card"></select>
+            <select name="card10" class="pick-card"></select>
+            <button type="submit">draw spread</button>
+        </form>
+        <hr />
+        <label
+            >single card:
+            <select id="pick-single-card" class="pick-card"></select
+        ></label>
+        <div id="display"></div>
+        <script type="module">
+            import Deck from "./scripts/classes/Deck.js";
+            import {
+                buildSelects,
+                handleShowSingleCard,
+                handleShowSpread,
+            } from "./scripts/display.js";
+
+            const deck = new Deck();
+
+            buildSelects();
+
+            document.querySelector("#pick-single-card").onchange = (e) => {
+                const card = deck.getCard(e.target.value);
+                handleShowSingleCard(card, deck);
+            };
+
+            document.forms["random-spread"].onsubmit = (e) => {
+                e.preventDefault();
+                const s = +e.target.size.value,
+                    size = s < 2 ? 2 : s > 10 ? 10 : s,
+                    spread = deck.getRandomSpread(size);
+                handleShowSpread(spread, deck);
+            };
+
+            document.forms["custom-spread"].onsubmit = (e) => {
+                e.preventDefault();
+                const values = [...new FormData(e.target).values()],
+                    cardNames = values.filter((name) => name !== "---"),
+                    hasDuplicates = cardNames
+                        .map((name) => name.replace(" reversed", ""))
+                        .find((name, i, a) => a.lastIndexOf(name) !== i);
+                if (cardNames.length < 2) {
+                    alert("Pick at least 2 cards!");
+                } else if (hasDuplicates) {
+                    alert("No duplicate cards!");
+                } else {
+                    const spread = deck.getSpread(cardNames);
+                    handleShowSpread(spread, deck);
+                }
+            };
+        </script>
+    </body>
+</html>

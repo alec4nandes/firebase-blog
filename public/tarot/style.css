@@ -1,0 +1,139 @@
+body {
+  margin: 30px 20px;
+  text-align: center;
+}
+body,
+body button {
+  font-family: "Arial", sans-serif;
+}
+body,
+body table button {
+  font-size: 0.8rem;
+}
+body img.reversed {
+  transform: rotate(180deg);
+}
+body #custom-spread {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+body #custom-spread button {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+}
+body #spread-card-buttons button,
+body th button,
+body td button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: 0;
+  border: 0;
+  display: contents;
+  padding: 0;
+  text-decoration: underline;
+}
+body #spread-card-buttons button:hover,
+body th button:hover,
+body td button:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+body #display {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+body #display h2 {
+  width: 100%;
+  margin-top: 30px;
+}
+body #display #card-words {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  margin: auto;
+}
+body #display #card-words img {
+  height: 300px;
+  width: auto;
+}
+body #display #card-words ul {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0;
+  text-align: left;
+}
+body #display #spread-card-buttons {
+  margin: 30px auto;
+}
+body #display #spread-card-buttons button {
+  width: 120px;
+  display: inline-flex;
+  align-items: center;
+  flex-direction: column;
+  font-weight: bold;
+  margin: 8px;
+}
+body #display #spread-card-buttons button img {
+  height: auto;
+  width: 100%;
+}
+body #display #spread-stats,
+body #display table {
+  max-width: 380px;
+  width: 100%;
+}
+body #display #spread-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+body #display #spread-stats table {
+  width: -moz-fit-content;
+  width: fit-content;
+  flex: 1;
+}
+body #display #spread-stats table td {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+body #display table {
+  border-collapse: collapse;
+  text-align: center;
+}
+body #display table th,
+body #display table td {
+  border: 1px solid #aaa;
+  padding: 2px 5px;
+}
+body #display table th div,
+body #display table td div {
+  white-space: nowrap;
+}
+body #display table thead tr {
+  background-color: purple;
+  color: #fff;
+}
+body #display table tbody th:first-child,
+body #display table tbody td:first-child {
+  width: 125px;
+}
+body #display table tbody th {
+  background-color: #000;
+}
+body #display table tbody th,
+body #display table tbody th button {
+  color: #fff;
+}
+body #display table tbody td {
+  background-color: #ddd;
+}
+body #display table tbody td:last-child {
+  background-color: #fff;
+}/*# sourceMappingURL=style.css.map */

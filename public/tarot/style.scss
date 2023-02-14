@@ -1,0 +1,167 @@
+body {
+    margin: 30px 20px;
+    text-align: center;
+
+    &,
+    button {
+        font-family: "Arial", sans-serif;
+    }
+
+    &,
+    table button {
+        font-size: 0.8rem;
+    }
+
+    img {
+        &.reversed {
+            transform: rotate(180deg);
+        }
+    }
+
+    #custom-spread {
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+
+        button {
+            width: fit-content;
+            margin: auto;
+        }
+    }
+
+    #spread-card-buttons,
+    th,
+    td {
+        button {
+            appearance: none;
+            background: 0;
+            border: 0;
+            display: contents;
+            padding: 0;
+            text-decoration: underline;
+
+            &:hover {
+                cursor: pointer;
+                opacity: 0.5;
+            }
+        }
+    }
+
+    #display {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 15px;
+
+        h2 {
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        #card-words {
+            width: fit-content;
+            display: flex;
+            margin: auto;
+
+            img {
+                height: 300px;
+                width: auto;
+            }
+
+            ul {
+                width: fit-content;
+                margin: 0;
+                text-align: left;
+            }
+        }
+
+        #spread-card-buttons {
+            margin: 30px auto;
+
+            button {
+                width: 120px;
+                display: inline-flex;
+                align-items: center;
+                flex-direction: column;
+                font-weight: bold;
+                margin: 8px;
+
+                img {
+                    height: auto;
+                    width: 100%;
+                }
+            }
+        }
+
+        #spread-stats,
+        table {
+            max-width: 380px;
+            width: 100%;
+        }
+
+        #spread-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+
+            table {
+                width: fit-content;
+                flex: 1;
+
+                td {
+                    width: fit-content;
+                }
+            }
+        }
+
+        table {
+            border-collapse: collapse;
+            text-align: center;
+
+            th,
+            td {
+                border: 1px solid #aaa;
+                padding: 2px 5px;
+
+                div {
+                    white-space: nowrap;
+                }
+            }
+
+            thead {
+                tr {
+                    background-color: purple;
+                    color: #fff;
+                }
+            }
+
+            tbody {
+                th,
+                td {
+                    &:first-child {
+                        width: 125px;
+                    }
+                }
+
+                th {
+                    background-color: #000;
+
+                    &,
+                    button {
+                        color: #fff;
+                    }
+                }
+
+                td {
+                    background-color: #ddd;
+
+                    &:last-child {
+                        background-color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
