@@ -116,10 +116,6 @@ body #display table td {
   border: 1px solid #aaa;
   padding: 2px 5px;
 }
-body #display table th div,
-body #display table td div {
-  white-space: nowrap;
-}
 body #display table thead tr {
   background-color: purple;
   color: #fff;
