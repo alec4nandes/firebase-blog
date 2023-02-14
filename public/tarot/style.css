@@ -53,15 +53,11 @@ body #display {
   flex-wrap: wrap;
   gap: 15px;
 }
-body #display h2 {
-  width: 100%;
-  margin-top: 30px;
-}
 body #display #card-words {
   width: -moz-fit-content;
   width: fit-content;
   display: flex;
-  margin: auto;
+  margin: 0 auto;
 }
 body #display #card-words img {
   height: 300px;

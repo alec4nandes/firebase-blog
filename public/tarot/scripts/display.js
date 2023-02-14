@@ -62,6 +62,11 @@ function addSingleCardHandlers(cards, deck) {
     );
 }
 
+function showDisplay(elem) {
+    document.querySelector("#display").style.minHeight = "100vh";
+    elem.scrollIntoView({ behavior: "smooth" });
+}
+
 // PICK CARD DROPDOWN MENU
 
 function buildSelects() {
@@ -84,7 +89,7 @@ function handleShowSingleCard(card, deck) {
         deck
     );
     addSingleCardHandlers(deck.getAllCards(), deck);
-    document.documentElement.scrollTo(0, 0);
+    showDisplay(document.querySelector("#single-card"));
 }
 
 function getSingleCardHTML(card, deck) {
@@ -121,6 +126,7 @@ function handleShowSpread(spread, deck) {
         (elem, i) => (elem.value = spreadCards[i]?.getName() || "---")
     );
     addSingleCardHandlers(spreadCards, deck);
+    showDisplay(document.querySelector("#spread-heading"));
 }
 
 function getSpreadHTML(spread, deck) {
@@ -128,12 +134,15 @@ function getSpreadHTML(spread, deck) {
         stats = spread.getSpreadStats(),
         comparison = spread.getSpreadComparison();
     return `
-    <hr />
-    <div id="spread-card-buttons">
-        ${makeCardButtonsFromCards(cards, true)}
-    </div>
-    ${getSpreadStatsTablesHTML(stats)}
-    ${getCompareTablesHTML(comparison, deck)}`;
+        <div style="width: 100%;">
+            <hr />
+            <h2 id="spread-heading">Spread</h2>
+        </div>
+        <div id="spread-card-buttons">
+            ${makeCardButtonsFromCards(cards, true)}
+        </div>
+        ${getSpreadStatsTablesHTML(stats)}
+        ${getCompareTablesHTML(comparison, deck)}`;
 }
 
 function getSpreadStatsTablesHTML(stats) {
