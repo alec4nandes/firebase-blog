@@ -42,7 +42,6 @@ body header {
   background-color: #222;
   display: flex;
   align-items: center;
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 1;
@@ -178,7 +177,7 @@ body main .content-container #about #tables table tr td {
 }
 @media only screen and (max-width: 420px) {
   body header nav a,
-body header nav button {
+  body header nav button {
     font-size: 14px;
   }
 }/*# sourceMappingURL=style.css.map */

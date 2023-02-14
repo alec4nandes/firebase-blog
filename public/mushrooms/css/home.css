@@ -18,7 +18,6 @@ body main#homepage {
   }
 }
 body main#homepage .links-container {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   display: flex;

@@ -80,10 +80,10 @@ h1 {
 }
 @media only screen and (max-width: 420px) {
   .gallery .page,
-.gallery .screenshot,
-.gallery .pair,
-.gallery .featured-square,
-.gallery .banner {
+  .gallery .screenshot,
+  .gallery .pair,
+  .gallery .featured-square,
+  .gallery .banner {
     width: 100% !important;
   }
   .gallery .pair {

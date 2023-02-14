@@ -39,7 +39,6 @@
   text-decoration: none;
 }
 .small-header-container .small-header h2 {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   background-color: rgb(105, 138, 199);
@@ -55,7 +54,6 @@
 
 .subscribe-container {
   background-color: rgb(128, 147, 177);
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 999;

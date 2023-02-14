@@ -10,6 +10,10 @@ body,
 body table button {
   font-size: 0.8rem;
 }
+body hr {
+  width: 100%;
+  margin-top: 20px;
+}
 body img.reversed {
   transform: rotate(180deg);
 }
@@ -70,7 +74,7 @@ body #display #card-words ul {
   text-align: left;
 }
 body #display #spread-card-buttons {
-  margin: 30px auto;
+  margin: 0 auto 20px;
 }
 body #display #spread-card-buttons button {
   width: 120px;

@@ -48,7 +48,6 @@ body main #make-deck-button {
   margin: 30px auto;
 }
 body main #card-buttons {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   display: flex;

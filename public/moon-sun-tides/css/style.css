@@ -104,7 +104,6 @@ body main button:hover {
   cursor: pointer;
 }
 body main ul {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   margin: auto;
@@ -136,7 +135,6 @@ body main table tr td {
 }
 body main pre {
   max-width: 100%;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   background-color: rgba(0, 0, 0, 0.3);

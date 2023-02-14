@@ -58,7 +58,6 @@ body button[type=submit] {
 body h1,
 body h2,
 body h3 {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   font-family: "Cinzel Decorative", Arial, Helvetica, sans-serif;

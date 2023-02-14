@@ -7,7 +7,6 @@ main h1 {
   margin-top: 0;
 }
 main #contact-form {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   background-color: #f7fbff;
@@ -66,7 +65,6 @@ main #contact-form input[type=text] {
   width: 100%;
 }
 main #contact-form button[type=submit] {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   background-color: #e0efff;

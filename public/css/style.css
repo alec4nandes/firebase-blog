@@ -173,9 +173,6 @@ body pre {
 body input::-moz-placeholder {
   color: #aaa;
 }
-body input:-ms-input-placeholder {
-  color: #aaa;
-}
 body input::placeholder {
   color: #aaa;
 }
@@ -229,16 +226,7 @@ body .sticky-contact {
 body .sticky-contact img {
   height: 50%;
   width: 50%;
-  -webkit-animation: flash 1s alternate infinite;
-          animation: flash 1s alternate infinite;
-}
-@-webkit-keyframes flash {
-  0% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-  }
+  animation: flash 1s alternate infinite;
 }
 @keyframes flash {
   0% {

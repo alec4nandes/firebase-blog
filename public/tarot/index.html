@@ -4,11 +4,28 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="keywords"
+            content="tarot cards, tarot reading, tarot spread, tarot study, arcana, major arcana, minor arcana"
+        />
+        <meta name="author" content="Alec Fernandes" />
+        <meta property="og:title" content="Fern Haus Tarot by Alec Fernandes" />
+        <meta
+            property="og:description"
+            content="Learn about the Tarot deck and compare meanings between cards."
+        />
+        <meta
+            property="og:image"
+            content="https://fern.haus/tarot/assets/meta-tag-og-image.jpg"
+        />
         <link rel="stylesheet" href="style.css" />
-        <title>Document</title>
+        <title>Fern Haus Tarot</title>
     </head>
     <body>
+        <h1>Fern Haus Tarot</h1>
+        <hr />
         <form id="random-spread">
+            <h2>Random Spread</h2>
             <label
                 >cards:
                 <input type="number" name="size" value="5" min="2" max="10"
@@ -17,6 +34,7 @@
         </form>
         <hr />
         <form id="custom-spread">
+            <h2>Custom Spread</h2>
             <select name="card1" class="pick-card"></select>
             <select name="card2" class="pick-card"></select>
             <select name="card3" class="pick-card"></select>
@@ -30,10 +48,11 @@
             <button type="submit">draw spread</button>
         </form>
         <hr />
-        <label
-            >single card:
-            <select id="pick-single-card" class="pick-card"></select
-        ></label>
+        <h2>Single Card Lookup</h2>
+        <label>
+            single card:
+            <select id="pick-single-card" class="pick-card"></select>
+        </label>
         <div id="display"></div>
         <script type="module">
             import Deck from "./scripts/classes/Deck.js";

@@ -128,6 +128,7 @@ function getSpreadHTML(spread, deck) {
         stats = spread.getSpreadStats(),
         comparison = spread.getSpreadComparison();
     return `
+    <hr />
     <div id="spread-card-buttons">
         ${makeCardButtonsFromCards(cards, true)}
     </div>

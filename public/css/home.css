@@ -241,7 +241,7 @@ body main section #projects > a > div span {
 
 @media only screen and (max-width: 725px) {
   html,
-body {
+  body {
     height: auto;
   }
   body {

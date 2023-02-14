@@ -12,6 +12,11 @@ body {
         font-size: 0.8rem;
     }
 
+    hr {
+        width: 100%;
+        margin-top: 20px;
+    }
+
     img {
         &.reversed {
             transform: rotate(180deg);
@@ -78,7 +83,7 @@ body {
         }
 
         #spread-card-buttons {
-            margin: 30px auto;
+            margin: 0 auto 20px;
 
             button {
                 width: 120px;
