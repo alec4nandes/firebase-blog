@@ -105,9 +105,10 @@ function getSingleCardHTML(card, deck) {
                 class="${card.getIsReversed() ? "reversed" : "upright"}" />
             ${
                 words.length
-                    ? `<ul>
-                    ${words.map((word) => `<li>${word}</li>`).join("")}
-                </ul>`
+                    ? `
+                    <ul>
+                        ${words.map((word) => `<li>${word}</li>`).join("")}
+                    </ul>`
                     : ""
             }
         </div>
@@ -117,8 +118,9 @@ function getSingleCardHTML(card, deck) {
 // SPREAD
 
 function handleShowSpread(spread, deck) {
+    const display = document.querySelector("#display");
     document.querySelector("#pick-single-card").value = "---";
-    document.querySelector("#display").innerHTML = getSpreadHTML(spread, deck);
+    display.innerHTML = getSpreadHTML(spread, deck);
     const spreadCards = spread.getCards(),
         customSelects =
             document.forms["custom-spread"].querySelectorAll("select");
@@ -126,7 +128,7 @@ function handleShowSpread(spread, deck) {
         (elem, i) => (elem.value = spreadCards[i]?.getName() || "---")
     );
     addSingleCardHandlers(spreadCards, deck);
-    showDisplay(document.querySelector("#spread-heading"));
+    showDisplay(display);
 }
 
 function getSpreadHTML(spread, deck) {
@@ -136,7 +138,7 @@ function getSpreadHTML(spread, deck) {
     return `
         <div style="width: 100%;">
             <hr />
-            <h2 id="spread-heading">Spread</h2>
+            <h2>Spread</h2>
         </div>
         <div id="spread-card-buttons">
             ${makeCardButtonsFromCards(cards, true)}

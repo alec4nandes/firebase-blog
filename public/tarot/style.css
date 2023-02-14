@@ -12,7 +12,10 @@ body table button {
 }
 body hr {
   width: 100%;
-  margin-top: 20px;
+  border: 0;
+  border-bottom: 1.5px solid #aaa;
+  margin: 0;
+  padding-top: 20px;
 }
 body img.reversed {
   transform: rotate(180deg);
