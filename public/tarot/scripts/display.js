@@ -89,6 +89,7 @@ function handleShowSingleCard(card, deck) {
 
 function getSingleCardHTML(card, deck) {
     const name = card.getName(),
+        words = card.getWords(),
         flippedCard = deck.getFlippedCard(name),
         comparison = deck.getDeckComparison(name);
     return `
@@ -97,12 +98,13 @@ function getSingleCardHTML(card, deck) {
             <img src="./assets/cards/${card.getUprightName()}.jpg"
                 id="single-card-image"
                 class="${card.getIsReversed() ? "reversed" : "upright"}" />
-            <ul>
-                ${card
-                    .getWords()
-                    .map((word) => `<li>${word}</li>`)
-                    .join("")}
-            </ul>
+            ${
+                words.length
+                    ? `<ul>
+                    ${words.map((word) => `<li>${word}</li>`).join("")}
+                </ul>`
+                    : ""
+            }
         </div>
         ${getCompareTablesHTML(comparison, deck)}`;
 }
