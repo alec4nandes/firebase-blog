@@ -34,7 +34,7 @@ function makeCardButtonsFromCards(cards, isNotSorted) {
                 <button class="${getClassName(card)}">
                     ${
                         isNotSorted
-                            ? `<img src="../assets/cards/${card.getUprightName()}.jpg"
+                            ? `<img src="./assets/cards/${card.getUprightName()}.jpg"
                                 class="${
                                     card.getIsReversed()
                                         ? "reversed"
@@ -94,7 +94,7 @@ function getSingleCardHTML(card, deck) {
     return `
         <button class="${getClassName(flippedCard)}">flip</button>
         <div id="card-words">
-            <img src="../assets/cards/${card.getUprightName()}.jpg"
+            <img src="./assets/cards/${card.getUprightName()}.jpg"
                 id="single-card-image"
                 class="${card.getIsReversed() ? "reversed" : "upright"}" />
             <ul>
