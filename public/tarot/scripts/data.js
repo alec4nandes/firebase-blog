@@ -581,7 +581,7 @@ const cardsInfo = [
             "rationality",
             "satisfaction",
             "sensuality",
-            "warm",
+            "warmth",
             "wealth",
         ],
     },
