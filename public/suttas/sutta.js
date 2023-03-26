@@ -1,4 +1,4 @@
-import crawled, { getData } from "./crawl.js";
+import crawled, { sections, getData } from "./crawl.js";
 
 async function getSutta(suttaId) {
     const data = await getData(suttaId),
@@ -69,7 +69,12 @@ async function getSutta(suttaId) {
 }
 
 async function getRandomSutta() {
-    return await getSutta(getRandomItem(crawled));
+    // randomly select a section first to give all sections,
+    // even the small ones, an equal chance
+    const section = getRandomItem(Object.keys(sections)),
+        validSuttas = crawled.filter((sutta) => sutta.includes(section)),
+        suttaId = getRandomItem(validSuttas);
+    return await getSutta(suttaId);
 
     function getRandomItem(arr) {
         return arr[~~(Math.random() * arr.length)];
