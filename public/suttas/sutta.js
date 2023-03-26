@@ -52,10 +52,9 @@ async function getSuttaHelper(suttaInfo) {
     }
 }
 
-async function getSutta(suttaId) {
-    const data = await getData(suttaId),
-        // real sutta id might be slightly different than randomly selected
-        {
+async function getSutta(suttaId, data) {
+    data = data || (await getData(suttaId));
+    const {
             uid: sutta_id,
             title: sutta_title,
             author,
@@ -85,42 +84,21 @@ async function getRandomSutta() {
 
     async function getRandomSuttaInfo() {
         const sections = Object.keys(suttapitaka),
-            section = getRandomItem(sections);
-        let random_chapter = getRandomNumber(suttapitaka[section]) + 1,
-            sutta_id = `${section}${random_chapter}`,
+            section = getRandomItem(sections),
+            random_chapter = getRandomNumber(suttapitaka[section]) + 1;
+        let sutta_id = `${section}${random_chapter}`,
             data = await getData(sutta_id);
         // validate random chapter number: see if it needs .1 subsection
         if (!data.translation) {
             console.log(sutta_id, "does not exist.");
-            random_chapter += ".1";
             sutta_id += ".1";
             console.log("trying", sutta_id, "instead.");
             // get random subsection
-            const subsections = await getSuttaSubsections(sutta_id),
-                subsection = getRandomItem(subsections);
-            data = await getData(subsection);
+            const subsections = await getSuttaSubsections(sutta_id);
+            sutta_id = getRandomItem(subsections);
+            data = await getData(sutta_id);
         }
-        const {
-            uid,
-            title: sutta_title,
-            author,
-            previous,
-            next,
-        } = data.translation;
-        // real sutta id might be slightly different than randomly selected
-        sutta_id = uid;
-        return {
-            sutta_id,
-            section,
-            chapter: sutta_id.replace(section, ""),
-            sutta_title,
-            author,
-            prev_id: previous.uid,
-            next_id: next.uid,
-            sutta_description: data.suttaplex.blurb,
-            // random_chapter,
-            // data,
-        };
+        return await getSutta(sutta_id, data);
 
         function getRandomItem(arr) {
             return arr[getRandomNumber(arr.length)];
