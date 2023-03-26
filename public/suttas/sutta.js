@@ -15,13 +15,13 @@ async function getData(suttaId) {
     return await (await fetch(endpoint)).json();
 }
 
-async function getSuttaHelper(sutta_info) {
-    const { section, sutta_id } = sutta_info,
-        section_info = await getSectionInfo(section),
+async function getSuttaHelper(suttaInfo) {
+    const { section, sutta_id } = suttaInfo,
+        sectionInfo = await getSectionInfo(section),
         lines = await getSuttaChapterText(sutta_id);
     return {
-        ...sutta_info,
-        ...section_info,
+        ...suttaInfo,
+        ...sectionInfo,
         lines,
     };
 
@@ -29,19 +29,18 @@ async function getSuttaHelper(sutta_info) {
         const endpoint = `https://suttacentral.net/api/suttas/${section}/sujato?siteLanguage=en`,
             data = await (await fetch(endpoint)).json(),
             {
-                translated_title: section_title,
-                original_title: section_pali,
-                blurb: section_description,
+                translated_title: title,
+                original_title: pali,
+                blurb: description,
             } = data?.suttaplex || {},
             isDhp = section === "dhp";
         return {
-            section_title:
-                !section_title && isDhp ? "Dhammapada" : section_title,
-            section_pali: !section_pali && isDhp ? "Dhammapada" : section_pali,
+            section_title: !title && isDhp ? "Dhammapada" : title,
+            section_pali: !pali && isDhp ? "Dhammapada" : pali,
             section_description:
-                !section_description && isDhp
+                !description && isDhp
                     ? "One of the most widely read collections of basic Buddhist teachings."
-                    : section_description,
+                    : description,
         };
     }
 
@@ -63,7 +62,7 @@ async function getSutta(suttaId) {
             previous,
             next,
         } = data.translation,
-        firstNumIndex = [...sutta_id].findIndex((char) => +char),
+        firstNumIndex = [...sutta_id].findIndex(Number),
         section = sutta_id.slice(0, firstNumIndex),
         chapter = sutta_id.replace(section, ""),
         suttaInfo = {
