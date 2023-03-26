@@ -15,8 +15,29 @@ async function getData(suttaId) {
     return await (await fetch(endpoint)).json();
 }
 
-async function getSuttaHelper(suttaInfo) {
-    const { section, sutta_id } = suttaInfo,
+async function getSutta(suttaId, data) {
+    data = data || (await getData(suttaId));
+    const {
+            uid: sutta_id,
+            title: sutta_title,
+            author,
+            previous,
+            next,
+        } = data.translation,
+        firstNumIndex = [...sutta_id].findIndex(Number),
+        section = sutta_id.slice(0, firstNumIndex),
+        chapter = sutta_id.replace(section, ""),
+        suttaInfo = {
+            sutta_id,
+            section,
+            chapter,
+            sutta_title,
+            author,
+            prev_id: previous.uid,
+            next_id: next.uid,
+            sutta_description: data.suttaplex.blurb,
+            // data,
+        },
         sectionInfo = await getSectionInfo(section),
         lines = await getSuttaChapterText(sutta_id);
     return {
@@ -52,76 +73,45 @@ async function getSuttaHelper(suttaInfo) {
     }
 }
 
-async function getSutta(suttaId, data) {
-    data = data || (await getData(suttaId));
-    const {
-            uid: sutta_id,
-            title: sutta_title,
-            author,
-            previous,
-            next,
-        } = data.translation,
-        firstNumIndex = [...sutta_id].findIndex(Number),
-        section = sutta_id.slice(0, firstNumIndex),
-        chapter = sutta_id.replace(section, ""),
-        suttaInfo = {
-            sutta_id,
-            section,
-            chapter,
-            sutta_title,
-            author,
-            prev_id: previous.uid,
-            next_id: next.uid,
-            sutta_description: data.suttaplex.blurb,
-            // data,
-        };
-    return await getSuttaHelper(suttaInfo);
-}
-
 async function getRandomSutta() {
-    const suttaInfo = await getRandomSuttaInfo();
-    return await getSuttaHelper(suttaInfo);
+    const sections = Object.keys(suttapitaka),
+        section = getRandomItem(sections),
+        randomChapter = getRandomNumber(suttapitaka[section]) + 1;
+    let suttaId = `${section}${randomChapter}`,
+        data = await getData(suttaId);
+    // validate random chapter number: see if it needs .1 subsection
+    if (!data.translation) {
+        console.log(suttaId, "does not exist.");
+        suttaId += ".1";
+        console.log("trying", suttaId, "instead.");
+        // get random subsection
+        const subsections = await getSuttaSubsections(suttaId);
+        suttaId = getRandomItem(subsections);
+        data = await getData(suttaId);
+    }
+    return await getSutta(suttaId, data);
 
-    async function getRandomSuttaInfo() {
-        const sections = Object.keys(suttapitaka),
-            section = getRandomItem(sections),
-            randomChapter = getRandomNumber(suttapitaka[section]) + 1;
-        let suttaId = `${section}${randomChapter}`,
-            data = await getData(suttaId);
-        // validate random chapter number: see if it needs .1 subsection
-        if (!data.translation) {
-            console.log(suttaId, "does not exist.");
-            suttaId += ".1";
-            console.log("trying", suttaId, "instead.");
-            // get random subsection
-            const subsections = await getSuttaSubsections(suttaId);
-            suttaId = getRandomItem(subsections);
-            data = await getData(suttaId);
-        }
-        return await getSutta(suttaId, data);
+    function getRandomItem(arr) {
+        return arr[getRandomNumber(arr.length)];
+    }
 
-        function getRandomItem(arr) {
-            return arr[getRandomNumber(arr.length)];
-        }
+    function getRandomNumber(max) {
+        return ~~(Math.random() * max);
+    }
 
-        function getRandomNumber(max) {
-            return ~~(Math.random() * max);
-        }
-
-        async function getSuttaSubsections(suttaId, result = []) {
-            const endpoint = `https://suttacentral.net/api/suttas/${suttaId}/sujato?siteLanguage=en`,
-                { translation } = await (await fetch(endpoint)).json(),
-                { next, uid } = translation;
-            result.push(uid);
-            if (next) {
-                const { uid: nextSuttaId } = next,
-                    chapter = suttaId.split(".")[0];
-                if (nextSuttaId?.includes(chapter)) {
-                    result = await getSuttaSubsections(nextSuttaId, result);
-                }
+    async function getSuttaSubsections(suttaId, result = []) {
+        const endpoint = `https://suttacentral.net/api/suttas/${suttaId}/sujato?siteLanguage=en`,
+            { translation } = await (await fetch(endpoint)).json(),
+            { next, uid } = translation;
+        result.push(uid);
+        if (next) {
+            const { uid: nextSuttaId } = next,
+                chapter = suttaId.split(".")[0];
+            if (nextSuttaId?.includes(chapter)) {
+                result = await getSuttaSubsections(nextSuttaId, result);
             }
-            return result;
         }
+        return result;
     }
 }
 
