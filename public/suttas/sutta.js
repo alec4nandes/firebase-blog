@@ -86,19 +86,19 @@ async function getRandomSutta() {
         const sections = Object.keys(suttapitaka),
             section = getRandomItem(sections),
             randomChapter = getRandomNumber(suttapitaka[section]) + 1;
-        let sutta_id = `${section}${randomChapter}`,
-            data = await getData(sutta_id);
+        let suttaId = `${section}${randomChapter}`,
+            data = await getData(suttaId);
         // validate random chapter number: see if it needs .1 subsection
         if (!data.translation) {
-            console.log(sutta_id, "does not exist.");
-            sutta_id += ".1";
-            console.log("trying", sutta_id, "instead.");
+            console.log(suttaId, "does not exist.");
+            suttaId += ".1";
+            console.log("trying", suttaId, "instead.");
             // get random subsection
-            const subsections = await getSuttaSubsections(sutta_id);
-            sutta_id = getRandomItem(subsections);
-            data = await getData(sutta_id);
+            const subsections = await getSuttaSubsections(suttaId);
+            suttaId = getRandomItem(subsections);
+            data = await getData(suttaId);
         }
-        return await getSutta(sutta_id, data);
+        return await getSutta(suttaId, data);
 
         function getRandomItem(arr) {
             return arr[getRandomNumber(arr.length)];
