@@ -85,8 +85,8 @@ async function getRandomSutta() {
     async function getRandomSuttaInfo() {
         const sections = Object.keys(suttapitaka),
             section = getRandomItem(sections),
-            random_chapter = getRandomNumber(suttapitaka[section]) + 1;
-        let sutta_id = `${section}${random_chapter}`,
+            randomChapter = getRandomNumber(suttapitaka[section]) + 1;
+        let sutta_id = `${section}${randomChapter}`,
             data = await getData(sutta_id);
         // validate random chapter number: see if it needs .1 subsection
         if (!data.translation) {
