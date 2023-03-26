@@ -21,6 +21,7 @@ import {
     verifyUser,
     render404,
 } from "./server-functions.mjs";
+
 import { emailMe, sendMailingListUpdate } from "./email.mjs";
 import cookieParser from "cookie-parser";
 import getMoonSunTidesData from "./moon-sun-tides.mjs";
@@ -30,8 +31,11 @@ import {
     renderIChingText,
 } from "./iching-render.mjs";
 // for __dirname in module:
-import { dirname } from "path";
+import path, { dirname } from "path";
 import { fileURLToPath } from "url";
+
+import fs from "fs";
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /* SERVER CONFIG */
@@ -163,6 +167,83 @@ app.get("/iching/text", function (req, res) {
 // http://localhost:5000/moon-sun-tides-api/?latitude=32.8400896&longitude=-117.2078592&date=2022-11-30
 app.get("/moon-sun-tides-api", function (req, res) {
     getMoonSunTidesData(req, res);
+});
+
+app.get("/xxx", function (req, res) {
+    res.send(refreshPage(5000));
+
+    function refreshPage(time) {
+        return `
+            <button id="stop">stop</button>
+            <h2>Gallery</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                ${getRandomImages(5)}
+            </div>
+            <script>
+                const timeout = setTimeout(() => location.reload(), ${time});
+                document.querySelector("#stop").onclick = () => clearTimeout(timeout);
+            </script>`;
+    }
+
+    function getAllImages() {
+        const files = getXXXFiles();
+        return getImages(files);
+    }
+
+    function getRandomImages(size) {
+        const files = [...getRandomSet(getXXXFiles(), size)];
+        return getImages(files);
+    }
+
+    function getXXXFiles() {
+        return getFilesRecursively("../public/assets/XXX").filter(
+            (file) => !file.includes("desktop.ini")
+        );
+    }
+
+    function getFilesRecursively(directory, files = []) {
+        const filesInDirectory = fs.readdirSync(directory);
+        for (const file of filesInDirectory) {
+            const absolute = path.join(directory, file);
+            if (fs.statSync(absolute).isDirectory()) {
+                try {
+                    getFilesRecursively(absolute, files);
+                } catch (err) {
+                    console.error(err);
+                }
+            } else {
+                files.push(absolute);
+            }
+        }
+        return files;
+    }
+
+    function getRandomSet(arr, size) {
+        const result = new Set();
+        while (result.size < size) {
+            result.add(getRandom(arr));
+        }
+        return result;
+    }
+
+    function getRandom(arr) {
+        return arr[~~(Math.random() * arr.length)];
+    }
+
+    function getImages(files) {
+        const urls = getUrls(files);
+        return getImagesHTML(urls);
+    }
+
+    function getUrls(files) {
+        return files.map((file) =>
+            file.replaceAll("\\", "/").replace("../public", "")
+        );
+    }
+
+    function getImagesHTML(urls) {
+        return urls.map((url) => `<img src="${url}" height="200" />`).join("");
+    }
 });
 
 app.get("/404", function (req, res) {

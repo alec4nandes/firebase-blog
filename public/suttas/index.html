@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Suttapitaka</title>
+        <style>
+            body {
+                background-color: #222;
+                color: antiquewhite;
+                font-family: "Courier New", Courier, monospace;
+            }
+
+            a,
+            details summary {
+                color: aquamarine;
+                transition: color 1s;
+            }
+
+            a:hover,
+            details summary:hover {
+                color: rgb(184, 113, 250);
+            }
+
+            details summary:hover {
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <header></header>
+
+        <main>Loading sutta...</main>
+
+        <script type="module">
+            import { getSutta, getRandomSutta } from "./sutta.js";
+            import displaySutta from "./display.js";
+
+            const sutta_id = getSearchParam("sutta"),
+                sutta = sutta_id
+                    ? await getSutta(sutta_id)
+                    : await getRandomSutta();
+
+            displaySutta(sutta);
+
+            // console.log(sutta);
+
+            function getSearchParam(param) {
+                const params = new URL(document.location).searchParams;
+                return params.get(param);
+            }
+        </script>
+    </body>
+</html>
