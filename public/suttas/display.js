@@ -18,6 +18,8 @@ export default function displaySutta(sutta) {
             ${prevIsValid ? `<a href="?sutta=${prev_id}">previous</a>` : ""}
             ${prevIsValid && nextIsValid ? "|" : ""}
             ${nextIsValid ? `<a href="?sutta=${next_id}">next</a>` : ""}
+            ${prevIsValid || nextIsValid ? "|" : ""}
+            <a href="./">random</a>
         `;
     }
 
