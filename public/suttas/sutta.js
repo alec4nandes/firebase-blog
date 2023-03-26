@@ -1,23 +1,8 @@
-const suttapitaka = {
-    dn: 34,
-    mn: 152,
-    sn: 56,
-    an: 11,
-    kp: 9,
-    dhp: 383,
-    ud: 8,
-    iti: 112,
-    snp: 5,
-};
+import crawled, { sections, getData } from "./crawl.js";
 
-async function getData(suttaId) {
-    const endpoint = `https://suttacentral.net/api/suttas/${suttaId}/sujato?siteLanguage=en`;
-    return await (await fetch(endpoint)).json();
-}
-
-async function getSutta(suttaId, data) {
-    data = data || (await getData(suttaId));
-    const {
+async function getSutta(suttaId) {
+    const data = await getData(suttaId),
+        {
             uid: sutta_id,
             title: sutta_title,
             author,
@@ -27,10 +12,20 @@ async function getSutta(suttaId, data) {
         firstNumIndex = [...sutta_id].findIndex(Number),
         section = sutta_id.slice(0, firstNumIndex),
         chapter = sutta_id.replace(section, ""),
+        chapterData =
+            suttaId.includes(".") && (await getData(suttaId.split(".")[0])),
+        {
+            uid,
+            translated_title,
+            blurb: chapter_description,
+        } = chapterData?.suttaplex || {},
+        chapter_title = chapterData && `${uid}: ${translated_title}`,
         suttaInfo = {
             sutta_id,
             section,
             chapter,
+            chapter_title,
+            chapter_description,
             sutta_title,
             author,
             prev_id: previous.uid,
@@ -74,45 +69,14 @@ async function getSutta(suttaId, data) {
 }
 
 async function getRandomSutta() {
-    const sections = Object.keys(suttapitaka),
-        section = getRandomItem(sections),
-        randomChapter = getRandomNumber(suttapitaka[section]) + 1;
-    let suttaId = `${section}${randomChapter}`,
-        data = await getData(suttaId);
-    // validate random chapter number: see if it needs .1 subsection
-    if (!data.translation) {
-        console.log(suttaId, "does not exist.");
-        suttaId += ".1";
-        console.log("trying", suttaId, "instead.");
-        // get random subsection
-        const subsections = await getSuttaSubsections(suttaId);
-        suttaId = getRandomItem(subsections);
-        data = await getData(suttaId);
-    }
-    return await getSutta(suttaId, data);
+    const section = getRandomItem(Object.keys(sections)),
+        validSuttas = crawled.filter((sutta) => sutta.includes(section)),
+        suttaId = getRandomItem(validSuttas);
+    return await getSutta(suttaId);
 
     function getRandomItem(arr) {
-        return arr[getRandomNumber(arr.length)];
-    }
-
-    function getRandomNumber(max) {
-        return ~~(Math.random() * max);
-    }
-
-    async function getSuttaSubsections(suttaId, result = []) {
-        const endpoint = `https://suttacentral.net/api/suttas/${suttaId}/sujato?siteLanguage=en`,
-            { translation } = await (await fetch(endpoint)).json(),
-            { next, uid } = translation;
-        result.push(uid);
-        if (next) {
-            const { uid: nextSuttaId } = next,
-                chapter = suttaId.split(".")[0];
-            if (nextSuttaId?.includes(chapter)) {
-                result = await getSuttaSubsections(nextSuttaId, result);
-            }
-        }
-        return result;
+        return arr[~~(Math.random() * arr.length)];
     }
 }
 
-export { suttapitaka, getSutta, getRandomSutta };
+export { getSutta, getRandomSutta };
