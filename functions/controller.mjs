@@ -31,10 +31,10 @@ import {
     renderIChingText,
 } from "./iching-render.mjs";
 // for __dirname in module:
-import path, { dirname } from "path";
+import { dirname } from "path";
 import { fileURLToPath } from "url";
 
-import fs from "fs";
+import getSutta from "./sutta.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -167,6 +167,13 @@ app.get("/iching/text", function (req, res) {
 // http://localhost:5000/moon-sun-tides-api/?latitude=32.8400896&longitude=-117.2078592&date=2022-11-30
 app.get("/moon-sun-tides-api", function (req, res) {
     getMoonSunTidesData(req, res);
+});
+
+// Sutta data API route, sample:
+// http://localhost:5000/sutta/?sutta=an5.139
+app.get("/sutta", function (req, res) {
+    const { sutta } = req.query;
+    getSutta(sutta).then((result) => res.send(result));
 });
 
 app.get("/404", function (req, res) {

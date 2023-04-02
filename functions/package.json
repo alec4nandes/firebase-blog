@@ -25,7 +25,7 @@
         "geo-tz": "^7.0.5",
         "handlebars": "^4.7.7",
         "lune": "^0.4.0",
-        "node-fetch": "^3.3.0",
+        "node-fetch": "^3.3.1",
         "nodemailer": "^6.8.0",
         "request": "^2.88.2"
     },

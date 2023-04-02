@@ -38,9 +38,9 @@
             import { getSutta, getRandomSutta } from "./sutta.js";
             import displaySutta from "./display.js";
 
-            const sutta_id = getSearchParam("sutta"),
-                sutta = sutta_id
-                    ? await getSutta(sutta_id)
+            const suttaId = getSearchParam("sutta"),
+                sutta = suttaId
+                    ? await getSutta(suttaId)
                     : await getRandomSutta();
 
             displaySutta(sutta);
