@@ -3693,30 +3693,32 @@ async function crawl() {
         )
     ).flat();
     return [...new Set(result)];
-}
 
-async function crawlHelper(sutta, section, result = []) {
-    const data = await getData(sutta),
-        { translation } = data.translation ? data : await getData(sutta + ".1"),
-        { uid, next } = translation || {};
-    if (uid) {
-        result.push(uid);
-        if (next.uid) {
-            result = await crawlHelper(next.uid, section, result);
+    async function crawlHelper(sutta, section, result = []) {
+        const data = await getData(sutta),
+            { translation } = data.translation
+                ? data
+                : await getData(sutta + ".1"),
+            { uid, next } = translation || {};
+        if (uid) {
+            result.push(uid);
+            if (next.uid) {
+                result = await crawlHelper(next.uid, section, result);
+            }
+        }
+        if (result.length === 1) {
+            for (let i = 1; i <= sections[section]; i++) {
+                result = await crawlHelper(section + i, section, result);
+            }
+        }
+        return result;
+
+        async function getData(suttaId) {
+            const endpoint = `https://suttacentral.net/api/suttas/${suttaId}/sujato?siteLanguage=en`;
+            return await (await fetch(endpoint)).json();
         }
     }
-    if (result.length === 1) {
-        for (let i = 1; i <= sections[section]; i++) {
-            result = await crawlHelper(section + i, section, result);
-        }
-    }
-    return result;
-}
-
-async function getData(suttaId) {
-    const endpoint = `https://suttacentral.net/api/suttas/${suttaId}/sujato?siteLanguage=en`;
-    return await (await fetch(endpoint)).json();
 }
 
 export default crawled;
-export { sections, getData };
+export { sections };

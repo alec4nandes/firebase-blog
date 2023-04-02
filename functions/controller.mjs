@@ -173,7 +173,9 @@ app.get("/moon-sun-tides-api", function (req, res) {
 // http://localhost:5000/sutta/?sutta=an5.139
 app.get("/sutta", function (req, res) {
     const { sutta } = req.query;
-    getSutta(sutta).then((result) => res.send(result));
+    getSutta(sutta)
+        .then((result) => res.send(result))
+        .catch((err) => res.send(err));
 });
 
 app.get("/404", function (req, res) {
