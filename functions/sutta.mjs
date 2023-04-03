@@ -10,8 +10,8 @@ export default async function getSutta(suttaId) {
             next,
         } = data.translation,
         firstNumIndex = [...sutta_id].findIndex(Number),
-        section = sutta_id.slice(0, firstNumIndex),
-        chapter = sutta_id.replace(section, ""),
+        section_id = sutta_id.slice(0, firstNumIndex),
+        chapter = sutta_id.replace(section_id, ""),
         chapterData =
             suttaId.includes(".") && (await getData(suttaId.split(".")[0])),
         {
@@ -22,7 +22,7 @@ export default async function getSutta(suttaId) {
         chapter_title = chapterData && `${uid}: ${translated_title}`,
         suttaInfo = {
             sutta_id,
-            section,
+            section_id,
             chapter,
             chapter_title,
             chapter_description,
@@ -33,12 +33,16 @@ export default async function getSutta(suttaId) {
             sutta_description: data.suttaplex.blurb,
             // data,
         },
-        sectionInfo = await getSectionInfo(section),
+        sectionInfo = await getSectionInfo(section_id),
         lines = await getSuttaChapterText(sutta_id);
     return {
         ...suttaInfo,
         ...sectionInfo,
         lines,
+        display: {
+            linesHTML: lines.map((line) => line.trim()).join("<br/>"),
+            annotations: [],
+        },
     };
 
     async function getData(suttaId) {
@@ -46,15 +50,15 @@ export default async function getSutta(suttaId) {
         return await (await fetch(endpoint)).json();
     }
 
-    async function getSectionInfo(section) {
-        const endpoint = `https://suttacentral.net/api/suttas/${section}/sujato?siteLanguage=en`,
+    async function getSectionInfo(sectionId) {
+        const endpoint = `https://suttacentral.net/api/suttas/${sectionId}/sujato?siteLanguage=en`,
             data = await (await fetch(endpoint)).json(),
             {
                 translated_title: title,
                 original_title: pali,
                 blurb: description,
             } = data?.suttaplex || {},
-            isDhp = section === "dhp";
+            isDhp = sectionId === "dhp";
         return {
             section_title: !title && isDhp ? "Dhammapada" : title,
             section_pali: !pali && isDhp ? "Dhammapada" : pali,
