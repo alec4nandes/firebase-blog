@@ -71,7 +71,7 @@ export default function displaySutta(sutta) {
                 }
             </details>
             <h1>${sutta_title}</h1>
-            <h2>(${section_pali} ${chapter})</h2>
+            <h2>(${section_pali}${chapter ? " " + chapter : ""})</h2>
             ${sutta_description ? `<p>${sutta_description}</p>` : ""}
             <hr/>
             <p>${lines.join("<br/>")}</p>

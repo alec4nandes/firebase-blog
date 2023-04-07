@@ -11,7 +11,7 @@ export default async function getSutta(suttaId) {
         } = data.translation,
         firstNumIndex = [...sutta_id].findIndex(Number),
         section_id = sutta_id.slice(0, firstNumIndex),
-        chapter = sutta_id.replace(section_id, ""),
+        chapter_number = sutta_id.replace(section_id, ""),
         chapterData =
             suttaId.includes(".") && (await getData(suttaId.split(".")[0])),
         {
@@ -23,7 +23,7 @@ export default async function getSutta(suttaId) {
         suttaInfo = {
             sutta_id,
             section_id,
-            chapter,
+            chapter_number,
             chapter_title,
             chapter_description,
             sutta_title,
@@ -72,7 +72,9 @@ export default async function getSutta(suttaId) {
     async function getSuttaChapterText(suttaId) {
         const endpoint = `https://suttacentral.net/api/bilarasuttas/${suttaId}/sujato`,
             { translation_text } = await (await fetch(endpoint)).json(),
-            lines = Object.values(translation_text).filter(Boolean);
+            lines = Object.values(translation_text)
+                .filter(Boolean)
+                .map((line) => line.replaceAll("<j>", ""));
         return lines;
     }
 }
