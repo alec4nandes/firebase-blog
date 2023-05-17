@@ -8,7 +8,19 @@ let innerX = 0,
     innerY = 0;
 
 let animals = [...document.querySelectorAll(".animal")],
+    start = Date.now(),
     gameIsOver = false;
+
+const countAnimals = () => {
+    const isPlural = animals.length !== 1;
+    document.querySelector("#cage").innerHTML = `
+        <p>
+            ${animals.length} animal${isPlural ? "s" : ""} left.
+        </p>
+    `;
+};
+
+countAnimals();
 
 animals.forEach((animal) => {
     // for mobile
@@ -115,14 +127,21 @@ function moveAnimal(elem, ms) {
                 elem.offsetLeft > window.innerWidth;
         cage.style.backgroundColor = hasEscaped ? "lightsalmon" : "yellow";
         if (isLost) {
-            alert("You lost an animal!");
+            // alert("You lost an animal!");
             elem.remove();
             clearInterval(interval);
             animals = animals.filter((animal) => animal !== elem);
-        }
-        if (!gameIsOver && !animals.length) {
-            gameIsOver = true;
-            alert("GAME OVER");
+            countAnimals();
+            if (!gameIsOver && !animals.length) {
+                gameIsOver = true;
+                const time = ((Date.now() - start) / 1000).toFixed(2);
+                setTimeout(() => {
+                    const playAgain = confirm(
+                        `GAME OVER! You lasted ${time} seconds. Play again?`
+                    );
+                    playAgain && window.location.reload();
+                }, 200);
+            }
         }
     }, ms);
     return interval;

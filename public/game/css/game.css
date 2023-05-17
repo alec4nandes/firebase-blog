@@ -24,4 +24,7 @@ body #cage {
   max-width: 300px;
   width: 30vw;
   background-color: yellow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }/*# sourceMappingURL=game.css.map */
