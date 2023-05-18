@@ -15,7 +15,7 @@ const countAnimals = () => {
     const isPlural = animals.length !== 1;
     document.querySelector("#cage").innerHTML = `
         <p>
-            ${animals.length} animal${isPlural ? "s" : ""} left.
+            ${animals.length} Remi${isPlural ? "'s" : ""} left.
         </p>
     `;
 };
@@ -98,34 +98,34 @@ function moveAnimal(elem, ms) {
             elem.offsetTop + (moveUp ? -1 : 1) * Math.random() + "px";
         elem.style.left =
             elem.offsetLeft + (moveLeft ? -1 : 1) * Math.random() + "px";
-        const hasEscaped =
-                !animals.length ||
-                animals.find((animal) => {
-                    const escapedLeft =
-                            animal.offsetLeft + animal.clientWidth <
-                            cage.offsetLeft,
-                        escapedRight =
-                            animal.offsetLeft >
-                            cage.offsetLeft + cage.clientWidth,
-                        escapedTop =
-                            animal.offsetTop + animal.clientHeight <
-                            cage.offsetTop,
-                        escapedBotom =
-                            animal.offsetTop >
-                            cage.offsetTop + cage.clientHeight;
-                    return (
-                        escapedLeft ||
-                        escapedRight ||
-                        escapedTop ||
-                        escapedBotom
-                    );
-                }),
-            isLost =
-                elem.offsetTop + elem.clientHeight < 0 ||
-                elem.offsetLeft + elem.clientWidth < 0 ||
-                elem.offsetTop > window.innerHeight ||
-                elem.offsetLeft > window.innerWidth;
-        cage.style.backgroundColor = hasEscaped ? "lightsalmon" : "yellow";
+        const isLost =
+            elem.offsetTop + elem.clientHeight < 0 ||
+            elem.offsetLeft + elem.clientWidth < 0 ||
+            elem.offsetTop > window.innerHeight ||
+            elem.offsetLeft > window.innerWidth;
+        // hasEscaped =
+        //     !animals.length ||
+        //     animals.find((animal) => {
+        //         const escapedLeft =
+        //                 animal.offsetLeft + animal.clientWidth <
+        //                 cage.offsetLeft,
+        //             escapedRight =
+        //                 animal.offsetLeft >
+        //                 cage.offsetLeft + cage.clientWidth,
+        //             escapedTop =
+        //                 animal.offsetTop + animal.clientHeight <
+        //                 cage.offsetTop,
+        //             escapedBotom =
+        //                 animal.offsetTop >
+        //                 cage.offsetTop + cage.clientHeight;
+        //         return (
+        //             escapedLeft ||
+        //             escapedRight ||
+        //             escapedTop ||
+        //             escapedBotom
+        //         );
+        //     });
+        // cage.style.backgroundColor = hasEscaped ? "lightsalmon" : "yellow";
         if (isLost) {
             // alert("You lost an animal!");
             elem.remove();

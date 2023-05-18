@@ -4,29 +4,42 @@ html {
 }
 
 body {
+    background-image: url("../assets/grass.jpg");
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0;
     overflow: hidden;
 
+    .animal,
+    #cage {
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
     .animal {
-        height: 10vw;
+        height: 15vw;
         max-height: 100px;
         max-width: 100px;
-        width: 10vw;
-        background-color: red;
+        width: 15vw;
+        background-image: url("../assets/remi.png");
+        background-size: contain;
         position: absolute;
     }
 
     #cage {
-        height: 30vw;
+        height: 40vw;
         max-height: 300px;
         max-width: 300px;
-        width: 30vw;
-        background-color: yellow;
+        width: 40vw;
+        background-image: url("../assets/box.png");
+        background-size: 100% 100%;
+        color: #2b6c10;
         display: flex;
         align-items: center;
         justify-content: center;
+        font-family: Arial, sans-serif;
+        font-size: 1.25rem;
+        font-weight: bold;
     }
 }
