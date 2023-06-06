@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./css/style.css">
+        <!-- PWA -->
+        <link rel="manifest" href="./manifest.json"/>
+        <!--
+            In order to have the launch screens shown on an
+            iOS device, you also need to tell the device it
+            is dealing with a web app:
+        -->
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="mobile-web-app-capable" content="yes"/>
+        <!-- iOS icons: -->
+        <link rel="apple-touch-icon" href="./assets/icons/icon-72x72.png" sizes="72x72"/>
+        <link rel="apple-touch-icon" href="./assets/icons/icon-96x96.png" sizes="96x96"/>
+        <link rel="apple-touch-icon" href="./assets/icons/icon-128x128.png" sizes="128x128"/>
+        <link rel="apple-touch-icon" href="./assets/icons/icon-144x144.png" sizes="144x144"/>
+        <link rel="apple-touch-icon" href="./assets/icons/icon-152x152.png" sizes="152x152"/>
+        <link rel="apple-touch-icon" href="./assets/icons/icon-192x192.png" sizes="192x192"/>
+        <link rel="apple-touch-icon" href="./assets/icons/icon-384x384.png" sizes="384x384"/>
+        <link rel="apple-touch-icon" href="./assets/icons/icon-512x512.png" sizes="512x512"/>
+        <!-- end PWA -->
+
+        <title>Tarot Focus</title>
+    </head>
+    <body>
+        <header>
+            <h1>Tarot Focus</h1>
+            <p>We analyze a spread of six cards to see which messages are strongest.</p>
+        </header>
+        <main></main>
+        <footer></footer>
+
+        <script type="module">
+            import {draw, compare} from "./src/models.js";
+            import {displayStats} from "./src/views.js";
+            const elem = document.querySelector("main"),
+                drawn = draw(6, ["10 of Cups", "Star reversed", "7 of Wands"]);
+            displayStats(elem, drawn);
+        </script>
+
+        <script>
+            // The code below checks for service worker support
+            // and then registers a service worker located in
+            // the service-worker.js file in the root of the project.
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator
+                        .serviceWorker
+                        .register('./service-worker.js')
+                        .then(registration => {
+                            console.log(`ServiceWorker registration successful with scope: ${registration.scope}`);
+                        }, error => {
+                            console.log(`ServiceWorker registration failed: ${error}`);
+                        });
+                });
+            }
+        </script>
+    </body>
+</html>
