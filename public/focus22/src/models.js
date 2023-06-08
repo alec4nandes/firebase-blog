@@ -19,7 +19,7 @@ const suits = {
         Cups: {
             represents: "human connection and emotion",
             meaning:
-                "Focus on strengthening relationships without any ulterior motive. Listen deeply before mentally drafting a response. Approach today’s problems with your heart instead of your head. Now is not the time to overanalyze — trust your instinct.",
+                "Focus on strengthening relationships without any ulterior motive. Listen deeply before mentally drafting a response. Approach today's problems with your heart instead of your head. Now is not the time to overanalyze — trust your instinct.",
         },
         Wands: {
             represents: "creativity and passion",
@@ -183,8 +183,11 @@ function compare(drawn) {
     const data = getCompareData(drawn),
         matchingFunc = (cards) => cards.length > 1,
         otherWordsFunc = (cards) => cards.length === 1,
-        filterer = (func) =>
-            Object.entries(data).filter(([_, { cards }]) => func(cards)),
+        filterer = (func, allWordsInOpposites) =>
+            Object.entries(data).filter(
+                ([word, { cards }]) =>
+                    func(cards) && !allWordsInOpposites?.includes(word)
+            ),
         reducer = (entries) =>
             entries.reduce(
                 (acc, [word, { cards }]) => ({
@@ -196,9 +199,11 @@ function compare(drawn) {
                 }),
                 {}
             ),
-        matching = reducer(filterer(matchingFunc)),
-        otherWords = reducer(filterer(otherWordsFunc)),
-        opposites = getOpposites(data);
+        opposites = getOpposites(data),
+        otherWords = reducer(
+            filterer(otherWordsFunc, getAllWordsInOpposites(opposites))
+        ),
+        matching = reducer(filterer(matchingFunc));
     return { matching, otherWords, opposites };
 }
 
@@ -308,6 +313,21 @@ function combineOppositesList(opposites) {
     );
 }
 
+function getAllWordsInOpposites(opposites) {
+    return [
+        ...new Set(
+            Object.entries(opposites)
+                .map(([key, value]) => [
+                    ...key.split(", "),
+                    ...Object.keys(value.opposites)
+                        .map((oppos) => oppos.split(", "))
+                        .flat(),
+                ])
+                .flat()
+        ),
+    ];
+}
+
 /* END COMPARE */
 
 function sortStats(stats) {
@@ -330,22 +350,68 @@ function prepareData(stats) {
             isBigPicture: true, // sets .more-text class
             statsSection: stats.suitStats,
             title: "Big Picture",
-            description:
-                "If all are present, pay attention to the order they show up in the cards. The first one is the most important.",
+            description: `
+                <p>
+                    Alongside the Major Arcana is the Minor Arcana,
+                    which is grouped into four different suits.
+                    And just like the four cardinal directions,
+                    each suit points to a different quadrant of the human experience.
+                    Our career paths (Pentacles), intellectual interests (Swords),
+                    hidden emotions (Cups), and physical passions (Wands) are
+                    the driving forces that make us who we are.
+                <p>
+                <p>
+                    Sometimes one direction pulls us much stronger than the others.
+                    Below are your Tarot cards, sorted by how often each suit appears in your reading.
+                    What is today's grand theme, and what's missing?
+                </p>
+                <small>
+                    If all are present, pay attention to the order they show up in the cards.
+                    The first one is the most important.
+                </small>
+            `,
         },
         {
             info: ranks,
             statsSection: stats.rankStats,
             title: "Small Picture",
-            description:
-                "If all are present, pay attention to the order they show up in the cards. The first one is the most important.",
+            description: `
+                <p>
+                    The lower cards of the Minor Arcana number Ace through 10,
+                    just like a standard playing deck. Each rank has a special meaning and,
+                    like the suits, they are sorted by their overall presence in today's drawing.
+                    The absent meanings represent less important areas of your life today.
+                </p>
+                <p>
+                    *** For each present word, include an adjective under that card based on the suit
+                </p>
+            `,
         },
         {
             info: people,
             statsSection: stats.peopleStats,
             title: "People",
-            description:
-                "If all are present, pay attention to the order they show up in the cards. The first one is the most important.",
+            description: `
+                <p>
+                    The face cards of each suit represent people of different ages,
+                    and the suits themselves determine their personalities.
+                    People of all walks of life come and go as time passes on,
+                    leaving us with memories both good and bad.
+                </p>
+                <p>
+                    Review the kind of people who showed up in the cards. Do you recognize anyone?
+                    How do they fit into the Big and Small Pictures of today's reading?
+                    Also take note of who isn't in attendance.
+                </p>
+                <p>
+                    *** ChatGPT: what are personal qualities you would associate with cups… wands… etc.
+                    list these adjectives under the cards like the ranks
+                </p>
+                <small>
+                    If all are present, pay attention to the order they show up in the cards.
+                    The first one is the most important.
+                </small>
+            `,
         },
     ];
 }

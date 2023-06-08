@@ -19,12 +19,20 @@ function displayStats(elem, drawn) {
         serious = seriouses[seriousIndex];
     elem.innerHTML = `
         <section>
+            <h2>These are your six cards:</h2>
             <p>${getImagesFromCardNames(cardNames, "drawn")}</p>
+            <p>Swipe right to start learning more, or navigate using the menu above.</p>
         </section>
         <section>
             <h2>Major Arcana</h2>
             <p>
-                Major Arcana cards are the most powerful in the deck, blah blah blah....
+                Not all Tarot cards hold equal importance.
+                Some are steeped in deep symbolic meaning and reflect the most fundamental forces of nature.
+                These are the Major Arcana cards.
+            </p>
+            <p>
+                More of these cards in a reading indicates more urgency.
+                Take seriously the messages these cards give you in proportion to how many there are.
             </p>
             <div class="stats-section">
                 <div class="subsection">
@@ -42,6 +50,14 @@ function displayStats(elem, drawn) {
                     <p style="margin-bottom: 0">
                         ${getImagesFromCardNames(majorArcana, "small")}
                     </p>
+                    <ul>
+                        ${majorArcana
+                            .map(
+                                (card) =>
+                                    `<li><strong>${card}</strong>: [MEANING]</li>`
+                            )
+                            .join("")}
+                    </ul>
                 </div>
             </div>
         </section>
@@ -50,7 +66,16 @@ function displayStats(elem, drawn) {
             .join("")}
         <section>
             <h2>Words</h2>
-            <p>...</p>
+            <p>
+                Each card holds an array of words that best represent it,
+                and not all the words of the deck are distinct.
+                There is a lot of overlap and sometimes even contradiction between cards in a spread.
+            </p>
+            <p>
+                If multiple cards share the same word, there is a stronger meaning behind it.
+                If one card's words cancel out another card, consider the opposing forces at work.
+                Think about the conflict at hand and which side you belong to.
+            </p>
             <div class="stats-section">
                 <div class="subsection">
                     <h3 class="subsection-header">Matching</h3>
@@ -206,7 +231,7 @@ function formatSection({
     return `
         <section>
             <h2>${title}</h2>
-            <p>${description}</p>
+            ${description}
             <div class="stats-section">
                 ${formatHelper({
                     ...passing,
@@ -316,7 +341,7 @@ function preloadImages(drawn, elem) {
             .map((upright) => `./assets/cards/${upright}.jpg`);
         let loaded = 0;
         for (const url of urls) {
-            var img = new Image();
+            const img = new Image();
             img.onload = () =>
                 ++loaded === urls.length && readyToLoad(elem, drawn);
             img.src = url;

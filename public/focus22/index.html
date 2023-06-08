@@ -119,7 +119,10 @@
         <div id="loader"></div>
         <header>
             <h1>Tarot Focus</h1>
-            <p>We analyze a spread of six cards to see which messages are strongest.</p>
+            <p>Welcome to Tarot Focus (name??), the app that uses Tarot cards to help you focus on what matters most.</p>
+            <p>We read six cards to see which energies in the spread are most dominant, which ones aren’t, and which ones don’t appear at all. Use this info to find the confidence and direction for getting the most out of your day.</p>
+            <p>Meditate on each meaning. As you move between sections, really think about how the messages apply to your life. Going deeper, you may find what you thought was random is really relevant.</p>
+            <p>Start your journey now:</p>
             <button id="draw-button">draw cards</button>
         </header>
         <main></main>
@@ -130,12 +133,14 @@
             import {preloadImages} from "./src/views.js";
             const drawButton = document.querySelector("#draw-button");
             drawButton.onclick = handleDraw;
+            // preload loading gif
+            new Image().src = "./assets/load_screens/loading.gif";
 
             function handleDraw() {
                 const testCards = [
                         "10 of Cups", "Star reversed", "7 of Wands"
                     ],
-                    drawn = draw(6, testCards),
+                    drawn = draw(6), // testCards),
                     elem = document.querySelector("main");
                 preloadImages(drawn, elem);
             }
