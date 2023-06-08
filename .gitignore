@@ -2,6 +2,9 @@ database.mjs
 database-b.mjs
 bundle.js
 
+# Large image files
+**/splash_screens/template.psd
+
 # Logs
 logs
 *.log

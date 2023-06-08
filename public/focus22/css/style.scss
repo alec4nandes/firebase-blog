@@ -1,0 +1,269 @@
+@import "https://api.fontshare.com/v2/css?f[]=quicksand@500&f[]=britney@400&display=swap";
+
+/*** ELEMENTS ***/
+
+body {
+    height: 100vh;
+    background-color: #222;
+    box-sizing: border-box;
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    font-family: "Quicksand", "Times New Roman", Times, serif;
+    font-size: 0.95em;
+    margin: 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+h1,
+h2,
+h3 {
+    font-family: "Britney", Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+h2,
+h3 {
+    color: #444;
+}
+
+h4 {
+    margin: 0 0 10px;
+}
+
+img {
+    &.reversed {
+        transform: rotate(180deg);
+    }
+
+    &.drawn {
+        max-width: 130px;
+        min-width: 70px;
+        width: 30%;
+    }
+
+    &.small {
+        width: 70px;
+    }
+
+    &.x-small {
+        width: 40px;
+    }
+}
+
+header {
+    .nav-dot {
+        opacity: 0.6;
+        padding: 1.5px;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &.current-nav-dot {
+            opacity: 1;
+        }
+    }
+}
+
+main {
+    max-width: 1000px;
+    width: 100%;
+    display: flex;
+    gap: 0 10px;
+    margin: auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+
+    section {
+        height: 100%;
+        min-width: 100%;
+        background-color: #eee;
+        border-radius: 15px;
+        box-sizing: border-box;
+        color: #222;
+        overflow: auto;
+        padding: 15px;
+        scroll-snap-align: center;
+
+        h2 {
+            margin-top: 8px;
+        }
+
+        .stats-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+
+            .subsection {
+                max-width: 700px;
+                background-color: #ccc;
+                border-radius: 10px;
+                flex: 1;
+                padding: 15px 10px;
+
+                .subsection-header {
+                    font-size: 1.3rem;
+                    margin: 0 0 15px;
+                }
+            }
+        }
+    }
+}
+
+table {
+    width: 100%;
+
+    th,
+    td {
+        text-align: center;
+    }
+}
+
+ul {
+    width: fit-content;
+    margin: auto;
+    padding-left: 15px;
+    text-align: left;
+
+    li {
+        p {
+            margin: 8px 0;
+        }
+    }
+}
+
+/*** CLASSES ***/
+
+.key {
+    color: #666;
+}
+
+.more-text {
+    padding: 0;
+
+    li {
+        display: inline-block;
+
+        .small-cards {
+            float: left;
+            margin: 0 10px 5px 0;
+        }
+    }
+}
+
+.opposites {
+    .opposites-tables-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+
+        table {
+            width: 100%;
+            border-radius: 5px;
+
+            th {
+                width: 50%;
+                background-color: #eee;
+            }
+
+            td {
+                background-color: #aaa;
+            }
+        }
+    }
+}
+
+.tiled {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+    list-style-type: none;
+    padding-left: 0;
+
+    &.full-width {
+        li {
+            min-width: 100%;
+
+            table {
+                tr {
+                    display: flex;
+
+                    th,
+                    td {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+                    th {
+                        flex: 1;
+                    }
+                }
+            }
+        }
+    }
+
+    li {
+        background-color: #eee;
+        border-radius: 5px;
+        padding: 5px;
+        text-align: center;
+    }
+}
+
+/*** RESPONSIVE ***/
+
+@media only screen and (max-width: 700px) {
+    .stats-section {
+        display: block !important;
+
+        .subsection {
+            margin: 15px 0;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+/*** TOOLTIPS ***/
+
+.tooltip {
+    border-bottom: 1px dotted black;
+    font-family: "Quicksand", "Times New Roman", Times, serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    position: relative;
+
+    .tooltip-icon,
+    button.close-tooltip {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .tooltiptext {
+        width: 130px;
+        background-color: #333;
+        border-radius: 6px;
+        color: #fff;
+        padding: 5px 0;
+        text-align: center;
+        visibility: hidden;
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+    }
+}
